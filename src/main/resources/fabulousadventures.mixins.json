@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.violet.fabulous.mixin",
+  "package": "com.violet.fabulous_adventures.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [],
   "injectors": {
