@@ -1,13 +1,6 @@
 {
-  "itemGroup.fabulousadventures": "Example Mod Tab",
-  "block.fabulousadventures.example_block": "Example Block",
-  "item.fabulousadventures.example_item": "Example Item",
+  "block.fabulousadventures.rope": "rope",
 
-  "fabulousadventures.configuration.title": "Fabulous Adventures Configs",
-  "fabulousadventures.configuration.section.fabulousadventures.common.toml": "Fabulous Adventures Configs",
-  "fabulousadventures.configuration.section.fabulousadventures.common.toml.title": "Fabulous Adventures Configs",
-  "fabulousadventures.configuration.items": "Item List",
-  "fabulousadventures.configuration.logDirtBlock": "Log Dirt Block",
-  "fabulousadventures.configuration.magicNumberIntroduction": "Magic Number Text",
-  "fabulousadventures.configuration.magicNumber": "Magic Number"
+  "creativetab.fabulousadventures.fabulous_adventures_tab": "Fabulous Adventures"
+
 }
