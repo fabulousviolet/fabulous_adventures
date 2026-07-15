@@ -19,6 +19,7 @@ public class FabulousBlocks {
 
     //register Blocks here vvv dummy: public static final DeferredBlock<Block> NAME = registerBlock("name", properties -> new Block(properties.strength(x,x);
     public static final DeferredBlock<Block> ROPE = registerBlock("rope", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block> ROPE_CLIMBABLE = registerBlock("rope_climbable", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL)));
     //register functions
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function) {
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);
@@ -27,9 +28,13 @@ public class FabulousBlocks {
 
     }
 
+
+
+
     public static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.useBlockDescriptionPrefix()));
     }
+
 
     public static void register(IEventBus event_bus) {
         BLOCKS.register(event_bus);

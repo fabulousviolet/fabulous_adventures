@@ -18,5 +18,8 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.SHEARS_MAJOR_BREAKING_SPEED)
                 .add(FabulousBlocks.ROPE.getKey());
+        tag(BlockTags.CLIMBABLE)
+                .add(FabulousBlocks.ROPE_CLIMBABLE.getKey());
     }
+
 }
