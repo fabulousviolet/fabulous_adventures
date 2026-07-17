@@ -3,6 +3,7 @@ package com.violet.fabulous_adventures.datagen;
 import com.violet.fabulous_adventures.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
+import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -67,16 +68,16 @@ public class FabulousModelProvider extends ModelProvider {
                                 BlockModelGenerators.variant(variant_rope))
                         .with(PropertyDispatch.modify(BlockStateProperties.AXIS)
                                 .select(Direction.Axis.Y, BlockModelGenerators.NOP)
-                                .select(Direction.Axis.Z,BlockModelGenerators.X_ROT_90)
-                                .select(Direction.Axis.X,BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90)))
+                                .select(Direction.Axis.Z, BlockModelGenerators.X_ROT_90)
+                                .select(Direction.Axis.X, BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90)))
                         .with(PropertyDispatch.modify(RopeBlock.END)
                                 .select(false, BlockModelGenerators.NOP)
                                 .select(true, VariantMutator.MODEL.withValue(modelLoc_rope_end)))
 
 
         );
-
-
+        blockModels.createTrivialCube(FabulousBlocks.ROPE_BUILDER.get());
+        itemModels.generateFlatItem(FabulousItems.ROPE_ARROW.get(), ModelTemplates.FLAT_ITEM);
     }
 
 }

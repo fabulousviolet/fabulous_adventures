@@ -2,6 +2,7 @@ package com.violet.fabulous_adventures.CreativeModeTabs;
 
 import com.violet.fabulous_adventures.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,6 +22,9 @@ public class FabulousCreativeModeTabs {
             .displayItems((itemDisplayParameters, output) -> {
             //put items to be displayed in the creativemodetab here vvv dummy: output.accept(FabulousItems/Blocks.NAME);
                 output.accept(FabulousBlocks.ROPE);
+                output.accept(FabulousBlocks.ROPE_BUILDER);
+                output.accept(FabulousItems.ROPE_ARROW);
+
             })
             .build());
 

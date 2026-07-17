@@ -1,6 +1,7 @@
 package com.violet.fabulous_adventures;
 
 import com.violet.fabulous_adventures.datagen.FabulousBlockTagProvider;
+import com.violet.fabulous_adventures.datagen.FabulousItemTagProvider;
 import com.violet.fabulous_adventures.datagen.FabulousModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -18,7 +19,7 @@ public class FabulousAdventuresDatagen {
 
         generator.addProvider(true, new FabulousModelProvider(packOutput));
         generator.addProvider(true, new FabulousBlockTagProvider(packOutput, lookupProvider));
-
+        generator.addProvider(true, new FabulousItemTagProvider(packOutput,lookupProvider));
         /*generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLoottableProvider::new,
                         LootContextParamSets.BLOCK)),lookupProvider));

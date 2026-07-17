@@ -2,6 +2,7 @@ package com.violet.fabulous_adventures.block;
 
 import com.violet.fabulous_adventures.FabulousAdventures;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
+import com.violet.fabulous_adventures.block.custom.RopeBuilder;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
@@ -18,12 +19,13 @@ public class FabulousBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(FabulousAdventures.MODID);
 
     //register Blocks here vvv dummy: public static final DeferredBlock<Block> NAME = registerBlock("name", properties -> new Block(properties.strength(x,x);
-    public static final DeferredBlock<Block> ROPE = registerBlock("rope", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL)));
-    public static final DeferredBlock<Block> ROPE_CLIMBABLE = registerBlock("rope_climbable", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block> ROPE = registerBlock("rope", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL),false),true);
+    public static final DeferredBlock<Block> ROPE_CLIMBABLE = registerBlock("rope_climbable", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL),true),false);
+    public static final DeferredBlock<Block> ROPE_BUILDER = registerBlock("rope_builder", RopeBuilder::new,true);
     //register functions
-    public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function) {
+    public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function, boolean register_item) {
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);
-        registerBlockItem(name, toReturn);
+        if(register_item) registerBlockItem(name, toReturn);
         return toReturn;
 
     }
