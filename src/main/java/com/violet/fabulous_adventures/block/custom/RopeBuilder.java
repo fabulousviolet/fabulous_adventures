@@ -13,11 +13,12 @@ public class RopeBuilder extends Block {
     public RopeBuilder(Properties properties) {
         super(properties);
     }
+    //can only place as a hanging block
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return !level.getBlockState(pos.above()).isAir();
     }
-
+    //build a climbable rope from the down from the builder with a length of MAXLENGTH
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
         if (!canSurvive(state, level, pos)) {

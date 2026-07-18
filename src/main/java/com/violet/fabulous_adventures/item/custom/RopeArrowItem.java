@@ -13,7 +13,7 @@ public class RopeArrowItem extends ArrowItem {
     public RopeArrowItem(Properties properties) {
         super(properties);
     }
-
+    //create a ropeArrow entity when shot
     @Override
     public AbstractArrow createArrow(Level level, ItemStack itemStack, LivingEntity owner, @Nullable ItemStack firedFromWeapon) {
         return new RopeArrow(FabulousEntities.ROPE_ARROW.get(), owner,level,itemStack,firedFromWeapon);

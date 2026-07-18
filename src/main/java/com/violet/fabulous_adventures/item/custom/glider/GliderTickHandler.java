@@ -20,14 +20,19 @@ import java.util.UUID;
 public class GliderTickHandler {
     private static final Map<UUID, Integer> lastSelectedSlot = new HashMap<>();
     private static final double MAX_FALL_SPEED = -0.04;
+    //executes on every tick
+    //checks when the glider should be deactivated (when deselecting it or hitting the ground)
+    //adjusts slowfalling speed when aplifier is 1
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
+        //deactivate when hitting ground
         Player player = event.getEntity();
         if (player.onGround()){
             player.removeEffect(MobEffects.SLOW_FALLING);
             player.getItemInHand(InteractionHand.MAIN_HAND).set(FabulousDataComponents.GLIDER_ACTIVE.get(),false);
 
         }
+        //limit the downwards y velocity when having the slowfalling effect with amplifier 1
         MobEffectInstance slowFalling = player.getEffect(MobEffects.SLOW_FALLING);
         if (slowFalling != null && slowFalling.getAmplifier() == 1) {
             Vec3 motion = player.getDeltaMovement();
@@ -36,7 +41,7 @@ public class GliderTickHandler {
             }
         }
         if (player.level().isClientSide()) return;
-
+        //deactivate glider when deselecting it
         int currentSlot = player.getInventory().getSelectedSlot();
         Integer previousSlot = lastSelectedSlot.put(player.getUUID(), currentSlot);
 

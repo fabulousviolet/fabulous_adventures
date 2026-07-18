@@ -14,8 +14,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class FabulousEntities {
+    //create a deferred register for entities
     public static final DeferredRegister.Entities ENTITIES = DeferredRegister.createEntities(FabulousAdventures.MODID);
-
+    //register entities here vvv
     public static final Supplier<EntityType<RopeArrow>> ROPE_ARROW = ENTITIES.register("rope_arrow"
             ,() -> EntityType.Builder.<RopeArrow>of(
                     RopeArrow::new,

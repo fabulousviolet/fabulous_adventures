@@ -17,12 +17,12 @@ public class RopeArrow extends AbstractArrow {
     public RopeArrow(EntityType<RopeArrow> type, LivingEntity shooter, Level level, ItemStack pickupItem, ItemStack firedFromWeapon) {
         super(type, shooter, level, pickupItem, firedFromWeapon);
     }
-
+//define what item to give when picked up
     @Override
     protected ItemStack getDefaultPickupItem() {
         return FabulousItems.ROPE_ARROW.toStack();
     }
-
+//place a rope builder block when hitting a valid place position and delete the arrow
     @Override
     protected void onHitBlock(BlockHitResult hitResult) {
         if (!level().getBlockState(hitResult.getBlockPos().above()).isAir()){

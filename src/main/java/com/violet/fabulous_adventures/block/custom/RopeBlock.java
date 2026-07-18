@@ -27,26 +27,26 @@ import java.util.Map;
 
 public class RopeBlock extends RotatedPillarBlock {
     private static final Map<Direction.Axis, VoxelShape> SHAPES;
-
+//constructor for Defaultstates
     public RopeBlock(Properties properties, boolean climbable) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(END, false));
         this.registerDefaultState(this.defaultBlockState().setValue(CLIMBABLE, climbable));
     }
-
+//define Properties
     public static final BooleanProperty END = BooleanProperty.create("end");
     public static final BooleanProperty CLIMBABLE = BooleanProperty.create("climbable");
-
+//rotate the voxelshape depending on the Axis
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return (VoxelShape) SHAPES.get(state.getValue(AXIS));
     }
-
+//define Blockstates
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(new Property[]{AXIS, END, CLIMBABLE});
     }
-
+//break all climbable rope blocks below the broken block
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, ItemStack toolStack, boolean willHarvest, FluidState fluid) {
 
@@ -78,6 +78,7 @@ public class RopeBlock extends RotatedPillarBlock {
         }
         return true;
     }
+    //define voxel size
         static{
             SHAPES = Shapes.rotateAllAxis(Block.cube((double) 4.0F, (double) 4.0F, (double) 16.0F));
         }

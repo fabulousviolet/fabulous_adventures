@@ -20,11 +20,12 @@ public class FabulousCreativeModeTabs {
     public static Supplier<CreativeModeTab> FABOULOUS_ADVENTURES_TAB = CREATIVE_MODE_TABS.register("fabulous_adventures_tab", () ->CreativeModeTab.builder().icon(() -> new ItemStack(FabulousBlocks.ROPE.get()))
             .title(Component.translatable("Fabulous Adventures"))
             .displayItems((itemDisplayParameters, output) -> {
-            //put items to be displayed in the creativemodetab here vvv dummy: output.accept(FabulousItems/Blocks.NAME);
+
                 output.accept(FabulousBlocks.ROPE);
                 output.accept(FabulousBlocks.ROPE_BUILDER);
                 output.accept(FabulousItems.ROPE_ARROW);
                 output.accept(FabulousItems.GLIDER);
+                output.accept(FabulousItems.MACHETE);
 
             })
             .build());

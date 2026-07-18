@@ -5,8 +5,7 @@ import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.item.FabulousItems;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -56,13 +55,14 @@ public class FabulousAdventures {
 
     }
 
-    // Add the example block item to the building blocks tab
+    // Add block item to the mod tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == FabulousCreativeModeTabs.FABOULOUS_ADVENTURES_TAB){
             event.accept(FabulousBlocks.ROPE);
             event.accept(FabulousBlocks.ROPE_BUILDER);
             event.accept(FabulousItems.ROPE_ARROW);
             event.accept(FabulousItems.GLIDER);
+            event.accept(FabulousItems.MACHETE);
         }
     }
 

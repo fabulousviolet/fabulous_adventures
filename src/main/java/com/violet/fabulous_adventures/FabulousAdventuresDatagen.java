@@ -16,7 +16,7 @@ public class FabulousAdventuresDatagen {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         var lookupProvider = event.getLookupProvider();
-
+        //add providers here vvv
         generator.addProvider(true, new FabulousModelProvider(packOutput));
         generator.addProvider(true, new FabulousBlockTagProvider(packOutput, lookupProvider));
         generator.addProvider(true, new FabulousItemTagProvider(packOutput,lookupProvider));

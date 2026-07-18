@@ -16,12 +16,14 @@ public class RopeArrowRenderer extends ArrowRenderer<RopeArrow, ArrowRenderState
     public RopeArrowRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
+    //define arrow texture location
     private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/entity/rope_arrow.png");
+    //returns the texture location
     @Override
     protected Identifier getTextureLocation(ArrowRenderState arrowRenderState) {
         return TEXTURE;
     }
-
+    //creates a new renderState
     @Override
     public ArrowRenderState createRenderState() {
         return new ArrowRenderState();

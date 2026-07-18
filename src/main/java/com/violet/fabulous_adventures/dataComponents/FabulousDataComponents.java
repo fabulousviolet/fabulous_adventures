@@ -10,9 +10,10 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class FabulousDataComponents {
+    //create a deferred register for Data Components
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENTS =
             DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, FabulousAdventures.MODID);
-
+    //define Data Components here vvv
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> GLIDER_ACTIVE =
             DATA_COMPONENTS.register("glider_active", () -> DataComponentType.<Boolean>builder()
                     .persistent(Codec.BOOL)

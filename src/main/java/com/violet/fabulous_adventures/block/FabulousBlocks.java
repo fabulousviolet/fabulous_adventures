@@ -30,9 +30,6 @@ public class FabulousBlocks {
 
     }
 
-
-
-
     public static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.useBlockDescriptionPrefix()));
     }

@@ -30,8 +30,9 @@ public class FabulousModelProvider extends ModelProvider {
     public FabulousModelProvider(PackOutput output) {
         super(output, FabulousAdventures.MODID);
     }
-
+//define texture slots here vvv
     public static final TextureSlot BASE = TextureSlot.create("rope", TextureSlot.ALL);
+//define model templates here vvv
     @SuppressWarnings("deprecation")
     public static final ModelTemplate ROPE_TEMPLATE = new ModelTemplate(
             Optional.of(ModelLocationUtils.decorateBlockModelLocation("fabulousadventures:rope_model")),
@@ -41,7 +42,7 @@ public class FabulousModelProvider extends ModelProvider {
             Optional.of(ModelLocationUtils.decorateBlockModelLocation("fabulousadventures:rope_model_end")),
             Optional.of(""),
             BASE);
-
+//define model providers here vvv
     public static final TexturedModel.Provider ROPE_TEMPLATE_PROVIDER = TexturedModel.createDefault(
             block -> new TextureMapping()
                     .put(BASE,TextureMapping.getBlockTexture(FabulousBlocks.ROPE.get(),"")),
@@ -51,14 +52,15 @@ public class FabulousModelProvider extends ModelProvider {
             block -> new TextureMapping()
                     .put(BASE,TextureMapping.getBlockTexture(FabulousBlocks.ROPE.get(),"")),
             ROPE_TEMPLATE_END);
-
+//register block/item models here vvv
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-
+    //define model locations here vvv
         Identifier modelLoc_rope = ROPE_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE.get(), blockModels.modelOutput);
         Identifier modelLoc_rope_end = ROPE_END_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE_CLIMBABLE.get(), blockModels.modelOutput);
         Variant variant_rope = new Variant(modelLoc_rope);
-        Variant variant_rope_end = new Variant(modelLoc_rope_end);
+    //register block models for blocks here vvv
+        //rope model
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator.dispatch(FabulousBlocks.ROPE.get(),
                                 BlockModelGenerators.variant(variant_rope))
@@ -67,6 +69,7 @@ public class FabulousModelProvider extends ModelProvider {
                                 .select(Direction.Axis.Z, BlockModelGenerators.X_ROT_90)
                                 .select(Direction.Axis.X, BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90)))
         );
+        //rope climbable model
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator.dispatch(FabulousBlocks.ROPE_CLIMBABLE.get(),
                                 BlockModelGenerators.variant(variant_rope))
@@ -80,8 +83,12 @@ public class FabulousModelProvider extends ModelProvider {
 
 
         );
+        //rope builder model (textureless cube)
         blockModels.createTrivialCube(FabulousBlocks.ROPE_BUILDER.get());
+    //define item models for items here vvv
+        //rope arrow model
         itemModels.generateFlatItem(FabulousItems.ROPE_ARROW.get(), ModelTemplates.FLAT_ITEM);
+        //glider model (bool 3d model(dependent on GLiderActive() Data Component))
         itemModels.itemModelOutput.accept(
                 FabulousItems.GLIDER.get(),
                 new ConditionalItemModel.Unbaked(
@@ -92,6 +99,8 @@ public class FabulousModelProvider extends ModelProvider {
 
                 )
         );
+        //machete model
+        itemModels.generateFlatItem(FabulousItems.MACHETE.get(),ModelTemplates.FLAT_ITEM);
     }
 
 }

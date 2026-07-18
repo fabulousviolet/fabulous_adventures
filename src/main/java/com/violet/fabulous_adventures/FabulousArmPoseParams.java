@@ -5,6 +5,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 
 public class FabulousArmPoseParams {
+    //init pose proxies here vvv
     public static final EnumProxy<HumanoidModel.ArmPose> GLIDER_POSE_PROXY = new EnumProxy<>(
             HumanoidModel.ArmPose.class,
             false, // twoHanded
