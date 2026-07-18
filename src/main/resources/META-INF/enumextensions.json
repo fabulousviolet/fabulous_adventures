@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "FABULOUSADVENTURES_GLIDER_POSE",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "field": "GLIDER_POSE_PROXY"
+      }
+    }
+
+  ]
+}

@@ -2,6 +2,7 @@ package com.violet.fabulous_adventures;
 
 import com.violet.fabulous_adventures.CreativeModeTabs.FabulousCreativeModeTabs;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -39,6 +40,7 @@ public class FabulousAdventures {
         FabulousBlocks.register(modEventBus);
         FabulousItems.register(modEventBus);
         FabulousEntities.register(modEventBus);
+        FabulousDataComponents.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 
@@ -60,6 +62,7 @@ public class FabulousAdventures {
             event.accept(FabulousBlocks.ROPE);
             event.accept(FabulousBlocks.ROPE_BUILDER);
             event.accept(FabulousItems.ROPE_ARROW);
+            event.accept(FabulousItems.GLIDER);
         }
     }
 

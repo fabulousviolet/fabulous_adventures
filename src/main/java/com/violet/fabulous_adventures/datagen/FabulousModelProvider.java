@@ -4,6 +4,7 @@ import com.violet.fabulous_adventures.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
 import com.violet.fabulous_adventures.item.FabulousItems;
+import com.violet.fabulous_adventures.item.custom.glider.GliderActive;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -13,11 +14,14 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.dispatch.Variant;
 
 import net.minecraft.client.renderer.block.dispatch.VariantMutator;
+import net.minecraft.client.renderer.item.ConditionalItemModel;
+import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import java.util.Collections;
 import java.util.Optional;
 
 
@@ -78,6 +82,16 @@ public class FabulousModelProvider extends ModelProvider {
         );
         blockModels.createTrivialCube(FabulousBlocks.ROPE_BUILDER.get());
         itemModels.generateFlatItem(FabulousItems.ROPE_ARROW.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.itemModelOutput.accept(
+                FabulousItems.GLIDER.get(),
+                new ConditionalItemModel.Unbaked(
+                        Optional.empty(),
+                        new GliderActive(),
+                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),Optional.empty(), Collections.emptyList()),
+                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),Optional.empty(), Collections.emptyList())
+
+                )
+        );
     }
 
 }

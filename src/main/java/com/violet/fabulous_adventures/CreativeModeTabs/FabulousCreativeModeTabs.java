@@ -24,6 +24,7 @@ public class FabulousCreativeModeTabs {
                 output.accept(FabulousBlocks.ROPE);
                 output.accept(FabulousBlocks.ROPE_BUILDER);
                 output.accept(FabulousItems.ROPE_ARROW);
+                output.accept(FabulousItems.GLIDER);
 
             })
             .build());
