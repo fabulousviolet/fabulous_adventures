@@ -41,10 +41,10 @@ public class FabulousDataComponents {
                     .networkSynchronized(ByteBufCodecs.map(HashMap::new, ByteBufCodecs.STRING_UTF8, BlockPos.STREAM_CODEC))
                     .build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> OXYGEN_TANK_VALUE =
-                DATA_COMPONENTS.register("oxygen_tank_values", () -> DataComponentType.<Integer>builder()
-                        .persistent(Codec.INT)
-                        .networkSynchronized(ByteBufCodecs.VAR_INT)
-                        .build());
+            DATA_COMPONENTS.register("oxygen_tank_values", () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .networkSynchronized(ByteBufCodecs.VAR_INT)
+                    .build());
 
     public static void register(IEventBus eventBus) {
         DATA_COMPONENTS.register(eventBus);

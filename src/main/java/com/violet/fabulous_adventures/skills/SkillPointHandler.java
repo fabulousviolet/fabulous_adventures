@@ -82,6 +82,7 @@ public class SkillPointHandler {
     );
     private static final int RECALC_INTERVAL_TICKS = 100;
 
+
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
@@ -104,7 +105,7 @@ public class SkillPointHandler {
             }
         }
         int awardedPoints = calculateMinedPoints(player) + calculateKillPoints(player) + calculateTravelPoints(player) /*calculateUsePoints(player)*/;
-        return awardedPoints - spentPoints;
+        return awardedPoints - spentPoints + player.getData(FabulousAttachments.BASE_SKILL_POINTS.get());
     }
 
 

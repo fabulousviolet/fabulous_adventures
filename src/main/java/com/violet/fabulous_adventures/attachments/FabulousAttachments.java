@@ -17,7 +17,15 @@ public class FabulousAttachments {
 
     public static final DeferredHolder<AttachmentType<?>,AttachmentType<Integer>> SKILL_POINTS = ATTACHMENT_TYPES.register(
             "skill_points",
-            () -> AttachmentType.builder(() -> 10)
+            () -> AttachmentType.builder(() -> 0)
+                    .serialize(Codec.INT.fieldOf("value"))
+                    .sync(ByteBufCodecs.VAR_INT)
+                    .copyOnDeath()
+                    .build()
+    );
+    public static final DeferredHolder<AttachmentType<?>,AttachmentType<Integer>> BASE_SKILL_POINTS = ATTACHMENT_TYPES.register(
+            "base_skill_points",
+            () -> AttachmentType.builder(() -> 0)
                     .serialize(Codec.INT.fieldOf("value"))
                     .sync(ByteBufCodecs.VAR_INT)
                     .copyOnDeath()

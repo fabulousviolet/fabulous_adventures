@@ -1,12 +1,14 @@
 {
   "block.fabulousadventures.rope": "Rope",
-  "block.fabulousadventures.rope_builder": "Rope builder",
-  "item.fabulousadventures.rope_arrow": "Rope arrow",
+  "block.fabulousadventures.rope_builder": "Rope Builder",
+  "block.fabulousadventures.map_display": "Map Display",
+  "block.fabulousadventures.oxygen_tank": "Oxygen Tank",
+  "item.fabulousadventures.rope_arrow": "Rope Arrow",
   "item.fabulousadventures.glider": "Glider",
   "item.fabulousadventures.machete": "Machete",
   "item.fabulousadventures.claymore": "Claymore",
-  "item.fabulousadventures.empty_advanced_map": "Empty advanced map",
-  "item.fabulousadventures.advanced_map": "Advanced map",
+  "item.fabulousadventures.empty_advanced_map": "Empty Advanced Map",
+  "item.fabulousadventures.advanced_map": "Advanced Map",
 
   "creativetab.fabulousadventures.fabulous_adventures_tab": "Fabulous Adventures",
 
