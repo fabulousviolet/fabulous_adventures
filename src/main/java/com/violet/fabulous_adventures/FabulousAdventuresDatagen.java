@@ -1,13 +1,16 @@
 package com.violet.fabulous_adventures;
 
-import com.violet.fabulous_adventures.datagen.FabulousBlockTagProvider;
-import com.violet.fabulous_adventures.datagen.FabulousItemTagProvider;
-import com.violet.fabulous_adventures.datagen.FabulousModelProvider;
+import com.violet.fabulous_adventures.datagen.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+
+import java.util.Collections;
+import java.util.List;
 
 @EventBusSubscriber(modid = FabulousAdventures.MODID)
 public class FabulousAdventuresDatagen {
@@ -20,9 +23,9 @@ public class FabulousAdventuresDatagen {
         generator.addProvider(true, new FabulousModelProvider(packOutput));
         generator.addProvider(true, new FabulousBlockTagProvider(packOutput, lookupProvider));
         generator.addProvider(true, new FabulousItemTagProvider(packOutput,lookupProvider));
-        /*generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(ModBlockLoottableProvider::new,
+        generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
+                List.of(new LootTableProvider.SubProviderEntry(FabulousBlockLoottableProvider::new,
                         LootContextParamSets.BLOCK)),lookupProvider));
-        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput,lookupProvider));*/
+        generator.addProvider(true, new FabulousRecipeProvider.Runner(packOutput,lookupProvider));
     }
 }

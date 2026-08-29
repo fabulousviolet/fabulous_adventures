@@ -1,0 +1,48 @@
+package com.violet.fabulous_adventures;
+
+import com.violet.fabulous_adventures.menus.custom.skilltree.OpenSkilltreePayload;
+import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeButtonPayload;
+import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeLogic;
+import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeMenu;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.toasts.SystemToast;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleMenuProvider;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+
+@EventBusSubscriber(modid = FabulousAdventures.MODID)
+public class FabulousNetworking {
+    @SubscribeEvent
+    public static void register(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar("1");
+
+        registrar.playToServer(
+                OpenSkilltreePayload.TYPE,
+                OpenSkilltreePayload.STREAM_CODEC,
+                (payload, context) -> {
+                    context.enqueueWork(() -> {
+                        ServerPlayer player = (ServerPlayer) context.player();
+                        player.openMenu(new SimpleMenuProvider(
+                                (containerId, inventory, p) -> new SkilltreeMenu(containerId, inventory),
+                                Component.translatable("menu.fabulousadventures.skilltree")
+                        ));
+                    });
+                }
+        );
+        registrar.playToServer(
+                SkilltreeButtonPayload.TYPE,
+                SkilltreeButtonPayload.STREAM_CODEC,
+                (payload, context) -> {
+                    context.enqueueWork(() -> {
+                        ServerPlayer player = (ServerPlayer) context.player();
+                        new SkilltreeLogic(player, payload.nodeId(), payload.cost(), payload.parent());
+
+                    });
+                }
+        );
+    }
+}

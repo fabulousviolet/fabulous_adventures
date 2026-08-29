@@ -12,22 +12,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Map;
 
 
 public class RopeBlock extends RotatedPillarBlock {
     private static final Map<Direction.Axis, VoxelShape> SHAPES;
-//constructor for Defaultstates
+//constructor for Default states
     public RopeBlock(Properties properties, boolean climbable) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(END, false));
@@ -36,19 +33,19 @@ public class RopeBlock extends RotatedPillarBlock {
 //define Properties
     public static final BooleanProperty END = BooleanProperty.create("end");
     public static final BooleanProperty CLIMBABLE = BooleanProperty.create("climbable");
-//rotate the voxelshape depending on the Axis
+//rotate the voxel shape depending on the Axis
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return (VoxelShape) SHAPES.get(state.getValue(AXIS));
+    protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+        return SHAPES.get(state.getValue(AXIS));
     }
-//define Blockstates
+//define Block states
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{AXIS, END, CLIMBABLE});
+        builder.add(AXIS, END, CLIMBABLE);
     }
 //break all climbable rope blocks below the broken block
     @Override
-    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, ItemStack toolStack, boolean willHarvest, FluidState fluid) {
+    public boolean onDestroyedByPlayer(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull ItemStack toolStack, boolean willHarvest, @NonNull FluidState fluid) {
 
         if (state.getValue(CLIMBABLE)) {
             BlockPos current = pos.below();
@@ -80,7 +77,7 @@ public class RopeBlock extends RotatedPillarBlock {
     }
     //define voxel size
         static{
-            SHAPES = Shapes.rotateAllAxis(Block.cube((double) 4.0F, (double) 4.0F, (double) 16.0F));
+            SHAPES = Shapes.rotateAllAxis(Block.cube(4.0F, 4.0F, 16.0F));
         }
 
 }

@@ -1,11 +1,15 @@
 package com.violet.fabulous_adventures;
 
 import com.violet.fabulous_adventures.CreativeModeTabs.FabulousCreativeModeTabs;
+import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.block_entity.FabulousBlockEntities;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.item.FabulousItems;
 
+import com.violet.fabulous_adventures.menus.FabulousMenus;
+import com.violet.fabulous_adventures.skills.FabulousSkills;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -40,6 +44,12 @@ public class FabulousAdventures {
         FabulousItems.register(modEventBus);
         FabulousEntities.register(modEventBus);
         FabulousDataComponents.register(modEventBus);
+        FabulousMenus.register(modEventBus);
+        FabulousAttachments.register(modEventBus);
+        FabulousSkills.register(modEventBus);
+        FabulousBlockEntities.register(modEventBus);
+        FabulousMapDecorationTypes.register(modEventBus);
+
 
         NeoForge.EVENT_BUS.register(this);
 
@@ -57,12 +67,16 @@ public class FabulousAdventures {
 
     // Add block item to the mod tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == FabulousCreativeModeTabs.FABOULOUS_ADVENTURES_TAB){
+        if(event.getTabKey() == FabulousCreativeModeTabs.FABULOUS_ADVENTURES_TAB){
             event.accept(FabulousBlocks.ROPE);
-            event.accept(FabulousBlocks.ROPE_BUILDER);
             event.accept(FabulousItems.ROPE_ARROW);
             event.accept(FabulousItems.GLIDER);
             event.accept(FabulousItems.MACHETE);
+            event.accept(FabulousItems.CLAYMORE);
+            event.accept(FabulousItems.EMPTY_ADVANCED_MAP);
+            event.accept(FabulousItems.ADVANCED_MAP);
+            event.accept(FabulousBlocks.MAP_DISPLAY);
+            event.accept(FabulousBlocks.OXYGEN_TANK);
         }
     }
 

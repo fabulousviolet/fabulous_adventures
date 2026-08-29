@@ -1,10 +1,11 @@
 package com.violet.fabulous_adventures.item.custom;
 
 import com.violet.fabulous_adventures.datagen.FabulousBlockTagProvider;
+import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -14,12 +15,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
 public class MacheteItem extends Item {
+    public static int AREA = 1;
     public MacheteItem(Properties properties) {
         super(properties);
 
@@ -47,20 +48,31 @@ public class MacheteItem extends Item {
     @Override
     public boolean mineBlock(ItemStack itemStack, Level level, BlockState state, BlockPos pos, LivingEntity owner) {
         boolean toReturn = super.mineBlock(itemStack, level, state, pos, owner);
-        for (int deltaX = -1; deltaX <= 1; deltaX++) {
-            for (int deltaY = -1; deltaY <= 1; deltaY++) {
-                for (int deltaZ = -1; deltaZ <= 1; deltaZ++) {
-                    net.minecraft.core.BlockPos current = pos.relative(Direction.Axis.X, deltaX).relative(Direction.Axis.Y, deltaY).relative(Direction.Axis.Z, deltaZ);
-                    if (level.getBlockState(current).is(FabulousBlockTagProvider.DESTROYABLE_BY_MACHETE)) {
-                        if (level.isClientSide()) {
-                            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-                        } else {
-                            level.destroyBlock(current, false);
+        itemStack.hurtAndBreak(1,owner,owner.getUsedItemHand());
+        if (owner instanceof Player player){
+            if (SkillUtils.isUnlocked(player, "machete_area")){
+                AREA = 2;
+            }
+            if (SkillUtils.isUnlocked((Player) owner ,"machete_unlock")) {
+                for (int deltaX = -AREA; deltaX <= AREA; deltaX++) {
+                    for (int deltaY = -AREA; deltaY <= AREA; deltaY++) {
+                        for (int deltaZ = -AREA; deltaZ <= AREA; deltaZ++) {
+                            net.minecraft.core.BlockPos current = pos.relative(Direction.Axis.X, deltaX).relative(Direction.Axis.Y, deltaY).relative(Direction.Axis.Z, deltaZ);
+                            if (level.getBlockState(current).is(FabulousBlockTagProvider.DESTROYABLE_BY_MACHETE)) {
+                                if (level.isClientSide()) {
+                                    level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+                                } else {
+                                    level.destroyBlock(current, false);
+                                }
+                            }
                         }
                     }
                 }
+            }else{
+                ((Player) owner).sendOverlayMessage(Component.literal("Machete is not unlocked yet. Unlock it in the Skill tree (K)"));
             }
         }
+
         return toReturn;
     }
 

@@ -2,6 +2,7 @@ package com.violet.fabulous_adventures.item.custom.glider;
 
 import com.violet.fabulous_adventures.FabulousAdventures;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
+import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,20 +20,28 @@ import java.util.UUID;
 @EventBusSubscriber(modid = FabulousAdventures.MODID)
 public class GliderTickHandler {
     private static final Map<UUID, Integer> lastSelectedSlot = new HashMap<>();
-    private static final double MAX_FALL_SPEED = -0.04;
+    private static final int HURT_INTERVALL = 30;
+
     //executes on every tick
     //checks when the glider should be deactivated (when deselecting it or hitting the ground)
-    //adjusts slowfalling speed when aplifier is 1
+    //adjusts slow falling speed when amplifier is 1
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         //deactivate when hitting ground
         Player player = event.getEntity();
+        double MAX_FALL_SPEED;
+        if (SkillUtils.isUnlocked(player,"glider_fall_speed")) {
+            MAX_FALL_SPEED = -0.02;
+        }else{
+            MAX_FALL_SPEED = -0.04;
+        }
         if (player.onGround()){
             player.removeEffect(MobEffects.SLOW_FALLING);
             player.getItemInHand(InteractionHand.MAIN_HAND).set(FabulousDataComponents.GLIDER_ACTIVE.get(),false);
+            player.getItemInHand(InteractionHand.OFF_HAND).set(FabulousDataComponents.GLIDER_ACTIVE.get(),false);
 
         }
-        //limit the downwards y velocity when having the slowfalling effect with amplifier 1
+        //limit the downwards y velocity when having the slow falling effect with amplifier 1
         MobEffectInstance slowFalling = player.getEffect(MobEffects.SLOW_FALLING);
         if (slowFalling != null && slowFalling.getAmplifier() == 1) {
             Vec3 motion = player.getDeltaMovement();
@@ -53,6 +62,12 @@ public class GliderTickHandler {
 
             }
         }
+        if (player.level().getGameTime() % HURT_INTERVALL != 0) return;
+        if (Boolean.TRUE.equals(player.getItemInHand(InteractionHand.MAIN_HAND).get(FabulousDataComponents.GLIDER_ACTIVE))) {
+            player.getItemInHand(InteractionHand.MAIN_HAND).hurtAndBreak(1,player,InteractionHand.MAIN_HAND);
+        }else if (Boolean.TRUE.equals(player.getItemInHand(InteractionHand.OFF_HAND).get(FabulousDataComponents.GLIDER_ACTIVE)))
+            player.getItemInHand(InteractionHand.OFF_HAND).hurtAndBreak(1,player,InteractionHand.OFF_HAND);
+
 
     }
 }

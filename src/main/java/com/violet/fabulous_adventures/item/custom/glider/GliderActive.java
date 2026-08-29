@@ -22,4 +22,5 @@ public record GliderActive() implements ConditionalItemModelProperty {
     public @NonNull MapCodec<GliderActive> type() {
         return MAP_CODEC;
     }
+
 }

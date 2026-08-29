@@ -1,0 +1,36 @@
+{
+  "wall_stick_skill": "crawl_skill",
+  "crawl_skill": "root",
+
+  "glider_unlock": "rope_arrow_unlock",
+  "machete_unlock": "root",
+  "rope_arrow_unlock": "machete_unlock",
+  "claymore_unlock": "machete_unlock",
+  "advanced_map_unlock": "root",
+
+  "claymore_charge_speed": "claymore_unlock",
+  "claymore_damage": "claymore_charge_speed",
+  "claymore_area": "claymore_unlock",
+  "claymore_max_charge_bonus": "claymore_damage",
+  "machete_area": "machete_unlock",
+  "glider_fall_speed": "glider_unlock",
+
+  "advanced_map_scale": "advanced_map_unlock",
+  "advanced_map_scale_1": "advanced_map_scale",
+  "advanced_map_scale_2": "advanced_map_scale_1",
+  "advanced_map_shift": "advanced_map_unlock",
+  "advanced_map_waypoints": "advanced_map_unlock",
+  "advanced_map_waypoints_plus": "advanced_map_waypoints",
+
+  "attribute_skill_speed": "root",
+  "attribute_skill_max_health": "attribute_skill_attack_speed",
+  "attribute_skill_oxygen": "attribute_skill_speed",
+  "attribute_skill_strength": "attribute_skill_attack_speed",
+  "attribute_skill_attack_speed": "attribute_skill_speed",
+  "attribute_skill_block_break_speed": "attribute_skill_attack_speed",
+  "attribute_skill_block_interaction_range": "attribute_skill_block_break_speed",
+  "attribute_skill_entity_interaction_range": "attribute_skill_block_break_speed",
+  "attribute_skill_sneak_speed": "attribute_skill_speed",
+  "attribute_skill_swim_speed": "attribute_skill_oxygen",
+  "attribute_skill_knockback_resistance": "attribute_skill_strength"
+}

@@ -8,6 +8,33 @@
         "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
         "field": "GLIDER_POSE_PROXY"
       }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "FABULOUSADVENTURES_CLAYMORE_POSE_NORMAL",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "field": "CLAYMORE_POSE_NORMAL_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "FABULOUSADVENTURES_CLAYMORE_POSE_CHARGING",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "field": "CLAYMORE_POSE_CHARGING_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "FABULOUSADVENTURES_CLAYMORE_POSE_RELEASE",
+      "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "field": "CLAYMORE_POSE_RELEASE_PROXY"
+      }
     }
 
   ]

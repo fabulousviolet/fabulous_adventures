@@ -1,6 +1,8 @@
 package com.violet.fabulous_adventures.block;
 
 import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.block.custom.OxygenTankBlock;
+import com.violet.fabulous_adventures.block.custom.map_display.MapDisplayBlock;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
 import com.violet.fabulous_adventures.block.custom.RopeBuilder;
 import com.violet.fabulous_adventures.item.FabulousItems;
@@ -20,8 +22,10 @@ public class FabulousBlocks {
 
     //register Blocks here vvv dummy: public static final DeferredBlock<Block> NAME = registerBlock("name", properties -> new Block(properties.strength(x,x);
     public static final DeferredBlock<Block> ROPE = registerBlock("rope", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL),false),true);
-    public static final DeferredBlock<Block> ROPE_CLIMBABLE = registerBlock("rope_climbable", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL),true),false);
-    public static final DeferredBlock<Block> ROPE_BUILDER = registerBlock("rope_builder", RopeBuilder::new,true);
+    public static final DeferredBlock<Block> ROPE_CLIMBABLE = registerBlock("rope_climbable", properties -> new RopeBlock(properties.strength(0.8f,0.8f).sound(SoundType.WOOL).noLootTable(),true),false);
+    public static final DeferredBlock<Block> ROPE_BUILDER = registerBlock("rope_builder", properties -> new RopeBuilder(properties.noLootTable()),true);
+    public static final DeferredBlock<Block> MAP_DISPLAY = registerBlock("map_display", properties -> new MapDisplayBlock(properties.strength(1f).sound(SoundType.METAL).destroyTime(20f).requiresCorrectToolForDrops()),true);
+    public static final DeferredBlock<Block> OXYGEN_TANK = registerBlock("oxygen_tank", properties -> new OxygenTankBlock(properties.strength(1f).sound(SoundType.METAL).destroyTime(20f).requiresCorrectToolForDrops()),true);
     //register functions
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function, boolean register_item) {
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);

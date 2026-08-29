@@ -1,8 +1,20 @@
 {
-  "block.fabulousadventures.rope": "rope",
-  "block.fabulousadventures.rope_builder": "rope builder",
-  "item.fabulousadventures.rope_arrow": "rope arrow",
+  "block.fabulousadventures.rope": "Rope",
+  "block.fabulousadventures.rope_builder": "Rope builder",
+  "item.fabulousadventures.rope_arrow": "Rope arrow",
+  "item.fabulousadventures.glider": "Glider",
+  "item.fabulousadventures.machete": "Machete",
+  "item.fabulousadventures.claymore": "Claymore",
+  "item.fabulousadventures.empty_advanced_map": "Empty advanced map",
+  "item.fabulousadventures.advanced_map": "Advanced map",
 
-  "creativetab.fabulousadventures.fabulous_adventures_tab": "Fabulous Adventures"
+  "creativetab.fabulousadventures.fabulous_adventures_tab": "Fabulous Adventures",
+
+  "key.fabulousadventures.open_skilltree": "Open Skill Tree",
+  "key.fabulousadventures.crawl_skill_keybind": "Crawl Skill",
+  "key.category.fabulousadventures.fabulous_adventures": "Fabulous Adventures",
+
+
+  "menu.fabulousadventures.skilltree": "Skill Tree"
 
 }

@@ -15,11 +15,30 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("unchecked")
 public class FabulousBlockTagProvider extends BlockTagsProvider {
     //define custom BlockTags here vvv
     public static final TagKey<Block> DESTROYABLE_BY_MACHETE = TagKey.create(
             Registries.BLOCK,
             Identifier.fromNamespaceAndPath("fabulousadventures", "destroyable_by_machete"));
+    public static final TagKey<Block> VEGETATION = TagKey.create(
+            Registries.BLOCK,
+            Identifier.fromNamespaceAndPath("fabulousadventures", "vegetation"));
+    public static final TagKey<Block> SKILL_CALC_VEGETATION = TagKey.create(
+            Registries.BLOCK,
+            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_vegitation"));
+    public static final TagKey<Block> SKILL_CALC_ORES = TagKey.create(
+            Registries.BLOCK,
+            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_ores"));
+    public static final TagKey<Block> SKILL_CALC_MINERALS = TagKey.create(
+            Registries.BLOCK,
+            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_minerals"));
+    public static final TagKey<Block> SKILL_CALC_LOGS = TagKey.create(
+            Registries.BLOCK,
+            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_logs"));
+    public static final TagKey<Block> SKILL_CALC_CROPS = TagKey.create(
+            Registries.BLOCK,
+            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_crops"));
 
     public FabulousBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, FabulousAdventures.MODID);
@@ -31,7 +50,64 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                 .add(FabulousBlocks.ROPE.getKey());
         this.tag(BlockTags.CLIMBABLE)
                 .add(FabulousBlocks.ROPE_CLIMBABLE.getKey());
-        //vegitation blocks
+        this.tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(FabulousBlocks.MAP_DISPLAY.getKey())
+                .add(FabulousBlocks.OXYGEN_TANK.getKey());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(FabulousBlocks.MAP_DISPLAY.getKey())
+                .add(FabulousBlocks.OXYGEN_TANK.getKey());
+        this.tag(SKILL_CALC_ORES)
+                .add(
+                        Blocks.COAL_ORE.builtInRegistryHolder().key(),
+                        Blocks.COPPER_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_COAL_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_COPPER_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_DIAMOND_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_EMERALD_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_GOLD_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_IRON_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_LAPIS_ORE.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE_REDSTONE_ORE.builtInRegistryHolder().key(),
+                        Blocks.IRON_ORE.builtInRegistryHolder().key(),
+                        Blocks.DIAMOND_ORE.builtInRegistryHolder().key(),
+                        Blocks.LAPIS_ORE.builtInRegistryHolder().key(),
+                        Blocks.EMERALD_ORE.builtInRegistryHolder().key(),
+                        Blocks.GOLD_ORE.builtInRegistryHolder().key(),
+                        Blocks.REDSTONE_ORE.builtInRegistryHolder().key(),
+                        Blocks.NETHER_GOLD_ORE.builtInRegistryHolder().key(),
+                        Blocks.NETHER_QUARTZ_ORE.builtInRegistryHolder().key(),
+                        Blocks.ANCIENT_DEBRIS.builtInRegistryHolder().key()
+                );
+        this.tag(SKILL_CALC_MINERALS)
+                .add(
+                        Blocks.STONE.builtInRegistryHolder().key(),
+                        Blocks.TUFF.builtInRegistryHolder().key(),
+                        Blocks.DIORITE.builtInRegistryHolder().key(),
+                        Blocks.GRANITE.builtInRegistryHolder().key(),
+                        Blocks.ANDESITE.builtInRegistryHolder().key(),
+                        Blocks.CALCITE.builtInRegistryHolder().key(),
+                        Blocks.CINNABAR.builtInRegistryHolder().key(),
+                        Blocks.CLAY.builtInRegistryHolder().key(),
+                        Blocks.BLACKSTONE.builtInRegistryHolder().key(),
+                        Blocks.GRAVEL.builtInRegistryHolder().key(),
+                        Blocks.MAGMA_BLOCK.builtInRegistryHolder().key(),
+                        Blocks.SULFUR.builtInRegistryHolder().key(),
+                        Blocks.DRIPSTONE_BLOCK.builtInRegistryHolder().key(),
+                        Blocks.POINTED_DRIPSTONE.builtInRegistryHolder().key(),
+                        Blocks.SULFUR_SPIKE.builtInRegistryHolder().key(),
+                        Blocks.SOUL_SAND.builtInRegistryHolder().key(),
+                        Blocks.SOUL_SOIL.builtInRegistryHolder().key(),
+                        Blocks.DEEPSLATE.builtInRegistryHolder().key()
+                        );
+        this.tag(SKILL_CALC_CROPS)
+                .addTag(BlockTags.CROPS);
+        this.tag(SKILL_CALC_LOGS)
+                .addTag(BlockTags.LOGS)
+                .add(
+                        Blocks.MANGROVE_ROOTS.builtInRegistryHolder().key(),
+                        Blocks.MUDDY_MANGROVE_ROOTS.builtInRegistryHolder().key()
+                );
+        //vegetation blocks
         //noinspection unchecked
         this.tag(DESTROYABLE_BY_MACHETE)
                 .addTags(
@@ -98,8 +174,11 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.WEEPING_VINES.builtInRegistryHolder().key(),
                         Blocks.WEEPING_VINES_PLANT.builtInRegistryHolder().key()
                 );
+        this.tag(VEGETATION)
+                .addTag(DESTROYABLE_BY_MACHETE);
 
-
+        this.tag(SKILL_CALC_VEGETATION)
+                .addTag(VEGETATION);
 
     }
 

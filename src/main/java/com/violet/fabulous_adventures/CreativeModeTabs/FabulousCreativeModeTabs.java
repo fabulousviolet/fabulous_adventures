@@ -17,15 +17,19 @@ public class FabulousCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FabulousAdventures.MODID);
 
     //register tabs here vvv
-    public static Supplier<CreativeModeTab> FABOULOUS_ADVENTURES_TAB = CREATIVE_MODE_TABS.register("fabulous_adventures_tab", () ->CreativeModeTab.builder().icon(() -> new ItemStack(FabulousBlocks.ROPE.get()))
-            .title(Component.translatable("Fabulous Adventures"))
-            .displayItems((itemDisplayParameters, output) -> {
+    public static Supplier<CreativeModeTab> FABULOUS_ADVENTURES_TAB = CREATIVE_MODE_TABS.register("fabulous_adventures_tab", () ->CreativeModeTab.builder().icon(() -> new ItemStack(FabulousBlocks.ROPE.get()))
+            .title(Component.translatable("creativetab.fabulousadventures.fabulous_adventures_tab"))
+            .displayItems((_, output) -> {
 
                 output.accept(FabulousBlocks.ROPE);
-                output.accept(FabulousBlocks.ROPE_BUILDER);
                 output.accept(FabulousItems.ROPE_ARROW);
                 output.accept(FabulousItems.GLIDER);
                 output.accept(FabulousItems.MACHETE);
+                output.accept(FabulousItems.CLAYMORE);
+                output.accept(FabulousItems.EMPTY_ADVANCED_MAP);
+                output.accept(FabulousItems.ADVANCED_MAP);
+                output.accept(FabulousBlocks.MAP_DISPLAY);
+                output.accept(FabulousBlocks.OXYGEN_TANK);
 
             })
             .build());
