@@ -1,5 +1,6 @@
 package com.violet.fabulous_adventures.item.custom;
 
+import com.violet.fabulous_adventures.item.custom.advanced_map.AdvancedMapItem;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EmptyMapItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.Level;
 
 public class EmptyAdvancedMapItem extends EmptyMapItem {

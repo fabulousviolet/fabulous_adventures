@@ -1,6 +1,7 @@
 package com.violet.fabulous_adventures.datagen;
 
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.block_entity.FabulousBlockEntities;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -10,6 +11,12 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.Set;
 
@@ -21,8 +28,16 @@ public class FabulousBlockLoottableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(FabulousBlocks.ROPE.get());
-        dropSelf(FabulousBlocks.OXYGEN_TANK.get());
         dropSelf(FabulousBlocks.MAP_DISPLAY.get());
+        this.add(FabulousBlocks.OXYGEN_TANK.get(), LootTable.lootTable().withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(FabulousBlocks.OXYGEN_TANK.get())
+                                        .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+                                        )
+                                )
+                )
+        );
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {

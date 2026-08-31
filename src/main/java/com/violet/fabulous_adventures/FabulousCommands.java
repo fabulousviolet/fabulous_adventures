@@ -16,6 +16,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.codehaus.plexus.util.cli.Commandline;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @EventBusSubscriber(modid = FabulousAdventures.MODID)
 public class FabulousCommands {
     @SubscribeEvent
@@ -35,20 +38,27 @@ public class FabulousCommands {
                                                 )
                                         )
                                 )
-                                .then(Commands.literal("remove")
-                                        .then(Commands.argument("amount", IntegerArgumentType.integer())
-                                                .executes(commandContext -> {
-                                                    ServerPlayer target = EntityArgument.getPlayer(commandContext, "target");
-                                                    target.setData(FabulousAttachments.BASE_SKILL_POINTS.get(), 0);
-                                                    return 1;
-                                                })
-                                                )
-                                        )
+                                .then(Commands.literal("reset")
+                                        .executes(commandContext -> {
+                                            ServerPlayer target = EntityArgument.getPlayer(commandContext, "target");
+                                            target.setData(FabulousAttachments.BASE_SKILL_POINTS.get(), 0);
+                                            return 1;
+                                        })
                                 )
 
-
-
-
+                        )
+        );
+        event.getDispatcher().register(
+          Commands.literal("resetskills")
+                  .then(Commands.argument("target",EntityArgument.player())
+                          .executes(commandContext -> {
+                              ServerPlayer target = EntityArgument.getPlayer(commandContext, "target");
+                              Set<String> newSet = new HashSet<>();
+                              newSet.add("root");
+                              target.setData(FabulousAttachments.UNLOCKED_SKILLS.get(), newSet);
+                              return 1;
+                          })
+                  )
         );
     }
     private static int modifyPoints(CommandContext<CommandSourceStack> context, int sign) throws CommandSyntaxException {

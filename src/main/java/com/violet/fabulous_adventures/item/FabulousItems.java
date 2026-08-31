@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.item;
 
 import com.violet.fabulous_adventures.FabulousAdventures;
-import com.violet.fabulous_adventures.item.custom.AdvancedMapItem;
+import com.violet.fabulous_adventures.item.custom.advanced_map.AdvancedMapItem;
 import com.violet.fabulous_adventures.item.custom.EmptyAdvancedMapItem;
 import com.violet.fabulous_adventures.item.custom.MacheteItem;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreItem;

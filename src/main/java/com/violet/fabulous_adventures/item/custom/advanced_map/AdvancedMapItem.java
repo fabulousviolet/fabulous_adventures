@@ -1,4 +1,4 @@
-package com.violet.fabulous_adventures.item.custom;
+package com.violet.fabulous_adventures.item.custom.advanced_map;
 
 import com.violet.fabulous_adventures.FabulousMapDecorationTypes;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
@@ -7,9 +7,6 @@ import com.violet.fabulous_adventures.item.FabulousItems;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
@@ -22,8 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.saveddata.maps.MapDecoration;
 import net.minecraft.world.level.saveddata.maps.MapId;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import org.jspecify.annotations.Nullable;
