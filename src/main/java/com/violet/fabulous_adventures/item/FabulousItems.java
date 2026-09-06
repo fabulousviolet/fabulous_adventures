@@ -7,21 +7,28 @@ import com.violet.fabulous_adventures.item.custom.MacheteItem;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreItem;
 import com.violet.fabulous_adventures.item.custom.glider.GliderItem;
 import com.violet.fabulous_adventures.item.custom.RopeArrowItem;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Consumer;
 
 public class FabulousItems {
     //create a deferred register for items
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(FabulousAdventures.MODID);
 
     //register items here vvv
-    public static final DeferredItem<ArrowItem> ROPE_ARROW = ITEMS.registerItem("rope_arrow", RopeArrowItem::new);
+    public static final DeferredItem<ArrowItem> ROPE_ARROW = ITEMS.registerItem("rope_arrow", properties -> new RopeArrowItem(properties){
+        @Override
+        public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
+            builder.accept(Component.literal("Shoot it at a ceiling to let down a rope you can climb up."));
+            super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
+        }
+    });
     public static final DeferredItem<Item> GLIDER = ITEMS.registerItem("glider", properties ->
             new GliderItem(properties.stacksTo(1)
                     .durability(1000)

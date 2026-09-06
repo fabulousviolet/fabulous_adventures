@@ -48,7 +48,6 @@ public class MapDisplayBlock extends Block implements EntityBlock {
         return new MapDisplay(pos, state);
     }
 
-
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (itemStack.is(FabulousItems.ADVANCED_MAP.get()) && level.getBlockEntity(pos) instanceof MapDisplay display) {
