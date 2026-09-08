@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.item.custom.glider;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.util.Mth;
@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 @EventBusSubscriber(modid = FabulousAdventures.MODID)
 public class GliderTickHandler {

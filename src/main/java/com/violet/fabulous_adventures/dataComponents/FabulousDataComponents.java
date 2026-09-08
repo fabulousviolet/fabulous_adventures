@@ -1,13 +1,12 @@
 package com.violet.fabulous_adventures.dataComponents;
 
 import com.mojang.serialization.Codec;
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreChargeState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.world.item.component.Tool;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;

@@ -1,6 +1,7 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
 

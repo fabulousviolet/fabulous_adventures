@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.menus.custom.skilltree;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

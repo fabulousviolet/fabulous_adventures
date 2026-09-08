@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.item.custom.advanced_map;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.core.BlockPos;

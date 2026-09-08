@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.item.custom.advanced_map;
 
-import com.violet.fabulous_adventures.FabulousMapDecorationTypes;
+import com.violet.fabulous_adventures.core.FabulousMapDecorationTypes;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.item.FabulousItems;

@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

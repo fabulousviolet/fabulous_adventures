@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.block_entity;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block_entity.custom.MapDisplay.MapDisplay;
 import com.violet.fabulous_adventures.block_entity.custom.OxygenTank.OxygenTank;

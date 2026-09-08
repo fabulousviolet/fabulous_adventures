@@ -1,5 +1,6 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.menus.FabulousMenus;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeScreen;
 import net.neoforged.api.distmarker.Dist;

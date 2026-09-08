@@ -1,11 +1,10 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.menus.custom.skilltree.OpenSkilltreePayload;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeButtonPayload;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeLogic;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeMenu;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleMenuProvider;

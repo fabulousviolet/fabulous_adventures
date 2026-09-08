@@ -1,11 +1,11 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
 import com.violet.fabulous_adventures.block_entity.FabulousBlockEntities;
 import com.violet.fabulous_adventures.block_entity.custom.MapDisplay.MapDisplayBlockEntityRenderer;
 import com.violet.fabulous_adventures.block_entity.custom.OxygenTank.OxygenTankBlockEntityRenderer;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.entityRenderer.RopeArrowRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

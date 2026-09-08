@@ -1,5 +1,6 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;

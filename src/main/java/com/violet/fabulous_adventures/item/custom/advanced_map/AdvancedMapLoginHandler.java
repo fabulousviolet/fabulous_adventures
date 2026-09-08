@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.item.custom.advanced_map;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
-import com.violet.fabulous_adventures.FabulousMapDecorationTypes;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousMapDecorationTypes;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

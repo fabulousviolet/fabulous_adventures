@@ -2,7 +2,7 @@ package com.violet.fabulous_adventures.menus.custom.skilltree;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.resources.Identifier;
 
 import java.io.InputStream;

@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
 import com.violet.fabulous_adventures.item.FabulousItems;

@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.block;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.custom.OxygenTankBlock;
 import com.violet.fabulous_adventures.block.custom.map_display.MapDisplayBlock;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;

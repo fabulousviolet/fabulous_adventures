@@ -1,13 +1,12 @@
 package com.violet.fabulous_adventures.menus.custom.skilltree;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import com.violet.fabulous_adventures.skills.FabulousSkills;
 import com.violet.fabulous_adventures.skills.Skill;
 import com.violet.fabulous_adventures.skills.custom.AttributeSkill;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import java.util.Set;
 

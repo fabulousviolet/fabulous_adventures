@@ -1,4 +1,4 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
 import java.util.List;
 import java.util.Set;
@@ -18,6 +18,6 @@ public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
 
-    static final ModConfigSpec SPEC = BUILDER.build();
+    public static final ModConfigSpec SPEC = BUILDER.build();
 
 }

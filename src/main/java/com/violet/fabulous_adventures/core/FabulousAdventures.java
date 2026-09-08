@@ -1,4 +1,4 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
 import com.violet.fabulous_adventures.CreativeModeTabs.FabulousCreativeModeTabs;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;

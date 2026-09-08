@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.item.custom.claymore;
 
-import com.violet.fabulous_adventures.FabulousArmPoses;
+import com.violet.fabulous_adventures.core.FabulousArmPoses;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.InteractionHand;

@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.skills.custom;
 
-import com.violet.fabulous_adventures.FabulousKeybinds;
+import com.violet.fabulous_adventures.core.FabulousKeybinds;
 import com.violet.fabulous_adventures.skills.Skill;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;

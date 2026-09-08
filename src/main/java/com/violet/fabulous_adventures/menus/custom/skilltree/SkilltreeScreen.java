@@ -1,9 +1,8 @@
 package com.violet.fabulous_adventures.menus.custom.skilltree;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
-import com.violet.fabulous_adventures.FabulousKeybinds;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousKeybinds;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
-import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;

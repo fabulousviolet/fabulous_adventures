@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.item;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreItemClientExtensions;
 import com.violet.fabulous_adventures.item.custom.glider.GliderClientItemExtensions;
 import net.neoforged.api.distmarker.Dist;

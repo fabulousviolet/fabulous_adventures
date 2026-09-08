@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.menus;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;

@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.entity;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.entity.custom.RopeArrow;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;

@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.attachments;
 
 import com.mojang.serialization.Codec;
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;

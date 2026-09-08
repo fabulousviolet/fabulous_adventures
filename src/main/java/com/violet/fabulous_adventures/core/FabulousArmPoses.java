@@ -1,4 +1,4 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
 import net.minecraft.client.model.HumanoidModel;
 

@@ -1,6 +1,6 @@
 package com.violet.fabulous_adventures.skills;
 
-import com.violet.fabulous_adventures.FabulousAdventures;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import com.violet.fabulous_adventures.datagen.FabulousBlockTagProvider;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkillnodeDef;
@@ -11,11 +11,16 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.stats.StatsCounter;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.internal.NeoForgeBlockTagsProvider;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.Map;
@@ -51,6 +56,16 @@ public class SkillPointHandler {
             Stats.SPRINT_ONE_CM, 0.0001,
             Stats.FLY_ONE_CM,0.00001
     );
+
+    private static final Map<TagKey<Item>,Double> SKILL_USE_CALC_STATS = Map.of(
+            Tags.Items.TOOLS,0.1,
+            Tags.Items.CROPS,0.1,
+            Tags.Items.DRINKS,0.5,
+            Tags.Items.FOODS,0.05,
+            Tags.Items.DYES,0.5,
+            Tags.Items.POTIONS,0.1
+            );
+
     private static final Set<Integer> MINED_MILESTONES = Set.of(
             50,
             100,
@@ -58,7 +73,9 @@ public class SkillPointHandler {
             1000,
             2000,
             5000,
-            10000
+            10000,
+            20000,
+            50000
     );
 
     private static final Set<Integer> KILLED_MILESTONES = Set.of(
@@ -72,6 +89,17 @@ public class SkillPointHandler {
     );
 
     private static final Set<Integer> TRAVELED_MILESTONES = Set.of(
+            10,
+            20,
+            50,
+            100,
+            200,
+            500,
+            1000,
+            2000,
+            5000
+    );
+    private static final Set<Integer> USED_MILESTONES = Set.of(
             10,
             20,
             50,
@@ -104,7 +132,7 @@ public class SkillPointHandler {
                 spentPoints = spentPoints + node.cost();
             }
         }
-        int awardedPoints = calculateMinedPoints(player) + calculateKillPoints(player) + calculateTravelPoints(player) /*calculateUsePoints(player)*/;
+        int awardedPoints = calculateMinedPoints(player) + calculateKillPoints(player) + calculateTravelPoints(player) + calculateUsePoints(player);
         return awardedPoints - spentPoints + player.getData(FabulousAttachments.BASE_SKILL_POINTS);
     }
 
@@ -154,6 +182,25 @@ public class SkillPointHandler {
             double travelledSum = stats.getValue(Stats.CUSTOM.get(stat)) * SKILL_TRAVEL_CALC_STATS.get(stat);
             for (int milestone : TRAVELED_MILESTONES) {
                 if (travelledSum >= milestone) totalPoints++;
+            }
+        }
+        return totalPoints;
+    }
+    private static int calculateUsePoints(ServerPlayer player){
+        StatsCounter stats = player.getStats();
+        int totalPoints = 0;
+        for(TagKey<Item> tag: SKILL_USE_CALC_STATS.keySet()){
+            double usedSum = 0;
+            for (Item item : BuiltInRegistries.ITEM){
+                double usedCount = stats.getValue(Stats.ITEM_USED.get(item));
+                if (usedCount == 0) continue;
+                if(item.builtInRegistryHolder().is(tag)){
+                    usedSum = usedSum + usedCount * SKILL_USE_CALC_STATS.get(tag);
+                }
+
+            }
+            for(int milestone : USED_MILESTONES){
+                if (usedSum >= milestone) totalPoints++;
             }
         }
         return totalPoints;

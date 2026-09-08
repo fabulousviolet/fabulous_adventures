@@ -1,5 +1,6 @@
-package com.violet.fabulous_adventures;
+package com.violet.fabulous_adventures.core;
 
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.datagen.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
