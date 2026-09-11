@@ -81,7 +81,11 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
                     .append(Component.literal(" key.").withColor(TextColor.WHITE)
                             .append(Component.literal("\nCost: 1"))
                     )),
-
+            createSkillNodeDef("repair_skill", 3, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "anvil"), Component.literal("Magic Repair").withColor(TextColor.AQUA)
+                    .append(Component.literal("\nLets you repair Items consuming experience when shift clicking an anvil.")
+                            .withColor(TextColor.WHITE))
+                    .append(Component.literal("\nCost: 3")
+                    )),
             createSkillNodeDef("glider_unlock", 2, new ItemStack(FabulousItems.GLIDER.get()), Component.literal("Unlock glider").withColor(TextColor.AQUA)
                     .append(Component.literal("\nUse the glider off the ground to glide through the skies.")
                             .withColor(TextColor.WHITE))

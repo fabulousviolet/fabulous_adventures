@@ -48,6 +48,9 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NonNull Provider provider) {
         this.tag(BlockTags.SHEARS_MAJOR_BREAKING_SPEED)
                 .add(FabulousBlocks.ROPE.getKey());
+        this.tag(BlockTags.ANVIL)
+                .add(Blocks.DAMAGED_ANVIL.builtInRegistryHolder().getKey())
+                .add(Blocks.CHIPPED_ANVIL.builtInRegistryHolder().getKey());
         this.tag(BlockTags.CLIMBABLE)
                 .add(FabulousBlocks.ROPE_CLIMBABLE.getKey());
         this.tag(BlockTags.NEEDS_STONE_TOOL)

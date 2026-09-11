@@ -1,6 +1,7 @@
 {
   "wall_stick_skill": "crawl_skill",
   "crawl_skill": "root",
+  "repair_skill": "crawl_skill",
 
   "glider_unlock": "rope_arrow_unlock",
   "machete_unlock": "root",
