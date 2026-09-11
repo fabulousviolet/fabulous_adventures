@@ -1,0 +1,140 @@
+[
+  {
+    "type": "MINED",
+    "id": "fabulousadventures:skill_calc_ores",
+    "icon": "fabulousadventures:skillpoint_progress_icons/diamond",
+    "label": "Ores mined"
+  },
+  {
+    "type": "MINED",
+    "id": "fabulousadventures:skill_calc_minerals",
+    "icon": "fabulousadventures:skillpoint_progress_icons/iron_pickaxe",
+    "label": "Minerals mined"
+  },
+  {
+    "type": "MINED",
+    "id": "fabulousadventures:skill_calc_crops",
+    "icon": "fabulousadventures:skillpoint_progress_icons/wheat",
+    "label": "Crops harvested"
+  },
+  {
+    "type": "MINED",
+    "id": "fabulousadventures:skill_calc_logs",
+    "icon": "fabulousadventures:skillpoint_progress_icons/oak_sapling",
+    "label": "Logs chopped"
+  },
+  {
+    "type": "MINED",
+    "id": "fabulousadventures:skill_calc_vegetation",
+    "icon": "fabulousadventures:skillpoint_progress_icons/allium",
+    "label": "Plants destroyed"
+  },
+  {
+    "type": "KILLED",
+    "id": "monster",
+    "icon": "fabulousadventures:skillpoint_progress_icons/zombie",
+    "label": "Monsters slayed"
+  },
+  {
+    "type": "KILLED",
+    "id": "creature",
+    "icon": "fabulousadventures:skillpoint_progress_icons/pig",
+    "label": "Friendly mobs killed"
+  },
+  {
+    "type": "KILLED",
+    "id": "water_ambient",
+    "icon": "fabulousadventures:skillpoint_progress_icons/fish",
+    "label": "Fishes killed"
+  },
+  {
+    "type": "KILLED",
+    "id": "water_creature",
+    "icon": "fabulousadventures:skillpoint_progress_icons/guardian",
+    "label": "Underwater mobs killed"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:walk_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/speed",
+    "label": "Distance walked"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:walk_under_water_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/water_breathing",
+    "label": "Distance walked under water"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:swim_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/dolphins_grace",
+    "label": "Distance swum"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:jump",
+    "icon": "fabulousadventures:skillpoint_progress_icons/jump_boost",
+    "label": "Times jumped"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:crouch_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/sneak",
+    "label": "Distance crouched"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:climb_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/jump_boost",
+    "label": "Height climbed"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:sprint_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/speed",
+    "label": "Distance Sprinted"
+  },
+  {
+    "type": "TRAVELED",
+    "id": "minecraft:fly_one_cm",
+    "icon": "fabulousadventures:skillpoint_progress_icons/elytra",
+    "label": "Distance flown"
+  },
+  {
+    "type": "USED",
+    "id": "c:tools",
+    "icon": "fabulousadventures:skillpoint_progress_icons/iron_pickaxe",
+    "label": "Tools used"
+  },
+  {
+    "type": "USED",
+    "id": "c:crops",
+    "icon": "fabulousadventures:skillpoint_progress_icons/wheat_seeds",
+    "label": "Crops planted"
+  },
+  {
+    "type": "USED",
+    "id": "c:drinks",
+    "icon": "fabulousadventures:skillpoint_progress_icons/glass_bottle",
+    "label": "Drinks drunk"
+  },
+  {
+    "type": "USED",
+    "id": "c:foods",
+    "icon": "fabulousadventures:skillpoint_progress_icons/bread",
+    "label": "Food eaten"
+  },
+  {
+    "type": "USED",
+    "id": "c:dyes",
+    "icon": "fabulousadventures:skillpoint_progress_icons/purple_dye",
+    "label": "Dyes used"
+  },
+  {
+    "type": "USED",
+    "id": "c:potions",
+    "icon": "fabulousadventures:skillpoint_progress_icons/potion",
+    "label": "Potions consumed"
+  }
+]

@@ -5,7 +5,7 @@
       "name": "FABULOUSADVENTURES_GLIDER_POSE",
       "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
       "parameters": {
-        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "class": "com/violet/fabulous_adventures/core/FabulousArmPoseParams",
         "field": "GLIDER_POSE_PROXY"
       }
     },
@@ -14,7 +14,7 @@
       "name": "FABULOUSADVENTURES_CLAYMORE_POSE_NORMAL",
       "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
       "parameters": {
-        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "class": "com/violet/fabulous_adventures/core/FabulousArmPoseParams",
         "field": "CLAYMORE_POSE_NORMAL_PROXY"
       }
     },
@@ -23,7 +23,7 @@
       "name": "FABULOUSADVENTURES_CLAYMORE_POSE_CHARGING",
       "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
       "parameters": {
-        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "class": "com/violet/fabulous_adventures/core/FabulousArmPoseParams",
         "field": "CLAYMORE_POSE_CHARGING_PROXY"
       }
     },
@@ -32,7 +32,7 @@
       "name": "FABULOUSADVENTURES_CLAYMORE_POSE_RELEASE",
       "constructor": "(ZZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
       "parameters": {
-        "class": "com/violet/fabulous_adventures/FabulousArmPoseParams",
+        "class": "com/violet/fabulous_adventures/core/FabulousArmPoseParams",
         "field": "CLAYMORE_POSE_RELEASE_PROXY"
       }
     }

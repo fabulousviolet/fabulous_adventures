@@ -20,7 +20,7 @@ public class SkilltreeStructure {
 
     private static Map<String, String> load() {
         Identifier location = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "skilltree/skilltree_structure.json");
-        try (InputStream stream = SkilltreeStructure.class.getResourceAsStream("/assets/" + location.getNamespace() + "/" + location.getPath())) {
+        try (InputStream stream = SkilltreeStructure.class.getResourceAsStream("/data/" + location.getNamespace() + "/" + location.getPath())) {
             Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
             return new Gson().fromJson(reader, new TypeToken<Map<String, String>>(){}.getType());
         } catch (Exception e) {

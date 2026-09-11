@@ -1,6 +1,8 @@
 package com.violet.fabulous_adventures.core;
 
 import com.violet.fabulous_adventures.core.FabulousAdventures;
+import com.violet.fabulous_adventures.menus.custom.skillpoint_progress.OpenSkillpointProgressPayload;
+import com.violet.fabulous_adventures.menus.custom.skillpoint_progress.SkillpointProgressMenu;
 import com.violet.fabulous_adventures.menus.custom.skilltree.OpenSkilltreePayload;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeButtonPayload;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeLogic;
@@ -28,6 +30,21 @@ public class FabulousNetworking {
                         player.openMenu(new SimpleMenuProvider(
                                 (containerId, inventory, p) -> new SkilltreeMenu(containerId, inventory),
                                 Component.translatable("menu.fabulousadventures.skilltree")
+                        ));
+                    });
+                }
+        );
+        registrar.playToServer(
+                OpenSkillpointProgressPayload.TYPE,
+                OpenSkillpointProgressPayload.STREAM_CODEC,
+                (payload, context) -> {
+                    context.enqueueWork(() -> {
+                        ServerPlayer player = (ServerPlayer) context.player();
+                        player.getStats().markAllDirty();
+                        player.getStats().sendStats(player);
+                        player.openMenu(new SimpleMenuProvider(
+                                (containerId, inventory, p) -> new SkillpointProgressMenu(containerId, inventory),
+                                Component.translatable("menu.fabulousadventures.skillpoint_progress")
                         ));
                     });
                 }
