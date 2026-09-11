@@ -25,7 +25,7 @@ public class FabulousItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NonNull Provider provider) {
         this.tag(ItemTags.ARROWS)
-                .add(FabulousItems.ROPE_ARROW.getKey());
+                .add(FabulousItems.ROPE_ARROW.asItem());
 
     }
 }

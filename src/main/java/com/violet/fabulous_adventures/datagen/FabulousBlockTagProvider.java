@@ -46,69 +46,64 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
     //add Blocks to BlockTags here vvv
     @Override
     protected void addTags(HolderLookup.@NonNull Provider provider) {
-        this.tag(BlockTags.SHEARS_MAJOR_BREAKING_SPEED)
-                .add(FabulousBlocks.ROPE.getKey());
         this.tag(BlockTags.ANVIL)
-                .add(Blocks.DAMAGED_ANVIL.builtInRegistryHolder().getKey())
-                .add(Blocks.CHIPPED_ANVIL.builtInRegistryHolder().getKey());
+                .add(Blocks.DAMAGED_ANVIL.defaultBlockState().getBlock())
+                .add(Blocks.CHIPPED_ANVIL.defaultBlockState().getBlock());
         this.tag(BlockTags.CLIMBABLE)
-                .add(FabulousBlocks.ROPE_CLIMBABLE.getKey());
+                .add(FabulousBlocks.ROPE_CLIMBABLE.get());
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(FabulousBlocks.MAP_DISPLAY.getKey())
-                .add(FabulousBlocks.OXYGEN_TANK.getKey());
+                .add(FabulousBlocks.MAP_DISPLAY.get())
+                .add(FabulousBlocks.OXYGEN_TANK.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(FabulousBlocks.MAP_DISPLAY.getKey())
-                .add(FabulousBlocks.OXYGEN_TANK.getKey());
+                .add(FabulousBlocks.MAP_DISPLAY.get())
+                .add(FabulousBlocks.OXYGEN_TANK.get());
         this.tag(SKILL_CALC_ORES)
                 .add(
-                        Blocks.COAL_ORE.builtInRegistryHolder().key(),
-                        Blocks.COPPER_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_COAL_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_COPPER_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_DIAMOND_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_EMERALD_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_GOLD_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_IRON_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_LAPIS_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_REDSTONE_ORE.builtInRegistryHolder().key(),
-                        Blocks.IRON_ORE.builtInRegistryHolder().key(),
-                        Blocks.DIAMOND_ORE.builtInRegistryHolder().key(),
-                        Blocks.LAPIS_ORE.builtInRegistryHolder().key(),
-                        Blocks.EMERALD_ORE.builtInRegistryHolder().key(),
-                        Blocks.GOLD_ORE.builtInRegistryHolder().key(),
-                        Blocks.REDSTONE_ORE.builtInRegistryHolder().key(),
-                        Blocks.NETHER_GOLD_ORE.builtInRegistryHolder().key(),
-                        Blocks.NETHER_QUARTZ_ORE.builtInRegistryHolder().key(),
-                        Blocks.ANCIENT_DEBRIS.builtInRegistryHolder().key()
+                        Blocks.COAL_ORE.defaultBlockState().getBlock(),
+                        Blocks.COPPER_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_COAL_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_COPPER_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_DIAMOND_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_EMERALD_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_GOLD_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_IRON_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_LAPIS_ORE.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE_REDSTONE_ORE.defaultBlockState().getBlock(),
+                        Blocks.IRON_ORE.defaultBlockState().getBlock(),
+                        Blocks.DIAMOND_ORE.defaultBlockState().getBlock(),
+                        Blocks.LAPIS_ORE.defaultBlockState().getBlock(),
+                        Blocks.EMERALD_ORE.defaultBlockState().getBlock(),
+                        Blocks.GOLD_ORE.defaultBlockState().getBlock(),
+                        Blocks.REDSTONE_ORE.defaultBlockState().getBlock(),
+                        Blocks.NETHER_GOLD_ORE.defaultBlockState().getBlock(),
+                        Blocks.NETHER_QUARTZ_ORE.defaultBlockState().getBlock(),
+                        Blocks.ANCIENT_DEBRIS.defaultBlockState().getBlock()
                 );
         this.tag(SKILL_CALC_MINERALS)
                 .add(
-                        Blocks.STONE.builtInRegistryHolder().key(),
-                        Blocks.TUFF.builtInRegistryHolder().key(),
-                        Blocks.DIORITE.builtInRegistryHolder().key(),
-                        Blocks.GRANITE.builtInRegistryHolder().key(),
-                        Blocks.ANDESITE.builtInRegistryHolder().key(),
-                        Blocks.CALCITE.builtInRegistryHolder().key(),
-                        Blocks.CINNABAR.builtInRegistryHolder().key(),
-                        Blocks.CLAY.builtInRegistryHolder().key(),
-                        Blocks.BLACKSTONE.builtInRegistryHolder().key(),
-                        Blocks.GRAVEL.builtInRegistryHolder().key(),
-                        Blocks.MAGMA_BLOCK.builtInRegistryHolder().key(),
-                        Blocks.SULFUR.builtInRegistryHolder().key(),
-                        Blocks.DRIPSTONE_BLOCK.builtInRegistryHolder().key(),
-                        Blocks.POINTED_DRIPSTONE.builtInRegistryHolder().key(),
-                        Blocks.SULFUR_SPIKE.builtInRegistryHolder().key(),
-                        Blocks.SOUL_SAND.builtInRegistryHolder().key(),
-                        Blocks.SOUL_SOIL.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE.builtInRegistryHolder().key()
+                        Blocks.STONE.defaultBlockState().getBlock(),
+                        Blocks.TUFF.defaultBlockState().getBlock(),
+                        Blocks.DIORITE.defaultBlockState().getBlock(),
+                        Blocks.GRANITE.defaultBlockState().getBlock(),
+                        Blocks.ANDESITE.defaultBlockState().getBlock(),
+                        Blocks.CALCITE.defaultBlockState().getBlock(),
+                        Blocks.CLAY.defaultBlockState().getBlock(),
+                        Blocks.BLACKSTONE.defaultBlockState().getBlock(),
+                        Blocks.GRAVEL.defaultBlockState().getBlock(),
+                        Blocks.MAGMA_BLOCK.defaultBlockState().getBlock(),
+                        Blocks.DRIPSTONE_BLOCK.defaultBlockState().getBlock(),
+                        Blocks.POINTED_DRIPSTONE.defaultBlockState().getBlock(),
+                        Blocks.SOUL_SAND.defaultBlockState().getBlock(),
+                        Blocks.SOUL_SOIL.defaultBlockState().getBlock(),
+                        Blocks.DEEPSLATE.defaultBlockState().getBlock()
                         );
         this.tag(SKILL_CALC_CROPS)
                 .addTag(BlockTags.CROPS);
         this.tag(SKILL_CALC_LOGS)
                 .addTag(BlockTags.LOGS)
                 .add(
-                        Blocks.MANGROVE_ROOTS.builtInRegistryHolder().key(),
-                        Blocks.MUDDY_MANGROVE_ROOTS.builtInRegistryHolder().key()
+                        Blocks.MANGROVE_ROOTS.defaultBlockState().getBlock(),
+                        Blocks.MUDDY_MANGROVE_ROOTS.defaultBlockState().getBlock()
                 );
         //vegetation blocks
         //noinspection unchecked
@@ -118,64 +113,64 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         BlockTags.CROPS,
                         BlockTags.FLOWERS,
                         BlockTags.LEAVES
-                ).add(Blocks.ACACIA_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.ATTACHED_MELON_STEM.builtInRegistryHolder().key(),
-                        Blocks.ATTACHED_PUMPKIN_STEM.builtInRegistryHolder().key(),
-                        Blocks.AZALEA.builtInRegistryHolder().key(),
-                        Blocks.AZURE_BLUET.builtInRegistryHolder().key(),
-                        Blocks.BAMBOO.builtInRegistryHolder().key(),
-                        Blocks.BAMBOO_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.BIG_DRIPLEAF.builtInRegistryHolder().key(),
-                        Blocks.BIG_DRIPLEAF_STEM.builtInRegistryHolder().key(),
-                        Blocks.BIRCH_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.BROWN_MUSHROOM.builtInRegistryHolder().key(),
-                        Blocks.CACTUS.builtInRegistryHolder().key(),
-                        Blocks.CACTUS_FLOWER.builtInRegistryHolder().key(),
-                        Blocks.CHERRY_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.COCOA.builtInRegistryHolder().key(),
-                        Blocks.CRIMSON_FUNGUS.builtInRegistryHolder().key(),
-                        Blocks.CRIMSON_ROOTS.builtInRegistryHolder().key(),
-                        Blocks.DARK_OAK_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.FERN.builtInRegistryHolder().key(),
-                        Blocks.FIREFLY_BUSH.builtInRegistryHolder().key(),
-                        Blocks.BUSH.builtInRegistryHolder().key(),
-                        Blocks.FLOWERING_AZALEA.builtInRegistryHolder().key(),
-                        Blocks.GLOW_LICHEN.builtInRegistryHolder().key(),
-                        Blocks.HANGING_ROOTS.builtInRegistryHolder().key(),
-                        Blocks.JUNGLE_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.KELP.builtInRegistryHolder().key(),
-                        Blocks.KELP_PLANT.builtInRegistryHolder().key(),
-                        Blocks.LARGE_FERN.builtInRegistryHolder().key(),
-                        Blocks.LEAF_LITTER.builtInRegistryHolder().key(),
-                        Blocks.LILY_PAD.builtInRegistryHolder().key(),
-                        Blocks.MANGROVE_PROPAGULE.builtInRegistryHolder().key(),
-                        Blocks.MANGROVE_ROOTS.builtInRegistryHolder().key(),
-                        Blocks.MELON_STEM.builtInRegistryHolder().key(),
-                        Blocks.MOSS_CARPET.builtInRegistryHolder().key(),
-                        Blocks.OAK_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.PALE_HANGING_MOSS.builtInRegistryHolder().key(),
-                        Blocks.PALE_MOSS_CARPET.builtInRegistryHolder().key(),
-                        Blocks.PALE_OAK_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.PINK_PETALS.builtInRegistryHolder().key(),
-                        Blocks.PUMPKIN_STEM.builtInRegistryHolder().key(),
-                        Blocks.RED_MUSHROOM.builtInRegistryHolder().key(),
-                        Blocks.SEA_PICKLE.builtInRegistryHolder().key(),
-                        Blocks.SEAGRASS.builtInRegistryHolder().key(),
-                        Blocks.SHORT_GRASS.builtInRegistryHolder().key(),
-                        Blocks.SMALL_DRIPLEAF.builtInRegistryHolder().key(),
-                        Blocks.SPORE_BLOSSOM.builtInRegistryHolder().key(),
-                        Blocks.SPRUCE_SAPLING.builtInRegistryHolder().key(),
-                        Blocks.SUGAR_CANE.builtInRegistryHolder().key(),
-                        Blocks.SWEET_BERRY_BUSH.builtInRegistryHolder().key(),
-                        Blocks.TALL_DRY_GRASS.builtInRegistryHolder().key(),
-                        Blocks.TALL_GRASS.builtInRegistryHolder().key(),
-                        Blocks.TWISTING_VINES.builtInRegistryHolder().key(),
-                        Blocks.TWISTING_VINES_PLANT.builtInRegistryHolder().key(),
-                        Blocks.VINE.builtInRegistryHolder().key(),
-                        Blocks.WARPED_FUNGUS.builtInRegistryHolder().key(),
-                        Blocks.WARPED_ROOTS.builtInRegistryHolder().key(),
-                        Blocks.WEEPING_VINES.builtInRegistryHolder().key(),
-                        Blocks.WEEPING_VINES_PLANT.builtInRegistryHolder().key()
+                ).add(Blocks.ACACIA_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.ATTACHED_MELON_STEM.defaultBlockState().getBlock(),
+                        Blocks.ATTACHED_PUMPKIN_STEM.defaultBlockState().getBlock(),
+                        Blocks.AZALEA.defaultBlockState().getBlock(),
+                        Blocks.AZURE_BLUET.defaultBlockState().getBlock(),
+                        Blocks.BAMBOO.defaultBlockState().getBlock(),
+                        Blocks.BAMBOO_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.BIG_DRIPLEAF.defaultBlockState().getBlock(),
+                        Blocks.BIG_DRIPLEAF_STEM.defaultBlockState().getBlock(),
+                        Blocks.BIRCH_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.BROWN_MUSHROOM.defaultBlockState().getBlock(),
+                        Blocks.CACTUS.defaultBlockState().getBlock(),
+                        Blocks.CACTUS_FLOWER.defaultBlockState().getBlock(),
+                        Blocks.CHERRY_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.COCOA.defaultBlockState().getBlock(),
+                        Blocks.CRIMSON_FUNGUS.defaultBlockState().getBlock(),
+                        Blocks.CRIMSON_ROOTS.defaultBlockState().getBlock(),
+                        Blocks.DARK_OAK_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.FERN.defaultBlockState().getBlock(),
+                        Blocks.FIREFLY_BUSH.defaultBlockState().getBlock(),
+                        Blocks.BUSH.defaultBlockState().getBlock(),
+                        Blocks.FLOWERING_AZALEA.defaultBlockState().getBlock(),
+                        Blocks.GLOW_LICHEN.defaultBlockState().getBlock(),
+                        Blocks.HANGING_ROOTS.defaultBlockState().getBlock(),
+                        Blocks.JUNGLE_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.KELP.defaultBlockState().getBlock(),
+                        Blocks.KELP_PLANT.defaultBlockState().getBlock(),
+                        Blocks.LARGE_FERN.defaultBlockState().getBlock(),
+                        Blocks.LEAF_LITTER.defaultBlockState().getBlock(),
+                        Blocks.LILY_PAD.defaultBlockState().getBlock(),
+                        Blocks.MANGROVE_PROPAGULE.defaultBlockState().getBlock(),
+                        Blocks.MANGROVE_ROOTS.defaultBlockState().getBlock(),
+                        Blocks.MELON_STEM.defaultBlockState().getBlock(),
+                        Blocks.MOSS_CARPET.defaultBlockState().getBlock(),
+                        Blocks.OAK_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.PALE_HANGING_MOSS.defaultBlockState().getBlock(),
+                        Blocks.PALE_MOSS_CARPET.defaultBlockState().getBlock(),
+                        Blocks.PALE_OAK_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.PINK_PETALS.defaultBlockState().getBlock(),
+                        Blocks.PUMPKIN_STEM.defaultBlockState().getBlock(),
+                        Blocks.RED_MUSHROOM.defaultBlockState().getBlock(),
+                        Blocks.SEA_PICKLE.defaultBlockState().getBlock(),
+                        Blocks.SEAGRASS.defaultBlockState().getBlock(),
+                        Blocks.SHORT_GRASS.defaultBlockState().getBlock(),
+                        Blocks.SMALL_DRIPLEAF.defaultBlockState().getBlock(),
+                        Blocks.SPORE_BLOSSOM.defaultBlockState().getBlock(),
+                        Blocks.SPRUCE_SAPLING.defaultBlockState().getBlock(),
+                        Blocks.SUGAR_CANE.defaultBlockState().getBlock(),
+                        Blocks.SWEET_BERRY_BUSH.defaultBlockState().getBlock(),
+                        Blocks.TALL_DRY_GRASS.defaultBlockState().getBlock(),
+                        Blocks.TALL_GRASS.defaultBlockState().getBlock(),
+                        Blocks.TWISTING_VINES.defaultBlockState().getBlock(),
+                        Blocks.TWISTING_VINES_PLANT.defaultBlockState().getBlock(),
+                        Blocks.VINE.defaultBlockState().getBlock(),
+                        Blocks.WARPED_FUNGUS.defaultBlockState().getBlock(),
+                        Blocks.WARPED_ROOTS.defaultBlockState().getBlock(),
+                        Blocks.WEEPING_VINES.defaultBlockState().getBlock(),
+                        Blocks.WEEPING_VINES_PLANT.defaultBlockState().getBlock()
                 );
         this.tag(VEGETATION)
                 .addTag(DESTROYABLE_BY_MACHETE);
