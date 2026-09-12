@@ -45,7 +45,7 @@ public class RopeBlock extends RotatedPillarBlock {
     }
 //break all climbable rope blocks below the broken block
     @Override
-    public boolean onDestroyedByPlayer(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull ItemStack toolStack, boolean willHarvest, @NonNull FluidState fluid) {
+    public boolean onDestroyedByPlayer(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, boolean willHarvest, @NonNull FluidState fluid) {
 
         if (state.getValue(CLIMBABLE)) {
             BlockPos current = pos.below();
@@ -71,7 +71,7 @@ public class RopeBlock extends RotatedPillarBlock {
             }
         }
         else{
-            super.onDestroyedByPlayer(state,level,pos,player,toolStack,willHarvest,fluid);
+            super.onDestroyedByPlayer(state,level,pos,player,willHarvest,fluid);
         }
         return true;
     }
