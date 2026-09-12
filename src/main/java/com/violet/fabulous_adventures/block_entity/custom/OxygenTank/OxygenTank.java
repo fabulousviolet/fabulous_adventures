@@ -2,8 +2,6 @@ package com.violet.fabulous_adventures.block_entity.custom.OxygenTank;
 
 import com.violet.fabulous_adventures.block_entity.FabulousBlockEntities;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;

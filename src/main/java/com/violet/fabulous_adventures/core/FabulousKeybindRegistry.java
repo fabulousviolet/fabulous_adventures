@@ -10,7 +10,6 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 public class FabulousKeybindRegistry {
     @SubscribeEvent
     public static void registerKeybinds(RegisterKeyMappingsEvent event) {
-        event.registerCategory(FabulousKeybinds.FABULOUS_KEY_CATEGORY);
         event.register(FabulousKeybinds.OPEN_SKILLTREE);
         event.register(FabulousKeybinds.CRAWL_SKILL_KEYBIND);
     }

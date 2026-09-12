@@ -9,10 +9,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -35,9 +33,9 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     private ImageButton skillpoint_progress_button;
 
     @Override
-    public boolean mouseDragged(MouseButtonEvent event, double dx, double dy) {
-        scrollX += dx;
-        scrollY += dy;
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
+        scrollX += dragX;
+        scrollY += dragY;
         return true;
     }
 

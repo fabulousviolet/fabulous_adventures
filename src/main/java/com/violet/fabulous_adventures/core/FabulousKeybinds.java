@@ -1,14 +1,11 @@
 package com.violet.fabulous_adventures.core;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.ResourceLocation;
 
 public class FabulousKeybinds {
-    public static final KeyMapping.Category FABULOUS_KEY_CATEGORY =
-            new KeyMapping.Category(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "fabulous_adventures"));
-
+    private static final String FABULOUS_KEY_CATEGORY = "FabulousAdventures";
     public static final KeyMapping OPEN_SKILLTREE = new KeyMapping(
             "key.fabulousadventures.open_skilltree",
             InputConstants.Type.KEYSYM,
