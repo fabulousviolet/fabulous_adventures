@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.jspecify.annotations.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.List;
 
@@ -160,7 +160,7 @@ public class ClaymoreItem extends Item {
                     .add(knockbackDir.x * KNOCKBACK_STRENGTH, 0.4, knockbackDir.z * KNOCKBACK_STRENGTH));
             target.hurtMarked = true; // ensures the knockback velocity syncs to clients
         }
-        entity.getActiveItem().hurtAndBreak(3,entity,entity.getUsedItemHand());
+        entity.getMainHandItem().hurtAndBreak(3,entity,entity.getUsedItemHand());
         spawnGroundParticles((ServerLevel) level, entity.position());
     }
 

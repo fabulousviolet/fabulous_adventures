@@ -3,7 +3,7 @@ package com.violet.fabulous_adventures.menus.custom.skilltree;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.violet.fabulous_adventures.core.FabulousAdventures;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,7 +19,7 @@ public class SkilltreeStructure {
     public static final Map<String, List<String>> NODE_CHILDREN = invert(NODE_PARENTS);
 
     private static Map<String, String> load() {
-        Identifier location = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "skilltree/skilltree_structure.json");
+        ResourceLocation location = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "skilltree/skilltree_structure.json");
         try (InputStream stream = SkilltreeStructure.class.getResourceAsStream("/data/" + location.getNamespace() + "/" + location.getPath())) {
             Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
             return new Gson().fromJson(reader, new TypeToken<Map<String, String>>(){}.getType());

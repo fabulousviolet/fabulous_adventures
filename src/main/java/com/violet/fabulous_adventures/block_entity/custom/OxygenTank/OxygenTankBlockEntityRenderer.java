@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +39,7 @@ public class OxygenTankBlockEntityRenderer implements BlockEntityRenderer<Oxygen
         float y0 = inset;
         float y1 = inset + (1f - 2 * inset) * renderState.fillFraction;
 
-        submitNodeCollector.submitCustomGeometry(poseStack, RenderTypes.entityTranslucent(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"textures/block/oxygen_tank_air.png")), (pose, buffer) -> {
+        submitNodeCollector.submitCustomGeometry(poseStack, RenderType.entityTranslucent(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"textures/block/oxygen_tank_air.png")), (pose, buffer) -> {
             int r = 255, g = 255, b = 255, a = 130;
             int light = 15728880;
 

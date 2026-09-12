@@ -5,13 +5,14 @@ import com.violet.fabulous_adventures.block.FabulousBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import org.jspecify.annotations.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 
 import java.util.concurrent.CompletableFuture;
 
@@ -20,25 +21,25 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
     //define custom BlockTags here vvv
     public static final TagKey<Block> DESTROYABLE_BY_MACHETE = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "destroyable_by_machete"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "destroyable_by_machete"));
     public static final TagKey<Block> VEGETATION = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "vegetation"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "vegetation"));
     public static final TagKey<Block> SKILL_CALC_VEGETATION = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_vegitation"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "skill_calc_vegitation"));
     public static final TagKey<Block> SKILL_CALC_ORES = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_ores"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "skill_calc_ores"));
     public static final TagKey<Block> SKILL_CALC_MINERALS = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_minerals"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "skill_calc_minerals"));
     public static final TagKey<Block> SKILL_CALC_LOGS = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_logs"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "skill_calc_logs"));
     public static final TagKey<Block> SKILL_CALC_CROPS = TagKey.create(
             Registries.BLOCK,
-            Identifier.fromNamespaceAndPath("fabulousadventures", "skill_calc_crops"));
+            ResourceLocation.fromNamespaceAndPath("fabulousadventures", "skill_calc_crops"));
 
     public FabulousBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, FabulousAdventures.MODID);

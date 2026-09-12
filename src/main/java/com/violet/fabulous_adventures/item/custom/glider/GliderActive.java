@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 //a data component to check whether the entity is gliding
 public record GliderActive() implements ConditionalItemModelProperty {
     public static final MapCodec<GliderActive> MAP_CODEC = MapCodec.unit(new GliderActive());

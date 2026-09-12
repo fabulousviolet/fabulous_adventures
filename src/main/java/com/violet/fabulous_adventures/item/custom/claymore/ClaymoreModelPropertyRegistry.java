@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.item.custom.claymore;
 
 import com.violet.fabulous_adventures.core.FabulousAdventures;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -12,7 +12,7 @@ public class ClaymoreModelPropertyRegistry {
     @SubscribeEvent
     public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent event) {
         event.register(
-                Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "claymore_charge_state"),
+                ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "claymore_charge_state"),
                 ClaymoreState.TYPE
         );
     }

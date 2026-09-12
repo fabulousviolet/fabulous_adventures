@@ -4,7 +4,7 @@ import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.skills.Skill;
 
 import net.minecraft.core.Holder;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -25,7 +25,7 @@ public class AttributeSkill extends Skill {
     }
     public void addAttribute(ServerPlayer player) {
         AttributeModifier modifer = new AttributeModifier(
-                Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"attribute_skill"+ this.suffix),
+                ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"attribute_skill"+ this.suffix),
                 this.addValue,
                 AttributeModifier.Operation.ADD_VALUE
         );

@@ -13,7 +13,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,8 +28,8 @@ import java.util.Set;
 
 public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
 
-    private static final Identifier BACKGROUND_INNER = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/gui/skilltree_inner_bg.png");
-    private static final Identifier BACKGROUND_FRAME = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/gui/skilltree_bg.png");
+    private static final ResourceLocation BACKGROUND_INNER = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/gui/skilltree_inner_bg.png");
+    private static final ResourceLocation BACKGROUND_FRAME = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/gui/skilltree_bg.png");
     private double scrollX = 0;
     private double scrollY = 0;
     private ImageButton skillpoint_progress_button;
@@ -42,13 +42,13 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     }
 
     public static final WidgetSprites NODE_SPRITES = new WidgetSprites(
-            Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "node"),
-            Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "node_disabled"),
-            Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "node_highlighted")
+            ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "node"),
+            ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "node_disabled"),
+            ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "node_highlighted")
     );
     public static final WidgetSprites SKILLPOINT_PROGRESS_SPRITES = new WidgetSprites(
-            Identifier.fromNamespaceAndPath("minecraft", "recipe_book/button"),
-            Identifier.fromNamespaceAndPath("minecraft", "recipe_book/button_highlighted")
+            ResourceLocation.fromNamespaceAndPath("minecraft", "recipe_book/button"),
+            ResourceLocation.fromNamespaceAndPath("minecraft", "recipe_book/button_highlighted")
     );
 
     public SkilltreeScreen(SkilltreeMenu menu, Inventory inventory, Component title) {
@@ -59,7 +59,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
 
     private static final Map<String, SkilltreeLayoutComputing.NodePosition> LAYOUT = SkilltreeLayoutComputing.computeLayout();
 
-    public static SkillnodeDef createSkillNodeDef(String id, int cost, Identifier display_icon, Component tooltip) {
+    public static SkillnodeDef createSkillNodeDef(String id, int cost, ResourceLocation display_icon, Component tooltip) {
         SkilltreeLayoutComputing.NodePosition pos = LAYOUT.get(id);
         return new SkillnodeDef(id, SkilltreeStructure.NODE_PARENTS.get(id), cost, (int) pos.x(), pos.y(), new SkillIcon.Texture(display_icon),tooltip);
     }
@@ -69,12 +69,12 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     }
 
     public static final Set<SkillnodeDef> NODES = Set.of(
-            createSkillNodeDef("wall_stick_skill", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "wall_stick_icon"), Component.literal("Wall Stick Skill").withColor(5636095)
+            createSkillNodeDef("wall_stick_skill", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "wall_stick_icon"), Component.literal("Wall Stick Skill").withColor(5636095)
                     .append(Component.literal("\nLets you stick to the side of blocks when holding down the shift key.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
-            createSkillNodeDef("crawl_skill", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "crawl_skill_icon"), Component.literal("Crawl Skill").withColor(5636095)
+            createSkillNodeDef("crawl_skill", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "crawl_skill_icon"), Component.literal("Crawl Skill").withColor(5636095)
                     .append(Component.literal("\nLets you get into the crawling position whenever using the ")
                             .withColor(16777215))
                     .append(Component.keybind(FabulousKeybinds.CRAWL_SKILL_KEYBIND.getName()).withColor(16777045))
@@ -82,7 +82,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
                     .append(Component.literal(" key.").withColor(16777215)
                             .append(Component.literal("\nCost: 1"))
                     )),
-            createSkillNodeDef("repair_skill", 3, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "anvil"), Component.literal("Magic Repair").withColor(5636095)
+            createSkillNodeDef("repair_skill", 3, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "anvil"), Component.literal("Magic Repair").withColor(5636095)
                     .append(Component.literal("\nLets you repair Items consuming experience when shift clicking an anvil.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 3")
@@ -113,63 +113,63 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
                     .append(Component.literal("\nCost: 2")
                     )),
 
-            createSkillNodeDef("claymore_charge_speed", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "time_speed_up"), Component.literal("Faster claymore charge").withColor(5636095)
+            createSkillNodeDef("claymore_charge_speed", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "time_speed_up"), Component.literal("Faster claymore charge").withColor(5636095)
                     .append(Component.literal("\nLets you charge up your claymore even faster accumulating damage quicker.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
-            createSkillNodeDef("claymore_damage", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "attack_up"), Component.literal("Increase claymore damage").withColor(5636095)
+            createSkillNodeDef("claymore_damage", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "attack_up"), Component.literal("Increase claymore damage").withColor(5636095)
                     .append(Component.literal("\nLets you deal even more damage with your claymore's area attack")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("claymore_area", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Increase claymore attack area").withColor(5636095)
+            createSkillNodeDef("claymore_area", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Increase claymore attack area").withColor(5636095)
                     .append(Component.literal("\nHit enemies in an even higher radius with the area attack")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("claymore_max_charge_bonus", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "attack_up"), Component.literal("Increase claymore max charge damage bonus").withColor(5636095)
+            createSkillNodeDef("claymore_max_charge_bonus", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "attack_up"), Component.literal("Increase claymore max charge damage bonus").withColor(5636095)
                     .append(Component.literal("\nGain even more damage when fully charging the claymore's attack.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("machete_area", 3, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Increase machete area").withColor(5636095)
+            createSkillNodeDef("machete_area", 3, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Increase machete area").withColor(5636095)
                     .append(Component.literal("\nRemove vegetation in an even bigger radius")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 3")
                     )),
-            createSkillNodeDef("glider_fall_speed", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "glider_down"), Component.literal("Slower glider fall").withColor(5636095)
+            createSkillNodeDef("glider_fall_speed", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "glider_down"), Component.literal("Slower glider fall").withColor(5636095)
                     .append(Component.literal("\nWhen gliding you lose less altitude letting you cover greater distances.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
 
-            createSkillNodeDef("advanced_map_scale", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Advanced Map Scaling").withColor(5636095)
+            createSkillNodeDef("advanced_map_scale", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Advanced Map Scaling").withColor(5636095)
                     .append(Component.literal("\nLets the map scale automatically once you leave its bounds.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("advanced_map_scale_1", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Advanced Map bigger scaling").withColor(5636095)
+            createSkillNodeDef("advanced_map_scale_1", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Advanced Map bigger scaling").withColor(5636095)
                     .append(Component.literal("\nLets the map scale bigger.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("advanced_map_scale_2", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Advanced Map even bigger scaling").withColor(5636095)
+            createSkillNodeDef("advanced_map_scale_2", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "area_up"), Component.literal("Advanced Map even bigger scaling").withColor(5636095)
                     .append(Component.literal("\nLets the map scale even bigger.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("advanced_map_shift", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "shift"), Component.literal("Advanced Map Shifting").withColor(5636095)
+            createSkillNodeDef("advanced_map_shift", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "shift"), Component.literal("Advanced Map Shifting").withColor(5636095)
                     .append(Component.literal("\nLets the Map shift with you when you're out of bounds and reached its max scale.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
-            createSkillNodeDef("advanced_map_waypoints", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "waypoint"), Component.literal("Advanced Map Waypoints").withColor(5636095)
+            createSkillNodeDef("advanced_map_waypoints", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "waypoint"), Component.literal("Advanced Map Waypoints").withColor(5636095)
                     .append(Component.literal("\nRight-click a block with the map to add a waypoint there. Shift + Right-click to remove it.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
-            createSkillNodeDef("advanced_map_waypoints_plus", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "waypoint"), Component.literal("Advanced Map Waypoints+").withColor(5636095)
+            createSkillNodeDef("advanced_map_waypoints_plus", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "waypoint"), Component.literal("Advanced Map Waypoints+").withColor(5636095)
                     .append(Component.literal("\nWaypoints are displayed in your world when holding the map.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
@@ -180,37 +180,37 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("attribute_skill_max_health", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "health_up"), Component.literal("Increase max health").withColor(5636095)
+            createSkillNodeDef("attribute_skill_max_health", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "health_up"), Component.literal("Increase max health").withColor(5636095)
                     .append(Component.literal("\nPermanently buff your maximum health")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
-            createSkillNodeDef("attribute_skill_oxygen", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "oxygen_up"), Component.literal("Increase oxygen").withColor(5636095)
+            createSkillNodeDef("attribute_skill_oxygen", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "oxygen_up"), Component.literal("Increase oxygen").withColor(5636095)
                     .append(Component.literal("\nLets you breathe longer under water")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("attribute_skill_strength", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "attack_up"), Component.literal("Increase strength").withColor(5636095)
+            createSkillNodeDef("attribute_skill_strength", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "attack_up"), Component.literal("Increase strength").withColor(5636095)
                     .append(Component.literal("\nPermanently buff your base damage")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("attribute_skill_attack_speed", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "time_speed_up"), Component.literal("Increase attack speed").withColor(5636095)
+            createSkillNodeDef("attribute_skill_attack_speed", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "time_speed_up"), Component.literal("Increase attack speed").withColor(5636095)
                     .append(Component.literal("\nPermanently buff your attack speed")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("attribute_skill_block_break_speed", 2, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "mine_up"), Component.literal("Increase mining speed").withColor(5636095)
+            createSkillNodeDef("attribute_skill_block_break_speed", 2, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "mine_up"), Component.literal("Increase mining speed").withColor(5636095)
                     .append(Component.literal("\nMine blocks quicker.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 2")
                     )),
-            createSkillNodeDef("attribute_skill_block_interaction_range", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "mine_range"), Component.literal("Increase block interaction range").withColor(5636095)
+            createSkillNodeDef("attribute_skill_block_interaction_range", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "mine_range"), Component.literal("Increase block interaction range").withColor(5636095)
                     .append(Component.literal("\nLets you mine and interact with blocks from farther away.")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
                     )),
-            createSkillNodeDef("attribute_skill_entity_interaction_range", 1, Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "entity_range"), Component.literal("Increase mob interaction range").withColor(5636095)
+            createSkillNodeDef("attribute_skill_entity_interaction_range", 1, ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "entity_range"), Component.literal("Increase mob interaction range").withColor(5636095)
                     .append(Component.literal("\nLets you hit and interact with entities from farther away")
                             .withColor(16777215))
                     .append(Component.literal("\nCost: 1")
@@ -357,8 +357,8 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     @Override
     protected void renderLabels(GuiGraphics graphics, int xm, int ym) {
     }
-    private static final Identifier CONNECTOR_H = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "connector_h");
-    private static final Identifier CONNECTOR_V = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "connector_v");
+    private static final ResourceLocation CONNECTOR_H = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "connector_h");
+    private static final ResourceLocation CONNECTOR_V = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "connector_v");
     private static final int CONNECTOR_THICKNESS = 4;
 
     private void drawConnector(GuiGraphics graphics, int parentX, int parentY, int childX, int childY) {

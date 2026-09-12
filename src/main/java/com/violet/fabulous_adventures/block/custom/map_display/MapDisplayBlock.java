@@ -26,9 +26,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 
+
+import javax.annotation.Nullable;
 import java.util.*;
 
 
@@ -289,7 +289,7 @@ public class MapDisplayBlock extends Block implements EntityBlock {
 
 
     @Override
-    protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+    protected  VoxelShape getShape(BlockState state,  BlockGetter level,  BlockPos pos,  CollisionContext context) {
         return SHAPES.get(state.getValue(FACING));
     }
 

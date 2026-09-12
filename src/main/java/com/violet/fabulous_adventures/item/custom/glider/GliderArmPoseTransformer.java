@@ -5,7 +5,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.world.entity.HumanoidArm;
 import net.neoforged.neoforge.client.IArmPoseTransformer;
-import org.jspecify.annotations.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 //a class to adjust the ArmPose
 public class GliderArmPoseTransformer implements IArmPoseTransformer {
     @Override

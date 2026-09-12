@@ -5,7 +5,7 @@ import com.violet.fabulous_adventures.skills.Skill;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;

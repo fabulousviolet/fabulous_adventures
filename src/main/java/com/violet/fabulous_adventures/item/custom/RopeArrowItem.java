@@ -3,11 +3,12 @@ package com.violet.fabulous_adventures.item.custom;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.entity.custom.RopeArrow;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.jspecify.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class RopeArrowItem extends ArrowItem {
     public RopeArrowItem(Properties properties) {

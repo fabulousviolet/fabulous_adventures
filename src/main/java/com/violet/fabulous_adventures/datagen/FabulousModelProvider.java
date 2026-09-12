@@ -18,7 +18,7 @@ import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.block.model.VariantMutator;
@@ -79,9 +79,9 @@ public class FabulousModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
     //define model locations here vvv
-        Identifier modelLoc_rope = ROPE_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE.get(), blockModels.modelOutput);
-        Identifier modelLoc_rope_end = ROPE_END_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE_CLIMBABLE.get(), blockModels.modelOutput);
-        Identifier modelLoc_map_display = MAP_DISPLAY_TEMPLATE_PROVIDER.create(FabulousBlocks.MAP_DISPLAY.get(), blockModels.modelOutput);
+        ResourceLocation modelLoc_rope = ROPE_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE.get(), blockModels.modelOutput);
+        ResourceLocation modelLoc_rope_end = ROPE_END_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE_CLIMBABLE.get(), blockModels.modelOutput);
+        ResourceLocation modelLoc_map_display = MAP_DISPLAY_TEMPLATE_PROVIDER.create(FabulousBlocks.MAP_DISPLAY.get(), blockModels.modelOutput);
         Variant variant_rope = new Variant(modelLoc_rope);
         Variant variant_map_display = new Variant(modelLoc_map_display);
 
@@ -133,8 +133,8 @@ public class FabulousModelProvider extends ModelProvider {
                 FabulousItems.GLIDER.get(),
                 new ConditionalItemModel.Unbaked(
                         new GliderActive(),
-                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),List.of()),
-                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),List.of())
+                        new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),List.of()),
+                        new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),List.of())
 
                 )
         );
@@ -145,17 +145,17 @@ public class FabulousModelProvider extends ModelProvider {
                 new SelectItemModel.SwitchCase<>(
                         List.of(ClaymoreChargeState.NORMAL),
                         new BlockModelWrapper.Unbaked(
-                                Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_normal"),
+                                ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_normal"),
                                 List.of())
                 ),
                 new SelectItemModel.SwitchCase<>(
                         List.of(ClaymoreChargeState.CHARGED),
-                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_charged"),
+                        new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_charged"),
                                 List.of())
                 ),
                 new SelectItemModel.SwitchCase<>(
                         List.of(ClaymoreChargeState.RELEASE),
-                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_release"),
+                        new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_release"),
                                 List.of())
                 )
         );
@@ -168,7 +168,7 @@ public class FabulousModelProvider extends ModelProvider {
                 )
         );
         itemModels.generateFlatItem(FabulousItems.EMPTY_ADVANCED_MAP.get(), ModelTemplates.FLAT_ITEM);
-        Identifier advancedMapModel = itemModels.generateLayeredItem(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/advanced_map"), Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map"),Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map_markings"));
+        ResourceLocation advancedMapModel = itemModels.generateLayeredItem(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "item/advanced_map"), ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map"),ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map_markings"));
         itemModels.itemModelOutput.accept(
                 FabulousItems.ADVANCED_MAP.get(),
                 new BlockModelWrapper.Unbaked(advancedMapModel, List.of())

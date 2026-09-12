@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jspecify.annotations.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.Map;
 
@@ -35,7 +35,7 @@ public class RopeBlock extends RotatedPillarBlock {
     public static final BooleanProperty CLIMBABLE = BooleanProperty.create("climbable");
 //rotate the voxel shape depending on the Axis
     @Override
-    protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPES.get(state.getValue(AXIS));
     }
 //define Block states

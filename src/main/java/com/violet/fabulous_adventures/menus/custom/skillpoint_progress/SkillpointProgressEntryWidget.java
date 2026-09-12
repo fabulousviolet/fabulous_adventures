@@ -10,14 +10,14 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Set;
 
 public class SkillpointProgressEntryWidget extends AbstractWidget {
     public final SkillpointProgressEntry entry;
-    private static final Identifier PROGRESS_BAR_TEXT_LOC = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"progress_bar");
-    private static final Identifier PROGRESS_BAR_FILLED_TEXT_LOC = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"progress_bar_filled");
+    private static final ResourceLocation PROGRESS_BAR_TEXT_LOC = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"progress_bar");
+    private static final ResourceLocation PROGRESS_BAR_FILLED_TEXT_LOC = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"progress_bar_filled");
     public SkillpointProgressEntryWidget(int x, int y, int width, int height, SkillpointProgressEntry entry) {
         super(x, y, width, height, entry.label());
         this.entry = entry;

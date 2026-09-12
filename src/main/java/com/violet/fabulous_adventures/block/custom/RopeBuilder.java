@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jspecify.annotations.NonNull;
+
 
 public class RopeBuilder extends Block {
     public static final int MAXROPELENGTH = 32;
@@ -16,12 +16,12 @@ public class RopeBuilder extends Block {
     }
     //can only place as a hanging block
     @Override
-    public boolean canSurvive(@NonNull BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return !level.getBlockState(pos.above()).isAir();
     }
     //build a climbable rope from the down from the builder with a length of MAXLENGTH
     @Override
-    protected void onPlace(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState oldState, boolean movedByPiston) {
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
         if (!canSurvive(state, level, pos)) {
             level.removeBlock(pos,false);
             return;

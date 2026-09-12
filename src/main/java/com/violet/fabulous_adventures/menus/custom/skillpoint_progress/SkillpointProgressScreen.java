@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SkillpointProgressScreen extends AbstractContainerScreen<SkillpointProgressMenu> {
 
-    private static final Identifier BACKGROUND = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/gui/skillpoint_progress_bg.png");
+    private static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID, "textures/gui/skillpoint_progress_bg.png");
     private static final int CONTENT_INSET = 9;
     private final List<SkillpointProgressEntryWidget> entryWidgets = new ArrayList<>();
     private static final int ENTRY_HEIGHT = 24;

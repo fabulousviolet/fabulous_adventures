@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.MapTextureManager;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.world.level.Level;
@@ -86,7 +86,7 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
 
         poseStack.translate(-0.5, -0.5, -0.374);
 
-        submitNodeCollector.submitCustomGeometry(poseStack, RenderTypes.text(texture), (pose, buffer) -> {
+        submitNodeCollector.submitCustomGeometry(poseStack, RenderType.text(texture), (pose, buffer) -> {
             buffer.addVertex(pose, 0.0F, 0.0F, 0.0F).setColor(-1).setUv(u0, v1).setLight(15728880); // was v0
             buffer.addVertex(pose, 1.0F, 0.0F, 0.0F).setColor(-1).setUv(u1, v1).setLight(15728880); // was v0
             buffer.addVertex(pose, 1.0F, 1.0F, 0.0F).setColor(-1).setUv(u1, v0).setLight(15728880); // was v1

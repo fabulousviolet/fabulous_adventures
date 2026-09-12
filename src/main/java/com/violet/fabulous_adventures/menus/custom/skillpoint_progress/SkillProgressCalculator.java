@@ -8,7 +8,7 @@ import com.violet.fabulous_adventures.skills.Skill;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.stats.StatsCounter;
@@ -40,7 +40,7 @@ public class SkillProgressCalculator {
             MobCategory.WATER_CREATURE, 0.75
     );
 
-    private static final Map<Identifier, Double> SKILL_TRAVEL_CALC_STATS = Map.of(
+    private static final Map<ResourceLocation, Double> SKILL_TRAVEL_CALC_STATS = Map.of(
             Stats.WALK_ONE_CM, 0.0001,
             Stats.WALK_UNDER_WATER_ONE_CM, 0.001,
             Stats.SWIM_ONE_CM, 0.0001,
@@ -155,7 +155,7 @@ public class SkillProgressCalculator {
     public static int calculateTravelPoints(ServerPlayer player) {
         StatsCounter stats = player.getStats();
         int totalPoints = 0;
-        for (Identifier stat : SKILL_TRAVEL_CALC_STATS.keySet()) {
+        for (ResourceLocation stat : SKILL_TRAVEL_CALC_STATS.keySet()) {
             double travelledSum = stats.getValue(Stats.CUSTOM.get(stat)) * SKILL_TRAVEL_CALC_STATS.get(stat);
             for (int milestone : TRAVELED_MILESTONES) {
                 if (travelledSum >= milestone) totalPoints++;
@@ -195,7 +195,7 @@ public class SkillProgressCalculator {
         return sum;
     }
 
-    public static double getRawTraveledValue(LocalPlayer player, Identifier stat) {
+    public static double getRawTraveledValue(LocalPlayer player, ResourceLocation stat) {
         return player.getStats().getValue(Stats.CUSTOM.get(stat));
     }
 
@@ -239,26 +239,26 @@ public class SkillProgressCalculator {
     public static double getWeightFor(SkillCriterionType type, String id) {
         return switch (type) {
             case MINED -> 1.0; // MINED has no weight map in your current design
-            case USED -> SKILL_USE_CALC_STATS.getOrDefault(TagKey.create(Registries.ITEM, Identifier.parse(id)), 1.0);
+            case USED -> SKILL_USE_CALC_STATS.getOrDefault(TagKey.create(Registries.ITEM, ResourceLocation.parse(id)), 1.0);
             case KILLED -> SKILL_KILLED_CALC_CATEGORIES.getOrDefault(MobCategory.valueOf(id.toUpperCase()), 1.0);
             case TRAVELED -> {
-                Identifier stat = Identifier.tryParse(id);
+                ResourceLocation stat = ResourceLocation.tryParse(id);
                 yield stat == null ? 1.0 : SKILL_TRAVEL_CALC_STATS.getOrDefault(stat, 1.0);
             }
         };
     }
     public static double getRawValue(LocalPlayer player, SkillCriterionType type, String id) {
         return switch (type) {
-            case MINED -> getRawMinedValue(player, TagKey.create(Registries.BLOCK, Identifier.parse(id)));
-            case USED -> getRawUsedValue(player, TagKey.create(Registries.ITEM, Identifier.parse(id)));
+            case MINED -> getRawMinedValue(player, TagKey.create(Registries.BLOCK, ResourceLocation.parse(id)));
+            case USED -> getRawUsedValue(player, TagKey.create(Registries.ITEM, ResourceLocation.parse(id)));
             case KILLED -> getRawKilledValue(player, MobCategory.valueOf(id.toUpperCase()));
             case TRAVELED -> {
-                Identifier statId = Identifier.tryParse(id);
+                ResourceLocation statId = ResourceLocation.tryParse(id);
                 if (statId == null) {
                     yield 0.0;
                 }
 
-                Identifier registeredStat = BuiltInRegistries.CUSTOM_STAT.getValue(statId);
+                ResourceLocation registeredStat = BuiltInRegistries.CUSTOM_STAT.getValue(statId);
                 yield registeredStat == null ? 0.0 : getRawTraveledValue(player, registeredStat);
             }
         };

@@ -3,12 +3,12 @@ package com.violet.fabulous_adventures.menus.custom.skilltree;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public sealed interface SkillIcon permits SkillIcon.Item, SkillIcon.Texture {
     record Item(ItemStack stack) implements SkillIcon {}
-    record Texture(Identifier location) implements SkillIcon {}
+    record Texture(ResourceLocation location) implements SkillIcon {}
 
     default void render(GuiGraphics graphics, int x, int y) {
         switch (this) {
