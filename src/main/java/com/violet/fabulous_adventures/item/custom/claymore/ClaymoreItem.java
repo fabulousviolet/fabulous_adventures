@@ -36,7 +36,7 @@ public class ClaymoreItem extends Item {
     @Override
     public @NonNull InteractionResult use(Level level, Player player, @NonNull InteractionHand hand) {
         if(!SkillUtils.isUnlocked(player,"claymore_unlock")) {
-            player.sendOverlayMessage(Component.literal("Claymore is not unlocked yet. Unlock it in the Skill tree (K)"));
+            player.displayClientMessage(Component.literal("Claymore is not unlocked yet. Unlock it in the Skill tree (K)"),true);
             return InteractionResult.PASS;
         }
         if(SkillUtils.isUnlocked(player,"claymore_charge_speed")) {
@@ -92,7 +92,7 @@ public class ClaymoreItem extends Item {
         ClaymoreChargeState current = itemStack.getOrDefault(FabulousDataComponents.CLAYMORE_CHARGE_STATE.get(), ClaymoreChargeState.NORMAL);
         if(livingEntity instanceof Player player) {
             if(!SkillUtils.isUnlocked(player,"claymore_unlock")) {
-                player.sendOverlayMessage(Component.literal("Claymore is not unlocked yet. Unlock it in the Skill tree (K)"));
+                player.displayClientMessage(Component.literal("Claymore is not unlocked yet. Unlock it in the Skill tree (K)"),true);
                 return;
             }
         }

@@ -69,7 +69,7 @@ public class MacheteItem extends Item {
                     }
                 }
             }else{
-                ((Player) owner).sendOverlayMessage(Component.literal("Machete is not unlocked yet. Unlock it in the Skill tree (K)"));
+                ((Player) owner).displayClientMessage(Component.literal("Machete is not unlocked yet. Unlock it in the Skill tree (K)"),true);
             }
         }
 

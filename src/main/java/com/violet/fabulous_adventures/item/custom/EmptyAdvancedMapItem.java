@@ -22,7 +22,7 @@ public class EmptyAdvancedMapItem extends EmptyMapItem {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if(!SkillUtils.isUnlocked(player,"advanced_map_unlock")){
-            player.sendOverlayMessage(Component.literal("Advanced Map is not unlocked yet. Unlock it in the Skill tree (K)"));
+            player.displayClientMessage(Component.literal("Advanced Map is not unlocked yet. Unlock it in the Skill tree (K)"),true);
             return InteractionResult.PASS;
         }
         ItemStack itemStack = player.getItemInHand(hand);

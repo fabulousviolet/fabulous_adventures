@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
@@ -33,7 +33,7 @@ public class OxygenTankBlockEntityRenderer implements BlockEntityRenderer<Oxygen
     public void submit(OxygenTankRenderState renderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         if (renderState.fillFraction <= 0f) return;
 
-        float inset = 0.126f;   // keeps the column inset from the block edges, inside the "window" frame
+        float inset = 2.1f / 16f;
         float x0 = inset, x1 = 1f - inset;
         float z0 = inset, z1 = 1f - inset;
         float y0 = inset;

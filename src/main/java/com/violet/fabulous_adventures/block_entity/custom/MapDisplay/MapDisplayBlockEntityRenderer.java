@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.resources.MapTextureManager;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
@@ -95,4 +95,7 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
 
         poseStack.popPose();
     }
+
+
+
 }

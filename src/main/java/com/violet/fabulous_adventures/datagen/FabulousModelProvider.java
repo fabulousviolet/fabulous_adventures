@@ -13,18 +13,16 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.renderer.block.dispatch.Variant;
 
-import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
-import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.client.renderer.item.SelectItemModel;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
+import net.minecraft.client.renderer.block.model.Variant;
+import net.minecraft.client.renderer.block.model.VariantMutator;
+import net.minecraft.client.renderer.item.BlockModelWrapper;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -134,10 +132,9 @@ public class FabulousModelProvider extends ModelProvider {
         itemModels.itemModelOutput.accept(
                 FabulousItems.GLIDER.get(),
                 new ConditionalItemModel.Unbaked(
-                        Optional.empty(),
                         new GliderActive(),
-                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),Optional.empty(), Collections.emptyList()),
-                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),Optional.empty(), Collections.emptyList())
+                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),List.of()),
+                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),List.of())
 
                 )
         );
@@ -147,21 +144,18 @@ public class FabulousModelProvider extends ModelProvider {
         List<SelectItemModel.SwitchCase<ClaymoreChargeState>> cases = List.of(
                 new SelectItemModel.SwitchCase<>(
                         List.of(ClaymoreChargeState.NORMAL),
-                        new CuboidItemModelWrapper.Unbaked(
+                        new BlockModelWrapper.Unbaked(
                                 Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_normal"),
-                                Optional.empty(),
                                 List.of())
                 ),
                 new SelectItemModel.SwitchCase<>(
                         List.of(ClaymoreChargeState.CHARGED),
-                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_charged"),
-                                Optional.empty(),
+                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_charged"),
                                 List.of())
                 ),
                 new SelectItemModel.SwitchCase<>(
                         List.of(ClaymoreChargeState.RELEASE),
-                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_release"),
-                                Optional.empty(),
+                        new BlockModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/claymore_release"),
                                 List.of())
                 )
         );
@@ -169,16 +163,15 @@ public class FabulousModelProvider extends ModelProvider {
         itemModels.itemModelOutput.accept(
                 FabulousItems.CLAYMORE.get(),
                 new SelectItemModel.Unbaked(
-                        Optional.empty(),
                         new SelectItemModel.UnbakedSwitch<>(new ClaymoreState(), cases),
                         Optional.empty()
                 )
         );
         itemModels.generateFlatItem(FabulousItems.EMPTY_ADVANCED_MAP.get(), ModelTemplates.FLAT_ITEM);
-        Identifier advancedMapModel = itemModels.generateLayeredItem(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/advanced_map"), new Material(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map")),new Material(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map_markings")));
+        Identifier advancedMapModel = itemModels.generateLayeredItem(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "item/advanced_map"), Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map"),Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/advanced_map_markings"));
         itemModels.itemModelOutput.accept(
                 FabulousItems.ADVANCED_MAP.get(),
-                new CuboidItemModelWrapper.Unbaked(advancedMapModel, Optional.empty(), List.of())
+                new BlockModelWrapper.Unbaked(advancedMapModel, List.of())
         );
     }
 

@@ -31,7 +31,7 @@ public class RopeArrow extends AbstractArrow {
     protected void onHitBlock(BlockHitResult hitResult) {
         if (getOwner() instanceof Player player){
             if(!SkillUtils.isUnlocked(player,"rope_arrow_unlock")){
-                player.sendOverlayMessage(Component.literal("Rope Arrows are not unlocked yet. Unlock them in the Skill tree (K)"));
+                player.displayClientMessage(Component.literal("Rope Arrows are not unlocked yet. Unlock them in the Skill tree (K)"),true);
                 return;
             }
         }

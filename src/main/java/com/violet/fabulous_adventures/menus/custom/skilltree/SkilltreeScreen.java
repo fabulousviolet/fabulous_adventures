@@ -6,7 +6,7 @@ import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import com.violet.fabulous_adventures.menus.custom.skillpoint_progress.OpenSkillpointProgressPayload;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -52,8 +52,9 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     );
 
     public SkilltreeScreen(SkilltreeMenu menu, Inventory inventory, Component title) {
-        super(menu, inventory, title, 252,166);
-
+        super(menu, inventory, title);
+        this.imageWidth = 252;
+        this.imageHeight = 166;
     }
 
     private static final Map<String, SkilltreeLayoutComputing.NodePosition> LAYOUT = SkilltreeLayoutComputing.computeLayout();
@@ -278,7 +279,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     private static final int TILE_SIZE = 256;
 
     @Override
-    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+    public void renderBg(GuiGraphics graphics, float a, int mouseX, int mouseY) {
         int contentX0 = leftPos + CONTENT_INSET;
         int contentY0 = topPos + CONTENT_INSET+1;
         int contentX1 = leftPos + imageWidth - CONTENT_INSET;
@@ -309,12 +310,12 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
         if (points < 10) labelOffset = 119;
         else if (points >=10 && points < 100) labelOffset = 125;
         else labelOffset = 131;
-        graphics.text(this.font, Component.literal("Skill Tree"), leftPos + 9, topPos + 6, -12566464, false);
-        graphics.text(this.font, Component.literal("Available Skillpoints: "+ points), leftPos + imageWidth - labelOffset, topPos + 6, -12566464, false);
+        graphics.drawString(this.font, Component.literal("Skill Tree"), leftPos + 9, topPos + 6, -12566464, false);
+        graphics.drawString(this.font, Component.literal("Available Skillpoints: "+ points), leftPos + imageWidth - labelOffset, topPos + 6, -12566464, false);
     }
 
     @Override
-    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float a) {
         int contentX0 = leftPos + CONTENT_INSET;
         int contentY0 = topPos + CONTENT_INSET + 8;
         int contentX1 = leftPos + imageWidth - CONTENT_INSET;
@@ -334,7 +335,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
             }
         }
 
-        super.extractRenderState(graphics, mouseX, mouseY, a);
+        super.render(graphics, mouseX, mouseY, a);
 
         for (SkillnodeDef def : NODES) {
             ImageButton button = nodeButtons.get(def.id());
@@ -342,7 +343,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
         }
 
         graphics.disableScissor();
-        skillpoint_progress_button.extractRenderState(graphics, mouseX, mouseY, a);
+        skillpoint_progress_button.render(graphics, mouseX, mouseY, a);
     }
     @Override
     protected void containerTick() {
@@ -354,13 +355,13 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
     }
 
     @Override
-    protected void extractLabels(GuiGraphicsExtractor graphics, int xm, int ym) {
+    protected void renderLabels(GuiGraphics graphics, int xm, int ym) {
     }
     private static final Identifier CONNECTOR_H = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "connector_h");
     private static final Identifier CONNECTOR_V = Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "connector_v");
     private static final int CONNECTOR_THICKNESS = 4;
 
-    private void drawConnector(GuiGraphicsExtractor graphics, int parentX, int parentY, int childX, int childY) {
+    private void drawConnector(GuiGraphics graphics, int parentX, int parentY, int childX, int childY) {
         int parentCenterX = parentX + 10;
         int parentCenterY = parentY + 10;
         int childCenterX = childX + 10;

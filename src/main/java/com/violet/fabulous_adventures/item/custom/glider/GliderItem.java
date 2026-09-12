@@ -21,7 +21,7 @@ public class GliderItem extends Item implements IClientItemExtensions {
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (!SkillUtils.isUnlocked(player, "glider_unlock")) {
             if (!level.isClientSide()) {
-                player.sendOverlayMessage(Component.literal("Glider is not unlocked yet. Unlock it in the Skill tree (K)"));
+                player.displayClientMessage(Component.literal("Glider is not unlocked yet. Unlock it in the Skill tree (K)"),true);
             }
             return InteractionResult.CONSUME;
         }

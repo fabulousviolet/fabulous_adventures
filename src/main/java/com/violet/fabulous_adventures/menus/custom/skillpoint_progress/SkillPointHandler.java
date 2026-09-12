@@ -23,7 +23,7 @@ public class SkillPointHandler {
         int pointsAfterTick = calculateSkillPoints(player);
         if (pointsBeforeTick < pointsAfterTick) {
             player.setData(FabulousAttachments.SKILL_POINTS.get(), pointsAfterTick);
-            event.getEntity().sendOverlayMessage(Component.literal("New skill point(s) unlocked. Press 'K' to open the skill tree."));
+            event.getEntity().displayClientMessage(Component.literal("New skill point(s) unlocked. Press 'K' to open the skill tree."),true);
         } else if (pointsBeforeTick != pointsAfterTick) {
             player.setData(FabulousAttachments.SKILL_POINTS.get(), pointsAfterTick);
         }

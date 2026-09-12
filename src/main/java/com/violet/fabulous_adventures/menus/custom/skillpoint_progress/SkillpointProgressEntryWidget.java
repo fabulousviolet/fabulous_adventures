@@ -2,7 +2,7 @@ package com.violet.fabulous_adventures.menus.custom.skillpoint_progress;
 
 import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarratedElementType;
@@ -24,7 +24,7 @@ public class SkillpointProgressEntryWidget extends AbstractWidget {
     }
 
     @Override
-    protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+    protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float a) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) return;
         double weight = SkillProgressCalculator.getWeightFor(entry.type(), entry.id());
@@ -42,7 +42,7 @@ public class SkillpointProgressEntryWidget extends AbstractWidget {
         int filledWidth = (int) (barWidth * progress.fillFraction());
         graphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_BAR_TEXT_LOC,barX,barY,barWidth,barHeight);
         graphics.blitSprite(RenderPipelines.GUI_TEXTURED, PROGRESS_BAR_FILLED_TEXT_LOC,barX,barY,filledWidth,barHeight);
-        graphics.text(Minecraft.getInstance().font, entry.label(), barX, getY() - 10, -1, false);
+        graphics.drawString(Minecraft.getInstance().font, entry.label(), barX, getY() - 10, -1, false);
 
         setTooltip(Tooltip.create(Component.literal(
                 (int) progress.current() + " / " + (int) progress.nextMilestone()
