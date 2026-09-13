@@ -28,10 +28,10 @@ public class MapDisplayInteractionHandler {
             BlockPos anchorPos = display.isAnchor() ? pos : display.getAnchorPos();
 
             if (level.getBlockEntity(anchorPos) instanceof MapDisplay anchor) {
-                Direction.Axis axis = level.getBlockState(pos).getValue(MapDisplayBlock.FACING).getAxis();
+                Direction facing = level.getBlockState(pos).getValue(MapDisplayBlock.FACING);
                 anchor.makeAnchor(null, anchor.getLocalU(), anchor.getLocalV(), anchor.getSquareSize());
 
-                for (BlockPos memberPos : MapDisplayBlock.getSquareMembers(new MapDisplaySquare(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ(), anchor.getSquareSize(), axis))) {
+                for (BlockPos memberPos : MapDisplayBlock.getSquareMembers(new MapDisplaySquare(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ(), anchor.getSquareSize(), facing))) {
                     if (!memberPos.equals(anchorPos) && level.getBlockEntity(memberPos) instanceof MapDisplay child) {
                         child.makeChild(anchorPos, null, child.getLocalU(), child.getLocalV(), child.getSquareSize());
                     }

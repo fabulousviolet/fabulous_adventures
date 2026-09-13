@@ -117,8 +117,9 @@ public class OxygenTank extends BlockEntity {
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
-        this.value = input.getIntOr("value",0);
+        this.value = input.getIntOr("value", 0);
     }
+
 
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder builder) {
@@ -140,4 +141,8 @@ public class OxygenTank extends BlockEntity {
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         return saveWithoutMetadata(registries);
     }
+
 }
+
+
+
