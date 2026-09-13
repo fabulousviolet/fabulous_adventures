@@ -27,18 +27,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-
 import javax.annotation.Nullable;
 import java.util.*;
 
-
 public class MapDisplayBlock extends Block implements EntityBlock {
 
-    public static final EnumProperty<Direction> FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
 
-    static{
-        FACING = BlockStateProperties.FACING;
-    }
     public MapDisplayBlock(Properties properties) {
         super(properties);
     }
@@ -47,6 +42,53 @@ public class MapDisplayBlock extends Block implements EntityBlock {
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new MapDisplay(pos, state);
     }
+
+    // === Tiling Mapping Helpers ===
+    public static Direction getRightDir(Direction facing) {
+        return switch (facing) {
+            case NORTH -> Direction.WEST;
+            case SOUTH -> Direction.EAST;
+            case WEST -> Direction.SOUTH;
+            case EAST -> Direction.NORTH;
+            case UP, DOWN -> Direction.EAST;
+        };
+    }
+
+    public static Direction getDownDir(Direction facing) {
+        return switch (facing) {
+            case NORTH, SOUTH, WEST, EAST -> Direction.DOWN;
+            case UP -> Direction.SOUTH;
+            case DOWN -> Direction.NORTH;
+        };
+    }
+
+    public static int getCoord(BlockPos pos, Direction dir) {
+        return pos.get(dir.getAxis()) * dir.getAxisDirection().getStep();
+    }
+
+    public static BlockPos fromUV(int u, int v, Direction facing, int planeValue) {
+        int x = 0, y = 0, z = 0;
+
+        switch (facing.getAxis()) {
+            case X -> x = planeValue;
+            case Y -> y = planeValue;
+            case Z -> z = planeValue;
+        }
+
+        Direction right = getRightDir(facing);
+        Direction down = getDownDir(facing);
+
+        if (right.getAxis() == Direction.Axis.X) x = u * right.getAxisDirection().getStep();
+        else if (right.getAxis() == Direction.Axis.Y) y = u * right.getAxisDirection().getStep();
+        else if (right.getAxis() == Direction.Axis.Z) z = u * right.getAxisDirection().getStep();
+
+        if (down.getAxis() == Direction.Axis.X) x = v * down.getAxisDirection().getStep();
+        else if (down.getAxis() == Direction.Axis.Y) y = v * down.getAxisDirection().getStep();
+        else if (down.getAxis() == Direction.Axis.Z) z = v * down.getAxisDirection().getStep();
+
+        return new BlockPos(x, y, z);
+    }
+    // ==============================
 
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
@@ -58,8 +100,7 @@ public class MapDisplayBlock extends Block implements EntityBlock {
             if (level.getBlockEntity(anchorPos) instanceof MapDisplay anchor) {
                 anchor.makeAnchor(newId, anchor.getLocalU(), anchor.getLocalV(), anchor.getSquareSize());
 
-                // propagate the new cachedMapId to every other member of the group too
-                for (BlockPos memberPos : getSquareMembers(new MapDisplaySquare(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ(), anchor.getSquareSize(), state.getValue(FACING).getAxis()))) {
+                for (BlockPos memberPos : getSquareMembers(new MapDisplaySquare(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ(), anchor.getSquareSize(), state.getValue(FACING)))) {
                     if (!memberPos.equals(anchorPos) && level.getBlockEntity(memberPos) instanceof MapDisplay child) {
                         child.makeChild(anchorPos, newId, child.getLocalU(), child.getLocalV(), child.getSquareSize());
                     }
@@ -70,32 +111,22 @@ public class MapDisplayBlock extends Block implements EntityBlock {
         return InteractionResult.PASS;
     }
 
-    public static final List<Direction.Axis> scanX = List.of(Direction.Axis.Y, Direction.Axis.Z);
-    public static final List<Direction.Axis> scanY = List.of(Direction.Axis.X, Direction.Axis.Z);
-    public static final List<Direction.Axis> scanZ = List.of(Direction.Axis.X, Direction.Axis.Y);
-
     public static void getInterconnectedDisplays(Level level, Set<BlockPos> checkedPositions, Set<BlockPos> queue, Direction facing, Set<BlockPos> result) {
         Set<BlockPos> newQueue = new HashSet<>();
-        Direction.Axis axis = facing.getAxis();
 
         for (BlockPos blockPos : queue) {
             BlockState blockState = level.getBlockState(blockPos);
-            if (blockState.is(FabulousBlocks.MAP_DISPLAY.get()) && blockState.getValue(MapDisplayBlock.FACING) == facing && !result.contains(blockPos)) {
+            if (blockState.is(FabulousBlocks.MAP_DISPLAY.get()) && blockState.getValue(FACING) == facing && !result.contains(blockPos)) {
                 result.add(blockPos);
             }
 
-            List<Direction.Axis> scanAxes = switch (axis) {
-                case X -> scanX;
-                case Y -> scanY;
-                case Z -> scanZ;
-            };
-
-            for (Direction.Axis scanAxis : scanAxes) {
-                for (int step : Set.of(-1, 1)) {
-                    BlockPos neighborPos = blockPos.relative(scanAxis, step);
+            // Look at all neighbors in the same plane
+            for (Direction dir : Direction.values()) {
+                if (dir.getAxis() != facing.getAxis()) {
+                    BlockPos neighborPos = blockPos.relative(dir);
                     BlockState neighborState = level.getBlockState(neighborPos);
                     if (neighborState.is(FabulousBlocks.MAP_DISPLAY.get())
-                            && neighborState.getValue(MapDisplayBlock.FACING) == facing
+                            && neighborState.getValue(FACING) == facing
                             && !checkedPositions.contains(neighborPos)
                             && !result.contains(neighborPos)) {
                         newQueue.add(neighborPos);
@@ -119,8 +150,7 @@ public class MapDisplayBlock extends Block implements EntityBlock {
     @Override
     protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
         super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
-
-        Set<BlockPos> neighbors = getDisplayNeighbors(level, pos, state.getValue(FACING)    );
+        Set<BlockPos> neighbors = getDisplayNeighbors(level, pos, state.getValue(FACING));
         if (!neighbors.isEmpty()) {
             regroupDisplays(level, neighbors, state.getValue(FACING));
         }
@@ -128,16 +158,9 @@ public class MapDisplayBlock extends Block implements EntityBlock {
 
     public static Set<BlockPos> getDisplayNeighbors(Level level, BlockPos pos, Direction facing) {
         Set<BlockPos> neighbors = new HashSet<>();
-        Direction.Axis axis = facing.getAxis();
-        List<Direction.Axis> scanAxes = switch (axis) {
-            case X -> scanX;
-            case Y -> scanY;
-            case Z -> scanZ;
-        };
-
-        for (Direction.Axis scanAxis : scanAxes) {
-            for (int step : Set.of(-1, 1)) {
-                BlockPos neighborPos = pos.relative(scanAxis, step);
+        for (Direction dir : Direction.values()) {
+            if (dir.getAxis() != facing.getAxis()) {
+                BlockPos neighborPos = pos.relative(dir);
                 if (level.getBlockState(neighborPos).is(FabulousBlocks.MAP_DISPLAY.get()) && level.getBlockState(neighborPos).getValue(FACING) == facing) {
                     neighbors.add(neighborPos);
                 }
@@ -148,19 +171,16 @@ public class MapDisplayBlock extends Block implements EntityBlock {
 
     public static Set<BlockPos> getSquareMembers(MapDisplaySquare square) {
         Set<BlockPos> members = new HashSet<>();
-        BlockPos corner = new BlockPos(square.x(), square.y(), square.z());
+        BlockPos anchorPos = new BlockPos(square.x(), square.y(), square.z());
+        Direction facing = square.facing();
 
-        List<Direction.Axis> scanAxes = switch (square.axis()) {
-            case X -> scanX;
-            case Y -> scanY;
-            case Z -> scanZ;
-        };
+        int planeValue = anchorPos.get(facing.getAxis());
+        int anchorU = getCoord(anchorPos, getRightDir(facing));
+        int anchorV = getCoord(anchorPos, getDownDir(facing));
 
         for (int u = 0; u < square.size(); u++) {
             for (int v = 0; v < square.size(); v++) {
-                members.add(toBlockPos(square.axis(), corner.get(square.axis()),
-                        corner.get(scanAxes.getFirst()) - u,
-                        corner.get(scanAxes.getLast()) - v));
+                members.add(fromUV(anchorU + u, anchorV + v, facing, planeValue));
             }
         }
         return members;
@@ -168,7 +188,6 @@ public class MapDisplayBlock extends Block implements EntityBlock {
 
     public static void regroupDisplays(Level level, Set<BlockPos> searchRoots, Direction facing) {
         Set<BlockPos> allConnected = new HashSet<>();
-        Direction.Axis axis = facing.getAxis();
         getInterconnectedDisplays(level, new HashSet<>(), searchRoots, facing, allConnected);
 
         Map<BlockPos, MapId> capturedIds = new HashMap<>();
@@ -179,15 +198,11 @@ public class MapDisplayBlock extends Block implements EntityBlock {
             }
         }
 
-        List<Direction.Axis> scanAxes = switch (axis) {
-            case X -> scanX;
-            case Y -> scanY;
-            case Z -> scanZ;
-        };
-
         Set<BlockPos> remaining = new HashSet<>(allConnected);
         while (!remaining.isEmpty()) {
-            MapDisplaySquare square = computeSquareDP(remaining, axis);
+            MapDisplaySquare square = computeSquareDP(remaining, facing);
+            if (square == null) break;
+
             Set<BlockPos> members = getSquareMembers(square);
             BlockPos anchorPos = new BlockPos(square.x(), square.y(), square.z());
 
@@ -199,10 +214,16 @@ public class MapDisplayBlock extends Block implements EntityBlock {
                 }
             }
 
+            int anchorU = getCoord(anchorPos, getRightDir(facing));
+            int anchorV = getCoord(anchorPos, getDownDir(facing));
+
             for (BlockPos memberPos : members) {
                 if (level.getBlockEntity(memberPos) instanceof MapDisplay display) {
-                    int localU = anchorPos.get(scanAxes.getFirst()) - memberPos.get(scanAxes.getFirst());
-                    int localV = anchorPos.get(scanAxes.getLast()) - memberPos.get(scanAxes.getLast());
+                    int memberU = getCoord(memberPos, getRightDir(facing));
+                    int memberV = getCoord(memberPos, getDownDir(facing));
+
+                    int localU = memberU - anchorU;
+                    int localV = memberV - anchorV;
 
                     if (memberPos.equals(anchorPos)) {
                         display.makeAnchor(inheritedId, localU, localV, square.size());
@@ -211,44 +232,39 @@ public class MapDisplayBlock extends Block implements EntityBlock {
                     }
                 }
             }
-
             remaining.removeAll(members);
         }
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
+    public static MapDisplaySquare computeSquareDP(Set<BlockPos> input, Direction facing) {
+        if (input.isEmpty()) return null;
 
-    public static MapDisplaySquare computeSquareDP(Set<BlockPos> input, Direction.Axis axis) {
-        List<Direction.Axis> scanAxes = switch (axis) {
-            case X -> scanX;
-            case Y -> scanY;
-            case Z -> scanZ;
-        };
+        BlockPos first = input.iterator().next();
+        int planeValue = first.get(facing.getAxis());
 
-        int minAbsU = input.iterator().next().get(scanAxes.getFirst());
-        int maxAbsU = minAbsU;
-        int minAbsV = input.iterator().next().get(scanAxes.getLast());
-        int maxAbsV = minAbsV;
-        int thirdAxisValue = input.iterator().next().get(axis);
+        int minU = Integer.MAX_VALUE;
+        int maxU = Integer.MIN_VALUE;
+        int minV = Integer.MAX_VALUE;
+        int maxV = Integer.MIN_VALUE;
 
-        for (BlockPos blockPos : input) {
-            minAbsU = Math.min(minAbsU, blockPos.get(scanAxes.getFirst()));
-            maxAbsU = Math.max(maxAbsU, blockPos.get(scanAxes.getFirst()));
-            minAbsV = Math.min(minAbsV, blockPos.get(scanAxes.getLast()));
-            maxAbsV = Math.max(maxAbsV, blockPos.get(scanAxes.getLast()));
+        // Map inputs to a unified 2D coordinate space regardless of block face
+        for (BlockPos pos : input) {
+            int u = getCoord(pos, getRightDir(facing));
+            int v = getCoord(pos, getDownDir(facing));
+            minU = Math.min(minU, u);
+            maxU = Math.max(maxU, u);
+            minV = Math.min(minV, v);
+            maxV = Math.max(maxV, v);
         }
 
-        int gridSizeU = maxAbsU - minAbsU + 1;
-        int gridSizeV = maxAbsV - minAbsV + 1;
+        int gridSizeU = maxU - minU + 1;
+        int gridSizeV = maxV - minV + 1;
 
         boolean[][] map = new boolean[gridSizeU][gridSizeV];
-        for (int u = 0; u < gridSizeU; u++) {
-            for (int v = 0; v < gridSizeV; v++) {
-                map[u][v] = input.contains(toBlockPos(axis, thirdAxisValue, u + minAbsU, v + minAbsV));
-            }
+        for (BlockPos pos : input) {
+            int u = getCoord(pos, getRightDir(facing));
+            int v = getCoord(pos, getDownDir(facing));
+            map[u - minU][v - minV] = true;
         }
 
         int[][] dp = new int[gridSizeU][gridSizeV];
@@ -264,22 +280,25 @@ public class MapDisplayBlock extends Block implements EntityBlock {
 
                 if (dp[u][v] > bestSize) {
                     bestSize = dp[u][v];
-                    bestU = u;
+                    bestU = u; // In standard DP this tracks the Bottom-Right corner
                     bestV = v;
                 }
             }
         }
 
-        BlockPos corner = toBlockPos(axis, thirdAxisValue, bestU + minAbsU, bestV + minAbsV);
-        return new MapDisplaySquare(corner.getX(), corner.getY(), corner.getZ(), bestSize, axis);
+        // Trace back to find the Top-Left anchor corner in local UV
+        int anchorLocalU = bestU - bestSize + 1;
+        int anchorLocalV = bestV - bestSize + 1;
+
+        // Convert to absolute UV then back to BlockPos
+        BlockPos anchorPos = fromUV(anchorLocalU + minU, anchorLocalV + minV, facing, planeValue);
+
+        return new MapDisplaySquare(anchorPos.getX(), anchorPos.getY(), anchorPos.getZ(), bestSize, facing);
     }
 
-    private static BlockPos toBlockPos(Direction.Axis axis, int thirdAxisValue, int u, int v) {
-        return switch (axis) {
-            case X -> new BlockPos(thirdAxisValue, u, v);
-            case Y -> new BlockPos(u, thirdAxisValue, v);
-            case Z -> new BlockPos(u, v, thirdAxisValue);
-        };
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 
     @Override
@@ -287,15 +306,14 @@ public class MapDisplayBlock extends Block implements EntityBlock {
         return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
     }
 
-
     @Override
-    protected  VoxelShape getShape(BlockState state,  BlockGetter level,  BlockPos pos,  CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPES.get(state.getValue(FACING));
     }
 
     private static final Map<Direction, VoxelShape> SHAPES;
 
-    static{
-        SHAPES = Shapes.rotateAll(Block.box(0.0F, 0.0F, 14.0F,16.0F,16.0F,16.0F));
+    static {
+        SHAPES = Shapes.rotateAll(Block.box(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 16.0F));
     }
 }

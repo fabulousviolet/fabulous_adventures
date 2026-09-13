@@ -46,26 +46,31 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
         float v1 = (float) (localV + 1) / squareSize;
 
         poseStack.pushPose();
+
         poseStack.translate(0.5, 0.5, 0.5);
 
         switch (facing) {
             case UP -> poseStack.mulPose(Axis.XP.rotationDegrees(-90));
             case DOWN -> poseStack.mulPose(Axis.XP.rotationDegrees(90));
-            case NORTH -> {}
-            case SOUTH -> poseStack.mulPose(Axis.YP.rotationDegrees(180));
+            case NORTH -> poseStack.mulPose(Axis.YP.rotationDegrees(180));
+            case SOUTH -> {}
             case EAST -> poseStack.mulPose(Axis.YP.rotationDegrees(90));
             case WEST -> poseStack.mulPose(Axis.YP.rotationDegrees(-90));
         }
 
-        poseStack.translate(-0.5, -0.5, -0.5);
+        poseStack.translate(0.0, 0.0, -0.37499);
 
-        VertexConsumer buffer = bufferSource.getBuffer(RenderType.text(texture));
+        VertexConsumer buffer = bufferSource.getBuffer(RenderType.ENTITY_CUTOUT.apply(texture));
         Matrix4f pose = poseStack.last().pose();
 
-        buffer.addVertex(pose, 0.0F, 1.0F, 0.0F).setColor(-1).setUv(u0, v1).setLight(packedLight);
-        buffer.addVertex(pose, 1.0F, 1.0F, 0.0F).setColor(-1).setUv(u1, v1).setLight(packedLight);
-        buffer.addVertex(pose, 1.0F, 0.0F, 0.0F).setColor(-1).setUv(u1, v0).setLight(packedLight);
-        buffer.addVertex(pose, 0.0F, 0.0F, 0.0F).setColor(-1).setUv(u0, v0).setLight(packedLight);
+        // Top-Left
+        buffer.addVertex(pose, -0.5F, 0.5F, 0.0F).setColor(-1).setUv(u0, v0).setOverlay(packedOverlay).setLight(packedLight).setNormal(0.0F, 0.0F, 1.0F);
+        // Bottom-Left
+        buffer.addVertex(pose, -0.5F, -0.5F, 0.0F).setColor(-1).setUv(u0, v1).setOverlay(packedOverlay).setLight(packedLight).setNormal(0.0F, 0.0F, 1.0F);
+        // Bottom-Right
+        buffer.addVertex(pose, 0.5F, -0.5F, 0.0F).setColor(-1).setUv(u1, v1).setOverlay(packedOverlay).setLight(packedLight).setNormal(0.0F, 0.0F, 1.0F);
+        // Top-Right
+        buffer.addVertex(pose, 0.5F, 0.5F, 0.0F).setColor(-1).setUv(u1, v0).setOverlay(packedOverlay).setLight(packedLight).setNormal(0.0F, 0.0F, 1.0F);
 
         poseStack.popPose();
     }
