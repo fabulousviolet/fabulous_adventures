@@ -160,7 +160,7 @@ public class ClaymoreItem extends Item {
                     .add(knockbackDir.x * KNOCKBACK_STRENGTH, 0.4, knockbackDir.z * KNOCKBACK_STRENGTH));
             target.hurtMarked = true; // ensures the knockback velocity syncs to clients
         }
-        entity.getMainHandItem().hurtAndBreak(3,entity,entity.getUsedItemHand());
+        entity.getMainHandItem().hurtAndBreak(3,entity,getEquipmentSlot(entity.getMainHandItem()));
         spawnGroundParticles((ServerLevel) level, entity.position());
     }
 

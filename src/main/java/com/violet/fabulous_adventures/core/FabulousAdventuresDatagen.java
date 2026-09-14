@@ -8,6 +8,7 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.Collections;
@@ -22,8 +23,8 @@ public class FabulousAdventuresDatagen {
         var lookupProvider = event.getLookupProvider();
         //add providers here vvv
         generator.addProvider(true, new FabulousModelProvider(packOutput));
-        generator.addProvider(true, new FabulousBlockTagProvider(packOutput, lookupProvider));
-        generator.addProvider(true, new FabulousItemTagProvider(packOutput,lookupProvider));
+        FabulousBlockTagProvider blockTagProvider = generator.addProvider(true, new FabulousBlockTagProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new FabulousItemTagProvider(packOutput,lookupProvider, blockTagProvider.contentsGetter()));
         generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(FabulousBlockLoottableProvider::new,
                         LootContextParamSets.BLOCK)),lookupProvider));

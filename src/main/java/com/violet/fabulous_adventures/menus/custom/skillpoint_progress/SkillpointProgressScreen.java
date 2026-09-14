@@ -5,11 +5,13 @@ import com.violet.fabulous_adventures.menus.custom.skilltree.OpenSkilltreePayloa
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,14 +79,14 @@ public class SkillpointProgressScreen extends AbstractContainerScreen<Skillpoint
             entryWidgets.clear();
             entryWidgets.addAll(createEntryWidgets());
             for (SkillpointProgressEntryWidget widget : entryWidgets) {
-                this.addRenderableWidget(widget);
+                this.addWidget(widget);
             }
         }
 
         @Override
         protected void renderBg (GuiGraphics graphics,float partialTick, int mouseX, int mouseY){
             graphics.blit(
-                    RenderPipelines.GUI_TEXTURED,
+                    RenderType.GUI_TEXTURED,
                     BACKGROUND,
                     leftPos, topPos,
                     0, 0,
@@ -108,14 +110,16 @@ public class SkillpointProgressScreen extends AbstractContainerScreen<Skillpoint
             int contentY0 = topPos + CONTENT_INSET + 8;
             int contentX1 = leftPos + imageWidth - CONTENT_INSET;
             int contentY1 = topPos + imageHeight - CONTENT_INSET;
-
+            this.renderBackground(graphics,mouseX,mouseY, a);
             graphics.enableScissor(contentX0, contentY0, contentX1, contentY1);
-
-            super.render(graphics, mouseX, mouseY, a);
+            for (SkillpointProgressEntryWidget widget : entryWidgets) {
+                widget.render(graphics, mouseX, mouseY, a);
+            }
+            graphics.disableScissor();
         }
         @Override
         public void onClose () {
-            ClientPacketDistributor.sendToServer(new OpenSkilltreePayload());
+            PacketDistributor.sendToServer(new OpenSkilltreePayload());
             super.onClose();
         }
 

@@ -5,6 +5,7 @@ import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -141,7 +142,11 @@ public class GliderTickHandler {
 
         for (InteractionHand hand : InteractionHand.values()) {
             if (isGliderActiveInHand(player, hand)) {
-                player.getItemInHand(hand).hurtAndBreak(1, player, hand);
+                if (hand == InteractionHand.MAIN_HAND) {
+                    player.getItemInHand(hand).hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                }else if (hand == InteractionHand.OFF_HAND) {
+                    player.getItemInHand(hand).hurtAndBreak(1, player, EquipmentSlot.OFFHAND);
+                }
             }
         }
     }

@@ -18,16 +18,14 @@ public class FabulousAttachments {
     public static final DeferredHolder<AttachmentType<?>,AttachmentType<Integer>> SKILL_POINTS = ATTACHMENT_TYPES.register(
             "skill_points",
             () -> AttachmentType.builder(() -> 0)
-                    .serialize(Codec.INT.fieldOf("value"))
-                    .sync(ByteBufCodecs.VAR_INT)
+                    .serialize(Codec.INT)
                     .copyOnDeath()
                     .build()
     );
     public static final DeferredHolder<AttachmentType<?>,AttachmentType<Integer>> BASE_SKILL_POINTS = ATTACHMENT_TYPES.register(
             "base_skill_points",
             () -> AttachmentType.builder(() -> 0)
-                    .serialize(Codec.INT.fieldOf("value"))
-                    .sync(ByteBufCodecs.VAR_INT)
+                    .serialize(Codec.INT)
                     .copyOnDeath()
                     .build()
     );
@@ -43,8 +41,7 @@ public class FabulousAttachments {
                             defaultUnlocked.add("root");
                             return defaultUnlocked;
                         })
-                        .serialize(setCodec.fieldOf("nodes"))
-                        .sync(ByteBufCodecs.collection(HashSet::new, ByteBufCodecs.STRING_UTF8))
+                        .serialize(setCodec)
                         .copyOnDeath()
                         .build();
             });

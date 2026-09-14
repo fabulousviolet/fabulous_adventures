@@ -11,8 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.saveddata.maps.MapId;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
+
 
 import javax.annotation.Nullable;
 
@@ -65,9 +64,10 @@ public class MapDisplay extends BlockEntity {
     public int getSquareSize() { return squareSize; }
     public BlockPos getAnchorPos() {return anchorPos;}
 
+
     @Override
-    protected void saveAdditional(ValueOutput output) {
-        super.saveAdditional(output);
+    protected void saveAdditional(CompoundTag output, HolderLookup.Provider registries) {
+        super.saveAdditional(output, registries);
         output.storeNullable("mapId", MapId.CODEC, this.mapId);
         output.storeNullable("anchorPos", BlockPos.CODEC, this.anchorPos);
         output.storeNullable("cachedMapId", MapId.CODEC, this.cachedMapId);
@@ -77,8 +77,8 @@ public class MapDisplay extends BlockEntity {
     }
 
     @Override
-    protected void loadAdditional(ValueInput input) {
-        super.loadAdditional(input);
+    protected void loadAdditional(CompoundTag input, HolderLookup.Provider registries) {
+        super.loadAdditional(input, registries);
         this.mapId = input.read("mapId", MapId.CODEC).orElse(null);
         this.anchorPos = input.read("anchorPos", BlockPos.CODEC).orElse(null);
         this.cachedMapId = input.read("cachedMapId", MapId.CODEC).orElse(null);

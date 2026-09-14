@@ -48,7 +48,7 @@ public class MacheteItem extends Item {
     @Override
     public boolean mineBlock(ItemStack itemStack, Level level, BlockState state, BlockPos pos, LivingEntity owner) {
         boolean toReturn = super.mineBlock(itemStack, level, state, pos, owner);
-        itemStack.hurtAndBreak(1,owner,owner.getUsedItemHand());
+        itemStack.hurtAndBreak(1,owner, getEquipmentSlot(itemStack));
         if (owner instanceof Player player){
             if (SkillUtils.isUnlocked(player, "machete_area")){
                 AREA = 2;

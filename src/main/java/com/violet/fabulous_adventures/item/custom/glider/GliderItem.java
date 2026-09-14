@@ -36,7 +36,7 @@ public class GliderItem extends Item implements IClientItemExtensions {
         } else if (level.getBlockState(player.getOnPos().below()).isAir()) {
             if (!level.isClientSide()) {
                 stack.set(FabulousDataComponents.GLIDER_ACTIVE.get(), true);
-                stack.hurtAndBreak(1, player, hand);
+                stack.hurtAndBreak(1, player, getEquipmentSlot(stack));
             }
             GliderTickHandler.markJustActivated(player);
         }
