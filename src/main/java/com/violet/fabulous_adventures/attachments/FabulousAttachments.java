@@ -19,7 +19,6 @@ public class FabulousAttachments {
             "skill_points",
             () -> AttachmentType.builder(() -> 0)
                     .serialize(Codec.INT.fieldOf("value"))
-                    .sync(ByteBufCodecs.VAR_INT)
                     .copyOnDeath()
                     .build()
     );
@@ -27,7 +26,6 @@ public class FabulousAttachments {
             "base_skill_points",
             () -> AttachmentType.builder(() -> 0)
                     .serialize(Codec.INT.fieldOf("value"))
-                    .sync(ByteBufCodecs.VAR_INT)
                     .copyOnDeath()
                     .build()
     );
@@ -44,7 +42,6 @@ public class FabulousAttachments {
                             return defaultUnlocked;
                         })
                         .serialize(setCodec.fieldOf("nodes"))
-                        .sync(ByteBufCodecs.collection(HashSet::new, ByteBufCodecs.STRING_UTF8))
                         .copyOnDeath()
                         .build();
             });

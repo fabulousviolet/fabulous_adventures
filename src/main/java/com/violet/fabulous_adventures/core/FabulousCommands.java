@@ -3,6 +3,7 @@ package com.violet.fabulous_adventures.core;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.violet.fabulous_adventures.attachments.AttachmentDataSync;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.commands.CommandSourceStack;
@@ -38,7 +39,7 @@ public class FabulousCommands {
                                 .then(Commands.literal("reset")
                                         .executes(commandContext -> {
                                             ServerPlayer target = EntityArgument.getPlayer(commandContext, "target");
-                                            target.setData(FabulousAttachments.BASE_SKILL_POINTS.get(), 0);
+                                            AttachmentDataSync.setBaseSkillPoints(target, 0);
                                             return 1;
                                         })
                                 )
@@ -52,7 +53,7 @@ public class FabulousCommands {
                               ServerPlayer target = EntityArgument.getPlayer(commandContext, "target");
                               Set<String> newSet = new HashSet<>();
                               newSet.add("root");
-                              target.setData(FabulousAttachments.UNLOCKED_SKILLS.get(), newSet);
+                              AttachmentDataSync.setUnlockedSkills(target, newSet);
                               return 1;
                           })
                   )
@@ -62,7 +63,7 @@ public class FabulousCommands {
         ServerPlayer target = EntityArgument.getPlayer(context, "target");
         int amount = IntegerArgumentType.getInteger(context, "amount");
         int current = target.getData(FabulousAttachments.BASE_SKILL_POINTS.get());
-        target.setData(FabulousAttachments.BASE_SKILL_POINTS.get(), Math.max(0, current + amount * sign));
+        AttachmentDataSync.setBaseSkillPoints(target, Math.max(0, current + amount * sign));
         return 1;
     }
 }

@@ -1,5 +1,9 @@
 package com.violet.fabulous_adventures.core;
 
+import com.violet.fabulous_adventures.attachments.FabulousAttachments;
+import com.violet.fabulous_adventures.attachments.SyncBaseSkillPointsPayload;
+import com.violet.fabulous_adventures.attachments.SyncSkillPointsPayload;
+import com.violet.fabulous_adventures.attachments.SyncUnlockedSkillsPayload;
 import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.menus.custom.skillpoint_progress.OpenSkillpointProgressPayload;
 import com.violet.fabulous_adventures.menus.custom.skillpoint_progress.SkillpointProgressMenu;
@@ -7,9 +11,11 @@ import com.violet.fabulous_adventures.menus.custom.skilltree.OpenSkilltreePayloa
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeButtonPayload;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeLogic;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeMenu;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -60,5 +66,23 @@ public class FabulousNetworking {
                     });
                 }
         );
+
+        registrar.playToClient(SyncSkillPointsPayload.TYPE, SyncSkillPointsPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() -> {
+                    Player player = Minecraft.getInstance().player;
+                    if (player != null) player.setData(FabulousAttachments.SKILL_POINTS.get(), payload.value());
+                }));
+
+        registrar.playToClient(SyncBaseSkillPointsPayload.TYPE, SyncBaseSkillPointsPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() -> {
+                    Player player = Minecraft.getInstance().player;
+                    if (player != null) player.setData(FabulousAttachments.BASE_SKILL_POINTS.get(), payload.value());
+                }));
+
+        registrar.playToClient(SyncUnlockedSkillsPayload.TYPE, SyncUnlockedSkillsPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() -> {
+                    Player player = Minecraft.getInstance().player;
+                    if (player != null) player.setData(FabulousAttachments.UNLOCKED_SKILLS.get(), payload.value());
+                }));
     }
 }

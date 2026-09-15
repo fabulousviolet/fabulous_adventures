@@ -9,7 +9,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +116,7 @@ public class SkillpointProgressScreen extends AbstractContainerScreen<Skillpoint
         }
         @Override
         public void onClose () {
-            ClientPacketDistributor.sendToServer(new OpenSkilltreePayload());
+            PacketDistributor.sendToServer(new OpenSkilltreePayload());
             super.onClose();
         }
 

@@ -16,7 +16,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -238,14 +238,14 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
         super.init();
         for (SkillnodeDef def : NODES) {
             ImageButton button = new ImageButton(leftPos + def.x(), topPos + def.y(), 20, 20, NODE_SPRITES, b -> {
-                ClientPacketDistributor.sendToServer(new SkilltreeButtonPayload(def.id(), def.cost(), def.parentId()));
+                PacketDistributor.sendToServer(new SkilltreeButtonPayload(def.id(), def.cost(), def.parentId()));
             });
             button.setTooltip(Tooltip.create(def.tooltip()));
             nodeButtons.put(def.id(), button);
             this.addRenderableWidget(button);
         }
         skillpoint_progress_button = new ImageButton(imageWidth + leftPos + 5, topPos, 20 ,18, SKILLPOINT_PROGRESS_SPRITES,button ->{
-            ClientPacketDistributor.sendToServer(new OpenSkillpointProgressPayload());
+            PacketDistributor.sendToServer(new OpenSkillpointProgressPayload());
         });
         this.addRenderableWidget(skillpoint_progress_button);
         updateButtonState();

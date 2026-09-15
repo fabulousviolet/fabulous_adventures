@@ -1,5 +1,6 @@
 package com.violet.fabulous_adventures.menus.custom.skillpoint_progress;
 
+import com.violet.fabulous_adventures.attachments.AttachmentDataSync;
 import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import net.minecraft.network.chat.Component;
@@ -22,10 +23,10 @@ public class SkillPointHandler {
         int pointsBeforeTick = player.getData(FabulousAttachments.SKILL_POINTS.get());
         int pointsAfterTick = calculateSkillPoints(player);
         if (pointsBeforeTick < pointsAfterTick) {
-            player.setData(FabulousAttachments.SKILL_POINTS.get(), pointsAfterTick);
+            AttachmentDataSync.setSkillPoints(player, pointsAfterTick);
             event.getEntity().displayClientMessage(Component.literal("New skill point(s) unlocked. Press 'K' to open the skill tree."),true);
         } else if (pointsBeforeTick != pointsAfterTick) {
-            player.setData(FabulousAttachments.SKILL_POINTS.get(), pointsAfterTick);
+            AttachmentDataSync.setSkillPoints(player, pointsAfterTick);
         }
     }
 
