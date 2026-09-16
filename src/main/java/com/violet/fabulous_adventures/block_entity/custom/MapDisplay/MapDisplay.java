@@ -4,6 +4,7 @@ import com.violet.fabulous_adventures.block_entity.FabulousBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -68,9 +69,23 @@ public class MapDisplay extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag output, HolderLookup.Provider registries) {
         super.saveAdditional(output, registries);
-        output.storeNullable("mapId", MapId.CODEC, this.mapId);
-        output.storeNullable("anchorPos", BlockPos.CODEC, this.anchorPos);
-        output.storeNullable("cachedMapId", MapId.CODEC, this.cachedMapId);
+        if (this.mapId != null) {
+            MapId.CODEC.encodeStart(NbtOps.INSTANCE, this.mapId)
+                    .result()
+                    .ifPresent(tag -> output.put("mapId", tag));
+        }
+
+        if (this.anchorPos != null) {
+            BlockPos.CODEC.encodeStart(NbtOps.INSTANCE, this.anchorPos)
+                    .result()
+                    .ifPresent(tag -> output.put("anchorPos", tag));
+        }
+
+        if (this.cachedMapId != null) {
+            MapId.CODEC.encodeStart(NbtOps.INSTANCE, this.cachedMapId)
+                    .result()
+                    .ifPresent(tag -> output.put("cachedMapId", tag));
+        }
         output.putInt("localU", localU);
         output.putInt("localV", localV);
         output.putInt("squareSize", squareSize);
@@ -79,12 +94,20 @@ public class MapDisplay extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag input, HolderLookup.Provider registries) {
         super.loadAdditional(input, registries);
-        this.mapId = input.read("mapId", MapId.CODEC).orElse(null);
-        this.anchorPos = input.read("anchorPos", BlockPos.CODEC).orElse(null);
-        this.cachedMapId = input.read("cachedMapId", MapId.CODEC).orElse(null);
-        this.localU = input.getIntOr("localU", 0);
-        this.localV = input.getIntOr("localV", 0);
-        this.squareSize = input.getIntOr("squareSize", 1);
+        this.mapId = input.contains("mapId")
+                ? MapId.CODEC.parse(NbtOps.INSTANCE, input.get("mapId")).result().orElse(null)
+                : null;
+
+        this.anchorPos = input.contains("anchorPos")
+                ? BlockPos.CODEC.parse(NbtOps.INSTANCE, input.get("anchorPos")).result().orElse(null)
+                : null;
+
+        this.cachedMapId = input.contains("cachedMapId")
+                ? MapId.CODEC.parse(NbtOps.INSTANCE, input.get("cachedMapId")).result().orElse(null)
+                : null;
+        this.localU = input.contains("localU") ? input.getInt("localU") : 0;
+        this.localV = input.contains("localV") ? input.getInt("localV") : 0;
+        this.squareSize = input.contains("squareSize") ? input.getInt("squareSize") : 1;
     }
     @Override
     public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {

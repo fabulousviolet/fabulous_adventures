@@ -1,21 +1,25 @@
 package com.violet.fabulous_adventures.item;
 
 import com.violet.fabulous_adventures.core.FabulousAdventures;
-import com.violet.fabulous_adventures.item.custom.advanced_map.AdvancedMapItem;
 import com.violet.fabulous_adventures.item.custom.EmptyAdvancedMapItem;
 import com.violet.fabulous_adventures.item.custom.MacheteItem;
+import com.violet.fabulous_adventures.item.custom.RopeArrowItem;
+import com.violet.fabulous_adventures.item.custom.advanced_map.AdvancedMapItem;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreItem;
 import com.violet.fabulous_adventures.item.custom.glider.GliderItem;
-import com.violet.fabulous_adventures.item.custom.RopeArrowItem;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Consumer;
+import java.util.List;
 
 public class FabulousItems {
     //create a deferred register for items
@@ -24,9 +28,9 @@ public class FabulousItems {
     //register items here vvv
     public static final DeferredItem<ArrowItem> ROPE_ARROW = ITEMS.registerItem("rope_arrow", properties -> new RopeArrowItem(properties){
         @Override
-        public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
-            builder.accept(Component.literal("Shoot it at a ceiling to let down a rope you can climb up."));
-            super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
+        public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> components, TooltipFlag tooltipFlag) {
+            components.add(Component.literal("Shoot it at a ceiling to let down a rope you can climb up."));
+            super.appendHoverText(itemStack, context, components, tooltipFlag);
         }
     });
     public static final DeferredItem<Item> GLIDER = ITEMS.registerItem("glider", properties ->
@@ -35,14 +39,21 @@ public class FabulousItems {
                     .repairable(ItemTags.WOOL)
             ));
     public static final DeferredItem<Item> MACHETE = ITEMS.registerItem("machete", properties -> new MacheteItem(properties
-            .sword(ToolMaterial.IRON,4.0f,-2.0f)
+            .attributes(ItemAttributeModifiers.builder()
+                    .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"machete_strength"),4.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
+                    .add(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"machete_attack_speed"),-2.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
+                    .build())
             .repairable(Items.IRON_INGOT)
             .durability(512)
             .stacksTo(1)
 
     ));
     public static final DeferredItem<Item> CLAYMORE = ITEMS.registerItem("claymore",properties -> new ClaymoreItem(
-                    properties.sword(ToolMaterial.NETHERITE,7.0f,-3.0f)
+                    properties
+                            .attributes(ItemAttributeModifiers.builder()
+                                    .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"claymore_strength"),7.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
+                                    .add(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"claymore_attack_speed"),-3.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
+                                    .build())
                             .durability(1024)
                             .repairable(Items.ANCIENT_DEBRIS)
                             .stacksTo(1)

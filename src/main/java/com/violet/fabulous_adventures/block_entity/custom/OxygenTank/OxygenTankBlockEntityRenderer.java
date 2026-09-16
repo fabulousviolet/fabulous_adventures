@@ -3,17 +3,11 @@ package com.violet.fabulous_adventures.block_entity.custom.OxygenTank;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.violet.fabulous_adventures.core.FabulousAdventures;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.extensions.IBlockGetterExtension;
-import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 
 public class OxygenTankBlockEntityRenderer implements BlockEntityRenderer<OxygenTank> {
@@ -23,7 +17,7 @@ public class OxygenTankBlockEntityRenderer implements BlockEntityRenderer<Oxygen
 
 
     @Override
-    public void render(OxygenTank oxygenTank, float v, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int packedOverlay, Vec3 vec3) {
+    public void render(OxygenTank oxygenTank, float v, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int packedOverlay) {
         float fillFraction = ((float) oxygenTank.getFillValue() / OxygenTank.getMaxValue());
         if (fillFraction <= 0f) return;
         int packedLight = 15728880;

@@ -5,7 +5,6 @@ import com.violet.fabulous_adventures.block.FabulousBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -77,7 +75,11 @@ public class RopeBlock extends RotatedPillarBlock {
     }
     //define voxel size
         static{
-            SHAPES = Shapes.rotateAllAxis(Block.cube(4.0F, 4.0F, 16.0F));
+        SHAPES = Map.of(
+                Direction.Axis.X, Block.box(0, 6, 6, 16, 10, 10),
+                Direction.Axis.Y, Block.box(6, 0, 6, 10, 16, 10),
+                Direction.Axis.Z, Block.box(6, 6, 0, 10, 10, 16)
+        );
         }
 
 }

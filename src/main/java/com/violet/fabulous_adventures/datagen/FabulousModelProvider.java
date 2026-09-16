@@ -1,8 +1,8 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreChargeState;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreState;
@@ -12,18 +12,17 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+import net.minecraft.client.data.models.blockstates.Variant;
+import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.*;
-
+import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.client.renderer.block.model.Variant;
-import net.minecraft.client.renderer.block.model.VariantMutator;
-import net.minecraft.client.renderer.item.BlockModelWrapper;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -58,20 +57,20 @@ public class FabulousModelProvider extends ModelProvider {
 
 //define model providers here vvv
     public static final TexturedModel.Provider ROPE_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-        _ -> new TextureMapping()
+        a -> new TextureMapping()
                     .put(ROPE,TextureMapping.getBlockTexture(FabulousBlocks.ROPE.get(),"")),
             ROPE_TEMPLATE
     );
     public static final TexturedModel.Provider ROPE_END_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-            _ -> new TextureMapping()
+            a -> new TextureMapping()
                     .put(ROPE,TextureMapping.getBlockTexture(FabulousBlocks.ROPE.get(),"")),
             ROPE_TEMPLATE_END);
     public static final TexturedModel.Provider MAP_DISPLAY_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-            _ -> new TextureMapping()
+            a -> new TextureMapping()
                     .put(MAP_DISPLAY,TextureMapping.getBlockTexture(FabulousBlocks.MAP_DISPLAY.get(),"")),
             MAP_DISPLAY_TEMPLATE);
     public static final TexturedModel.Provider OXYGEN_TANK_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-                _ -> new TextureMapping()
+                a -> new TextureMapping()
                         .put(OXYGEN_TANK,TextureMapping.getBlockTexture(FabulousBlocks.OXYGEN_TANK.get(),"")),
                 OXYGEN_TANK_TEMPLATE);
 
@@ -82,44 +81,56 @@ public class FabulousModelProvider extends ModelProvider {
         ResourceLocation modelLoc_rope = ROPE_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE.get(), blockModels.modelOutput);
         ResourceLocation modelLoc_rope_end = ROPE_END_TEMPLATE_PROVIDER.create(FabulousBlocks.ROPE_CLIMBABLE.get(), blockModels.modelOutput);
         ResourceLocation modelLoc_map_display = MAP_DISPLAY_TEMPLATE_PROVIDER.create(FabulousBlocks.MAP_DISPLAY.get(), blockModels.modelOutput);
-        Variant variant_rope = new Variant(modelLoc_rope);
-        Variant variant_map_display = new Variant(modelLoc_map_display);
+        Variant variant_rope = Variant.variant().with(VariantProperties.MODEL, modelLoc_rope);
+        Variant variant_map_display = Variant.variant().with(VariantProperties.MODEL, modelLoc_map_display);
 
     //register block models for blocks here vvv
         //rope model
         blockModels.blockStateOutput.accept(
-                MultiVariantGenerator.dispatch(FabulousBlocks.ROPE.get(),
-                                BlockModelGenerators.variant(variant_rope))
-                        .with(PropertyDispatch.modify(BlockStateProperties.AXIS)
-                                .select(Direction.Axis.Y, BlockModelGenerators.NOP)
-                                .select(Direction.Axis.Z, BlockModelGenerators.X_ROT_90)
-                                .select(Direction.Axis.X, BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90)))
+                MultiVariantGenerator.multiVariant(FabulousBlocks.ROPE.get(),variant_rope)
+                        .with(PropertyDispatch.property(BlockStateProperties.AXIS)
+                                .select(Direction.Axis.Y, Variant.variant())
+                                .select(Direction.Axis.Z, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+                                .select(Direction.Axis.X, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)))
         );
         //rope climbable model
         blockModels.blockStateOutput.accept(
-                MultiVariantGenerator.dispatch(FabulousBlocks.ROPE_CLIMBABLE.get(),
-                                BlockModelGenerators.variant(variant_rope))
-                        .with(PropertyDispatch.modify(BlockStateProperties.AXIS)
-                                .select(Direction.Axis.Y, BlockModelGenerators.NOP)
-                                .select(Direction.Axis.Z, BlockModelGenerators.X_ROT_90)
-                                .select(Direction.Axis.X, BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90)))
-                        .with(PropertyDispatch.modify(RopeBlock.END)
-                                .select(false, BlockModelGenerators.NOP)
-                                .select(true, VariantMutator.MODEL.withValue(modelLoc_rope_end)))
-
-
+                MultiVariantGenerator.multiVariant(FabulousBlocks.ROPE_CLIMBABLE.get(),variant_rope)
+                        .with(PropertyDispatch.property(BlockStateProperties.AXIS)
+                                .select(Direction.Axis.Y, Variant.variant())
+                                .select(Direction.Axis.Z, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+                                .select(Direction.Axis.X, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)))
+                        .with(PropertyDispatch.property(RopeBlock.END)
+                                .select(false, Variant.variant())
+                                .select(true, Variant.variant().with(VariantProperties.MODEL, modelLoc_rope_end)))
         );
+
+
+
         blockModels.blockStateOutput.accept(
-                MultiVariantGenerator.dispatch(FabulousBlocks.MAP_DISPLAY.get(),
-                                BlockModelGenerators.variant(variant_map_display))
-                        .with(PropertyDispatch.modify(BlockStateProperties.FACING)
-                                .select(Direction.UP, BlockModelGenerators.NOP)
-                                .select(Direction.DOWN, BlockModelGenerators.X_ROT_180)
-                                .select(Direction.NORTH,  BlockModelGenerators.X_ROT_90)
-                                .select(Direction.SOUTH,  BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_180))
-                                .select(Direction.WEST,BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_270))
-                                .select(Direction.EAST,BlockModelGenerators.X_ROT_90.then(BlockModelGenerators.Y_ROT_90))
-                        )
+                MultiVariantGenerator.multiVariant(FabulousBlocks.MAP_DISPLAY.get(),variant_map_display)
+                        .with(PropertyDispatch.property(BlockStateProperties.FACING)
+                                .select(Direction.UP, Variant.variant())
+                                .select(Direction.DOWN, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+                                .select(Direction.NORTH, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+                                .select(Direction.SOUTH, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                                .select(Direction.WEST, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                                .select(Direction.EAST, Variant.variant()
+                                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)))
+
 
         );
         blockModels.createTrivialBlock(FabulousBlocks.OXYGEN_TANK.get(),OXYGEN_TANK_TEMPLATE_PROVIDER);

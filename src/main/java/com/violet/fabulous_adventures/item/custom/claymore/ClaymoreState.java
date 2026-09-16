@@ -1,6 +1,5 @@
 package com.violet.fabulous_adventures.item.custom.claymore;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -20,11 +19,6 @@ public record ClaymoreState() implements SelectItemModelProperty<ClaymoreChargeS
     @Override
     public ClaymoreChargeState get(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed, @NonNull ItemDisplayContext context) {
         return stack.getOrDefault(FabulousDataComponents.CLAYMORE_CHARGE_STATE.get(), ClaymoreChargeState.NORMAL);
-    }
-
-    @Override
-    public @NonNull Codec<ClaymoreChargeState> valueCodec() {
-        return ClaymoreChargeState.CODEC;
     }
 
     @Override

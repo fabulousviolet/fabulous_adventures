@@ -5,7 +5,6 @@ import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +20,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -115,7 +113,7 @@ public class OxygenTank extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag input, HolderLookup.Provider registries) {
         super.loadAdditional(input,registries);
-        this.value = input.getIntOr("value", 0);
+        this.value = input.getInt("value");
     }
 
 
@@ -126,10 +124,12 @@ public class OxygenTank extends BlockEntity {
     }
 
     @Override
-    public void applyImplicitComponents(DataComponentGetter componentGetter) {
-        super.applyImplicitComponents(componentGetter);
-        this.value = componentGetter.getOrDefault(FabulousDataComponents.OXYGEN_TANK_VALUE.get(), 0);
+    public void applyImplicitComponents(DataComponentInput componentInput) {
+        super.applyImplicitComponents(componentInput);
+        this.value = componentInput.getOrDefault(FabulousDataComponents.OXYGEN_TANK_VALUE.get(), 0);
     }
+
+
     @Override
     public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);

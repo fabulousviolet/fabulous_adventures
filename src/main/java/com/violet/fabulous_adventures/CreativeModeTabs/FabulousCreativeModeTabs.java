@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.CreativeModeTabs;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -19,7 +19,7 @@ public class FabulousCreativeModeTabs {
     //register tabs here vvv
     public static Supplier<CreativeModeTab> FABULOUS_ADVENTURES_TAB = CREATIVE_MODE_TABS.register("fabulous_adventures_tab", () ->CreativeModeTab.builder().icon(() -> new ItemStack(FabulousBlocks.ROPE.get()))
             .title(Component.translatable("creativetab.fabulousadventures.fabulous_adventures_tab"))
-            .displayItems((_, output) -> {
+            .displayItems((a, output) -> {
 
                 output.accept(FabulousBlocks.ROPE);
                 output.accept(FabulousItems.ROPE_ARROW);

@@ -6,15 +6,14 @@ import com.mojang.math.Axis;
 import com.violet.fabulous_adventures.block.custom.map_display.MapDisplayBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.MapTextureManager;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.maps.MapId;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
-import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDisplay> {
@@ -25,7 +24,7 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
     }
 
     @Override
-    public void render(MapDisplay blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, Vec3 cameraPos) {
+    public void render(MapDisplay blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         MapId mapId = blockEntity.resolveMapId();
         if (mapId == null) return;
 
@@ -74,4 +73,5 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
 
         poseStack.popPose();
     }
+
 }

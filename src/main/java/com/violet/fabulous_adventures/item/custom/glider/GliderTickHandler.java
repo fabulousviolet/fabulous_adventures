@@ -128,7 +128,7 @@ public class GliderTickHandler {
 
         if (player.level().isClientSide()) return;
 
-        int currentSlot = player.getInventory().getSelectedSlot();
+        int currentSlot = player.getInventory().selected;
         Integer previousSlot = lastSelectedSlot.put(player, currentSlot);
 
         if (previousSlot != null && previousSlot != currentSlot) {

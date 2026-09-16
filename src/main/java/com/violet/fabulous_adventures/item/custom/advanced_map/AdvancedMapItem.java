@@ -1,19 +1,16 @@
 package com.violet.fabulous_adventures.item.custom.advanced_map;
 
-import com.violet.fabulous_adventures.core.FabulousMapDecorationTypes;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.core.FabulousMapDecorationTypes;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
@@ -22,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.maps.MapId;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +37,8 @@ public class AdvancedMapItem extends MapItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack itemStack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
-        super.inventoryTick(itemStack, level, owner, slot);
+    public void inventoryTick(ItemStack itemStack, Level level, Entity owner, int x, boolean a) {
+        super.inventoryTick(itemStack, level, owner, x, a);
         if (SkillUtils.isUnlocked((Player) owner,"advanced_map_scale")){
             MAX_SCALE = 1;
         }
@@ -65,7 +61,10 @@ public class AdvancedMapItem extends MapItem {
                 if(SkillUtils.isUnlocked((Player) owner,"advanced_map_shift")){
                     int newCenterX = (int) (savedData.centerX + getDeltaXOutsideOfBounds(savedData, owner));
                     int newCenterZ = (int) (savedData.centerZ + getDeltaZOutsideOfBounds(savedData, owner));
-                    newMapData = createExactCentered(savedData, newCenterX, newCenterZ);
+                    if(level instanceof ServerLevel serverLevel){
+                        newMapData = createExactCentered(serverLevel, savedData, newCenterX, newCenterZ);
+
+                    }
                 }
             } else {
                 if(SkillUtils.isUnlocked((Player) owner,"advanced_map_scale")){
@@ -139,15 +138,15 @@ public class AdvancedMapItem extends MapItem {
         }
     }
 
-    private static MapItemSavedData createExactCentered(MapItemSavedData template, int newCenterX, int newCenterZ) {
-        Tag encoded = MapItemSavedData.CODEC.encodeStart(NbtOps.INSTANCE, template).getOrThrow();
-        CompoundTag tag = (CompoundTag) encoded;
+    private static MapItemSavedData createExactCentered(ServerLevel level, MapItemSavedData template, int newCenterX, int newCenterZ) {
+        CompoundTag tag =  new CompoundTag();
 
+        template.save(tag, level.registryAccess());
         tag.putInt("xCenter", newCenterX);
         tag.putInt("zCenter", newCenterZ);
         tag.putByteArray("colors", new byte[16384]); // blank canvas — copyOverlappingPixels fills in what carries over
 
-        return MapItemSavedData.CODEC.parse(NbtOps.INSTANCE, tag).getOrThrow();
+        return MapItemSavedData.load(tag,level.registryAccess());
     }
     @Override
     public InteractionResult useOn(UseOnContext context) {

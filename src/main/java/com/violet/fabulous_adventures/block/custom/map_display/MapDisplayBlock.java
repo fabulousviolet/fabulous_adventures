@@ -6,7 +6,6 @@ import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,11 +24,13 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.saveddata.maps.MapId;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class MapDisplayBlock extends Block implements EntityBlock {
 
@@ -111,7 +113,7 @@ public class MapDisplayBlock extends Block implements EntityBlock {
         return InteractionResult.PASS;
     }
 
-    public static void getInterconnectedDisplays(Level level, Set<BlockPos> checkedPositions, Set<BlockPos> queue, Direction facing, Set<BlockPos> result) {
+    public static void getInterconnectedDisplays(LevelAccessor level, Set<BlockPos> checkedPositions, Set<BlockPos> queue, Direction facing, Set<BlockPos> result) {
         Set<BlockPos> newQueue = new HashSet<>();
 
         for (BlockPos blockPos : queue) {
@@ -147,16 +149,17 @@ public class MapDisplayBlock extends Block implements EntityBlock {
         regroupDisplays(level, Set.of(pos), state.getValue(FACING));
     }
 
+
     @Override
-    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
-        super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
+    protected void updateIndirectNeighbourShapes(BlockState state, LevelAccessor level, BlockPos pos, int flags, int recursionLeft) {
+        super.updateIndirectNeighbourShapes(state, level, pos, flags, recursionLeft);
         Set<BlockPos> neighbors = getDisplayNeighbors(level, pos, state.getValue(FACING));
         if (!neighbors.isEmpty()) {
             regroupDisplays(level, neighbors, state.getValue(FACING));
         }
     }
 
-    public static Set<BlockPos> getDisplayNeighbors(Level level, BlockPos pos, Direction facing) {
+    public static Set<BlockPos> getDisplayNeighbors(LevelAccessor level, BlockPos pos, Direction facing) {
         Set<BlockPos> neighbors = new HashSet<>();
         for (Direction dir : Direction.values()) {
             if (dir.getAxis() != facing.getAxis()) {
@@ -186,7 +189,7 @@ public class MapDisplayBlock extends Block implements EntityBlock {
         return members;
     }
 
-    public static void regroupDisplays(Level level, Set<BlockPos> searchRoots, Direction facing) {
+    public static void regroupDisplays(LevelAccessor level, Set<BlockPos> searchRoots, Direction facing) {
         Set<BlockPos> allConnected = new HashSet<>();
         getInterconnectedDisplays(level, new HashSet<>(), searchRoots, facing, allConnected);
 
@@ -314,6 +317,12 @@ public class MapDisplayBlock extends Block implements EntityBlock {
     private static final Map<Direction, VoxelShape> SHAPES;
 
     static {
-        SHAPES = Shapes.rotateAll(Block.box(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 16.0F));
+        SHAPES = Map.of(
+                Direction.SOUTH, Block.box(0, 0, 0, 16, 16, 2),
+                Direction.NORTH, Block.box(0, 0, 14, 16, 16, 16),
+                Direction.EAST,  Block.box(0, 0, 0, 2, 16, 16),
+                Direction.WEST,  Block.box(14, 0, 0, 16, 16, 16),
+                Direction.UP,  Block.box(0, 0, 0, 16, 2, 16),
+                Direction.DOWN,    Block.box(0, 14, 0, 16, 16, 16));
     }
 }

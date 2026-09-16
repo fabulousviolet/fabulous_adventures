@@ -1,16 +1,15 @@
 package com.violet.fabulous_adventures.block;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.custom.OxygenTankBlock;
-import com.violet.fabulous_adventures.block.custom.map_display.MapDisplayBlock;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
 import com.violet.fabulous_adventures.block.custom.RopeBuilder;
+import com.violet.fabulous_adventures.block.custom.map_display.MapDisplayBlock;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -18,7 +17,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Consumer;
+import java.util.List;
 import java.util.function.Function;
 
 public class FabulousBlocks {
@@ -52,12 +51,13 @@ public class FabulousBlocks {
     public static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block, Component... components) {
         FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.useBlockDescriptionPrefix()){
             @Override
-            public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
+            public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> componentList, TooltipFlag tooltipFlag) {
                 for(var component : components) {
-                    builder.accept(component);
+                    componentList.add(component);
                 }
-                super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
+                super.appendHoverText(itemStack, context, componentList, tooltipFlag);
             }
+
         });
     }
 

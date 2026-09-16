@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import org.checkerframework.checker.nullness.qual.NonNull;
-
 
 import java.util.concurrent.CompletableFuture;
 
@@ -126,15 +125,12 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.BIRCH_SAPLING.defaultBlockState().getBlock(),
                         Blocks.BROWN_MUSHROOM.defaultBlockState().getBlock(),
                         Blocks.CACTUS.defaultBlockState().getBlock(),
-                        Blocks.CACTUS_FLOWER.defaultBlockState().getBlock(),
                         Blocks.CHERRY_SAPLING.defaultBlockState().getBlock(),
                         Blocks.COCOA.defaultBlockState().getBlock(),
                         Blocks.CRIMSON_FUNGUS.defaultBlockState().getBlock(),
                         Blocks.CRIMSON_ROOTS.defaultBlockState().getBlock(),
                         Blocks.DARK_OAK_SAPLING.defaultBlockState().getBlock(),
                         Blocks.FERN.defaultBlockState().getBlock(),
-                        Blocks.FIREFLY_BUSH.defaultBlockState().getBlock(),
-                        Blocks.BUSH.defaultBlockState().getBlock(),
                         Blocks.FLOWERING_AZALEA.defaultBlockState().getBlock(),
                         Blocks.GLOW_LICHEN.defaultBlockState().getBlock(),
                         Blocks.HANGING_ROOTS.defaultBlockState().getBlock(),
@@ -142,7 +138,6 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.KELP.defaultBlockState().getBlock(),
                         Blocks.KELP_PLANT.defaultBlockState().getBlock(),
                         Blocks.LARGE_FERN.defaultBlockState().getBlock(),
-                        Blocks.LEAF_LITTER.defaultBlockState().getBlock(),
                         Blocks.LILY_PAD.defaultBlockState().getBlock(),
                         Blocks.MANGROVE_PROPAGULE.defaultBlockState().getBlock(),
                         Blocks.MANGROVE_ROOTS.defaultBlockState().getBlock(),
@@ -163,7 +158,6 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.SPRUCE_SAPLING.defaultBlockState().getBlock(),
                         Blocks.SUGAR_CANE.defaultBlockState().getBlock(),
                         Blocks.SWEET_BERRY_BUSH.defaultBlockState().getBlock(),
-                        Blocks.TALL_DRY_GRASS.defaultBlockState().getBlock(),
                         Blocks.TALL_GRASS.defaultBlockState().getBlock(),
                         Blocks.TWISTING_VINES.defaultBlockState().getBlock(),
                         Blocks.TWISTING_VINES_PLANT.defaultBlockState().getBlock(),

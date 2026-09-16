@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EmptyMapItem;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +28,7 @@ public class EmptyAdvancedMapItem extends EmptyMapItem {
         if (level instanceof ServerLevel serverLevel) {
             itemStack.consume(1, player);
             player.awardStat(Stats.ITEM_USED.get(this));
-            serverLevel.playSound((Entity)null, player, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, player.getSoundSource(), 1.0F, 1.0F);
+            serverLevel.playSound((Player)null, player, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, player.getSoundSource(), 1.0F, 1.0F);
             ItemStack map = AdvancedMapItem.create(serverLevel, player.getBlockX(), player.getBlockZ(), (byte)0, true, false);
             if (itemStack.isEmpty()) {
                 return InteractionResult.SUCCESS.heldItemTransformedTo(map);

@@ -4,7 +4,6 @@ import com.violet.fabulous_adventures.datagen.FabulousBlockTagProvider;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -13,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -79,7 +79,10 @@ public class MacheteItem extends Item {
     //makes it prioritise the OffHand use
     private static boolean playerHasBlockingItemUseIntent(UseOnContext context) {
         Player player = context.getPlayer();
-        return context.getHand().equals(InteractionHand.MAIN_HAND) && player.getOffhandItem().has(DataComponents.BLOCKS_ATTACKS) && !player.isSecondaryUseActive();
+
+        return context.getHand() == InteractionHand.MAIN_HAND
+                && player.getOffhandItem().is(Items.SHIELD)
+                && !player.isSecondaryUseActive();
     }
 }
 
