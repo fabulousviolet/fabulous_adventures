@@ -115,12 +115,6 @@
   },
   {
     "type": "USED",
-    "id": "c:drinks",
-    "icon": "fabulousadventures:skillpoint_progress_icons/glass_bottle",
-    "label": "Drinks drunk"
-  },
-  {
-    "type": "USED",
     "id": "c:foods",
     "icon": "fabulousadventures:skillpoint_progress_icons/bread",
     "label": "Food eaten"
@@ -130,11 +124,5 @@
     "id": "c:dyes",
     "icon": "fabulousadventures:skillpoint_progress_icons/purple_dye",
     "label": "Dyes used"
-  },
-  {
-    "type": "USED",
-    "id": "c:potions",
-    "icon": "fabulousadventures:skillpoint_progress_icons/potion",
-    "label": "Potions consumed"
   }
 ]

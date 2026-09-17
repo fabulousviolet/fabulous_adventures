@@ -4,7 +4,6 @@ import com.violet.fabulous_adventures.attachments.FabulousAttachments;
 import com.violet.fabulous_adventures.datagen.FabulousBlockTagProvider;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkillnodeDef;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeScreen;
-import com.violet.fabulous_adventures.skills.Skill;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +14,6 @@ import net.minecraft.stats.StatsCounter;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
@@ -54,10 +52,8 @@ public class SkillProgressCalculator {
     private static final Map<TagKey<Item>, Double> SKILL_USE_CALC_STATS = Map.of(
             Tags.Items.TOOLS, 0.1,
             Tags.Items.CROPS, 0.1,
-            Tags.Items.DRINKS, 0.5,
             Tags.Items.FOODS, 0.05,
-            Tags.Items.DYES, 0.5,
-            Tags.Items.POTIONS, 0.1
+            Tags.Items.DYES, 0.5
     );
     private static final Set<Integer> MINED_MILESTONES = Set.of(
             50,

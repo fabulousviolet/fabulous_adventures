@@ -3,8 +3,8 @@ package com.violet.fabulous_adventures.entity;
 import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.entity.custom.RopeArrow;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.bus.api.IEventBus;
@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public class FabulousEntities {
     //create a deferred register for entities
-    public static final DeferredRegister.Entities ENTITIES = DeferredRegister.createEntities(FabulousAdventures.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE,FabulousAdventures.MODID);
     //register entities here vvv
     public static final Supplier<EntityType<RopeArrow>> ROPE_ARROW = ENTITIES.register("rope_arrow"
             ,() -> EntityType.Builder.<RopeArrow>of(

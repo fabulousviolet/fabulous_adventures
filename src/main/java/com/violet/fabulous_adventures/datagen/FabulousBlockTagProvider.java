@@ -11,6 +11,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -40,8 +41,8 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
             Registries.BLOCK,
             ResourceLocation.fromNamespaceAndPath("fabulousadventures", "skill_calc_crops"));
 
-    public FabulousBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider, FabulousAdventures.MODID);
+    public FabulousBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, FabulousAdventures.MODID,existingFileHelper);
     }
     //add Blocks to BlockTags here vvv
     @Override

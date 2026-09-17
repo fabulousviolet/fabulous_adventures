@@ -1,26 +1,45 @@
 package com.violet.fabulous_adventures.item.custom.glider;
 
-import com.mojang.serialization.MapCodec;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemDisplayContext;
+import com.violet.fabulous_adventures.item.FabulousItems;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+
 //a data component to check whether the entity is gliding
-public record GliderActive() implements ConditionalItemModelProperty {
-    public static final MapCodec<GliderActive> MAP_CODEC = MapCodec.unit(new GliderActive());
+@EventBusSubscriber(
+        modid = FabulousAdventures.MODID,
+        value = Dist.CLIENT)
+public class GliderActive{
+    public static final ResourceLocation PROPERTY =
+            ResourceLocation.fromNamespaceAndPath(
+                    FabulousAdventures.MODID,
+                    "glider_active"
+            );
 
-    @Override
-    public boolean get(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed, @NonNull ItemDisplayContext context) {
-        return stack.getOrDefault(FabulousDataComponents.GLIDER_ACTIVE.get(), false);
-    }
+    @SubscribeEvent
+    public static void registerProperties(FMLClientSetupEvent event) {
 
-    @Override
-    public @NonNull MapCodec<GliderActive> type() {
-        return MAP_CODEC;
+        event.enqueueWork(() -> {
+
+            ItemProperties.register(
+                    FabulousItems.GLIDER.get(),
+                    PROPERTY,
+                    (ItemStack stack, net.minecraft.client.multiplayer.ClientLevel level,
+                     net.minecraft.world.entity.LivingEntity entity, int seed) -> {
+
+                        return stack.getOrDefault(
+                                FabulousDataComponents.GLIDER_ACTIVE.get(),
+                                false
+                        ) ? 1.0F : 0.0F;
+                    }
+            );
+        });
     }
 
 }
