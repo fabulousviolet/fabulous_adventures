@@ -1,8 +1,8 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreChargeState;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreState;
@@ -13,17 +13,16 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
-
+import net.minecraft.client.renderer.block.model.Variant;
+import net.minecraft.client.renderer.block.model.VariantMutator;
+import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.client.renderer.block.model.Variant;
-import net.minecraft.client.renderer.block.model.VariantMutator;
-import net.minecraft.client.renderer.item.BlockModelWrapper;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -134,7 +133,7 @@ public class FabulousModelProvider extends ModelProvider {
                 new ConditionalItemModel.Unbaked(
                         new GliderActive(),
                         new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),List.of()),
-                        new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),List.of())
+                        new BlockModelWrapper.Unbaked(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_model"),List.of())
 
                 )
         );
