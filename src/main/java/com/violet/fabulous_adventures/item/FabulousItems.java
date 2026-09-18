@@ -38,7 +38,6 @@ public class FabulousItems {
     public static final DeferredItem<Item> GLIDER = ITEMS.registerItem("glider", properties ->
             new GliderItem(properties.stacksTo(1)
                     .durability(1000)
-                    //TODO: add repairable
             ));
     public static final DeferredItem<Item> MACHETE = ITEMS.registerItem("machete", properties -> new MacheteItem(properties
             .attributes(ItemAttributeModifiers.builder()
@@ -46,7 +45,6 @@ public class FabulousItems {
                     .add(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"machete_attack_speed"),-2.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
                     .build())
             .durability(512)
-            //TODO: add repairable
             .stacksTo(1)
 
     ));
@@ -57,7 +55,6 @@ public class FabulousItems {
                                     .add(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"claymore_attack_speed"),-3.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
                                     .build())
                             .durability(1024)
-                            //TODO: add repairable
                             .stacksTo(1)
             )
     );

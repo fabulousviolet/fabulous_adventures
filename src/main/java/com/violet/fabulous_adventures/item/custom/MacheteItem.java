@@ -26,6 +26,11 @@ public class MacheteItem extends Item {
 
     }
 
+    @Override
+    public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+        return repairCandidate.is(Items.IRON_INGOT);
+    }
+
     //bigger hit sweep
     @Override
     public AABB getSweepHitBox(ItemStack stack, Player player, Entity target) {
