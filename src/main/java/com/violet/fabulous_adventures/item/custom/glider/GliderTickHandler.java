@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
 
 
 public class GliderTickHandler {

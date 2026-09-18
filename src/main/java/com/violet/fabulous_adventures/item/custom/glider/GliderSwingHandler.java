@@ -8,7 +8,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.InputEvent;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
 
 public class GliderSwingHandler {
     @SubscribeEvent
