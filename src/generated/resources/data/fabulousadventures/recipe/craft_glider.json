@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "minecraft:wool"
+    },
+    "B": {
+      "item": "fabulousadventures:rope"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    },
+    "D": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "BCB",
+    "D D"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousadventures:glider"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "BCB",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousadventures:oxygen_tank"
+  }
+}

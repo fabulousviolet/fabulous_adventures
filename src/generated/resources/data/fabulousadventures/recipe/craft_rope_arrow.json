@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:arrow"
+    },
+    {
+      "item": "fabulousadventures:rope"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousadventures:rope_arrow"
+  }
+}

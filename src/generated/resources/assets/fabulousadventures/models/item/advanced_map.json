@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "fabulousadventures:item/advanced_map",
+    "layer1": "fabulousadventures:item/advanced_map_markings"
+  }
+}

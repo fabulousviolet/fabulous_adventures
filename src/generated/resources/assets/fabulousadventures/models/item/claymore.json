@@ -1,0 +1,17 @@
+{
+  "parent": "fabulousadventures:item/claymore_normal",
+  "overrides": [
+    {
+      "model": "fabulousadventures:item/claymore_charged",
+      "predicate": {
+        "fabulousadventures:claymore_state": 1.0
+      }
+    },
+    {
+      "model": "fabulousadventures:item/claymore_release",
+      "predicate": {
+        "fabulousadventures:claymore_state": 2.0
+      }
+    }
+  ]
+}

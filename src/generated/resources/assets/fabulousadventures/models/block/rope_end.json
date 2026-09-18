@@ -1,0 +1,6 @@
+{
+  "parent": "fabulousadventures:block/rope_model_end",
+  "textures": {
+    "rope": "fabulousadventures:block/rope"
+  }
+}

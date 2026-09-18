@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fabulousadventures:rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fabulousadventures:craft_rope_arrow"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rope"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fabulousadventures:craft_rope_arrow"
+    ]
+  }
+}

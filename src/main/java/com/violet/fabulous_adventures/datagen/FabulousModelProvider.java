@@ -1,8 +1,8 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
 import com.violet.fabulous_adventures.block.custom.RopeBlock;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreChargeState;
 import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreState;
@@ -14,7 +14,6 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.dispatch.Variant;
-
 import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
@@ -137,7 +136,7 @@ public class FabulousModelProvider extends ModelProvider {
                         Optional.empty(),
                         new GliderActive(),
                         new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_active"),Optional.empty(), Collections.emptyList()),
-                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider"),Optional.empty(), Collections.emptyList())
+                        new CuboidItemModelWrapper.Unbaked(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID,"item/glider_model"),Optional.empty(), Collections.emptyList())
 
                 )
         );

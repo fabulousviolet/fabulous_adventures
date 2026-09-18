@@ -1,0 +1,19 @@
+{
+  "values": [
+    "minecraft:stone",
+    "minecraft:tuff",
+    "minecraft:diorite",
+    "minecraft:granite",
+    "minecraft:andesite",
+    "minecraft:calcite",
+    "minecraft:clay",
+    "minecraft:blackstone",
+    "minecraft:gravel",
+    "minecraft:magma_block",
+    "minecraft:dripstone_block",
+    "minecraft:pointed_dripstone",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:deepslate"
+  ]
+}
