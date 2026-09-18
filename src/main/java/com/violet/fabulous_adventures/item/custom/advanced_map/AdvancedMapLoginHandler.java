@@ -15,7 +15,9 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 import java.util.Map;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+
+
 public class AdvancedMapLoginHandler {
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {

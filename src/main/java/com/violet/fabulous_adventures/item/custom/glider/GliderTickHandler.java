@@ -18,7 +18,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+
+
 public class GliderTickHandler {
     private static final Map<Player, Integer> lastSelectedSlot = new HashMap<>();
     private static final int HURT_INTERVAL = 30;

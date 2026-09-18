@@ -1,8 +1,8 @@
 package com.violet.fabulous_adventures.menus.custom.skillpoint_progress;
 
 import com.violet.fabulous_adventures.attachments.AttachmentDataSync;
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -11,7 +11,9 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import static com.violet.fabulous_adventures.menus.custom.skillpoint_progress.SkillProgressCalculator.calculateSkillPoints;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+
+
 public class SkillPointHandler {
 
     private static final int RECALC_INTERVAL_TICKS = 100;

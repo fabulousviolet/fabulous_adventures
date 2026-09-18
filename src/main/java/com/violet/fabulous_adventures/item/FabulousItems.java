@@ -9,7 +9,6 @@ import com.violet.fabulous_adventures.item.custom.claymore.ClaymoreItem;
 import com.violet.fabulous_adventures.item.custom.glider.GliderItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -36,7 +35,7 @@ public class FabulousItems {
     public static final DeferredItem<Item> GLIDER = ITEMS.registerItem("glider", properties ->
             new GliderItem(properties.stacksTo(1)
                     .durability(1000)
-                    .repairable(ItemTags.WOOL)
+                    .repairable(Items.WHITE_WOOL)
             ));
     public static final DeferredItem<Item> MACHETE = ITEMS.registerItem("machete", properties -> new MacheteItem(properties
             .attributes(ItemAttributeModifiers.builder()

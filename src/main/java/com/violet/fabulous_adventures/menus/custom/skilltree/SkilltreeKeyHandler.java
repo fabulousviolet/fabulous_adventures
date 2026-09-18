@@ -9,7 +9,8 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
+
 public class SkilltreeKeyHandler {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {

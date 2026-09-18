@@ -1,6 +1,5 @@
 package com.violet.fabulous_adventures.core;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.menus.FabulousMenus;
 import com.violet.fabulous_adventures.menus.custom.skillpoint_progress.SkillpointProgressScreen;
 import com.violet.fabulous_adventures.menus.custom.skilltree.SkilltreeScreen;
@@ -9,7 +8,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+
 public class FabulousMenuScreens {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {

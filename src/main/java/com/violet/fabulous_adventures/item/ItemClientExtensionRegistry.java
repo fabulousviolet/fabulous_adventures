@@ -8,7 +8,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 //registers the GliderItem to the event bus
-@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+
 public class ItemClientExtensionRegistry {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {

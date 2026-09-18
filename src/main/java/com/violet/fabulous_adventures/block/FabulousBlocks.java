@@ -32,13 +32,13 @@ public class FabulousBlocks {
     public static final DeferredBlock<Block> OXYGEN_TANK = registerBlock("oxygen_tank", properties -> new OxygenTankBlock(properties.strength(1f).sound(SoundType.METAL).destroyTime(10f).requiresCorrectToolForDrops()),true,Component.literal("Provides oxygen under water when standing next to it.\nCharge it with air by placing it above water."));
     //register functions
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function, boolean register_item) {
-        DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);
+        DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function, BlockBehaviour.Properties.of());
         if(register_item) registerBlockItem(name, toReturn);
         return toReturn;
 
     }
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function, boolean register_item, Component... components) {
-        DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);
+        DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function, BlockBehaviour.Properties.of());
         if(register_item) registerBlockItem(name, toReturn, components);
         return toReturn;
 

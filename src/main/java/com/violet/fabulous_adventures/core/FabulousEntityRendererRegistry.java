@@ -3,14 +3,14 @@ package com.violet.fabulous_adventures.core;
 import com.violet.fabulous_adventures.block_entity.FabulousBlockEntities;
 import com.violet.fabulous_adventures.block_entity.custom.MapDisplay.MapDisplayBlockEntityRenderer;
 import com.violet.fabulous_adventures.block_entity.custom.OxygenTank.OxygenTankBlockEntityRenderer;
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.entityRenderer.RopeArrowRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-@EventBusSubscriber(modid = FabulousAdventures.MODID,value = Dist.CLIENT)
+
+@EventBusSubscriber(modid = FabulousAdventures.MODID,value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class FabulousEntityRendererRegistry{
     //register the entity renderers
     @SubscribeEvent

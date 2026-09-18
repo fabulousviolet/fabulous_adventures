@@ -5,7 +5,6 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.violet.fabulous_adventures.attachments.AttachmentDataSync;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -17,7 +16,8 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import java.util.HashSet;
 import java.util.Set;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+
 public class FabulousCommands {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
