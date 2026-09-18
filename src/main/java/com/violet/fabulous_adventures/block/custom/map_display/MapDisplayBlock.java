@@ -7,7 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -93,10 +93,10 @@ public class MapDisplayBlock extends Block implements EntityBlock {
     // ==============================
 
     @Override
-    protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (itemStack.is(FabulousItems.ADVANCED_MAP.get()) && level.getBlockEntity(pos) instanceof MapDisplay display) {
             MapId newId = itemStack.get(DataComponents.MAP_ID);
-            if (newId == null) return InteractionResult.PASS;
+            if (newId == null) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
             BlockPos anchorPos = display.isAnchor() ? pos : display.getAnchorPos();
             if (level.getBlockEntity(anchorPos) instanceof MapDisplay anchor) {
@@ -107,10 +107,10 @@ public class MapDisplayBlock extends Block implements EntityBlock {
                         child.makeChild(anchorPos, newId, child.getLocalU(), child.getLocalV(), child.getSquareSize());
                     }
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public static void getInterconnectedDisplays(LevelAccessor level, Set<BlockPos> checkedPositions, Set<BlockPos> queue, Direction facing, Set<BlockPos> result) {

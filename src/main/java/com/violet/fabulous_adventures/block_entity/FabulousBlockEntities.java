@@ -17,11 +17,19 @@ public class FabulousBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MapDisplay>> MAP_DISPLAY = BLOCK_ENTITY_TYPES.register(
             "map_display",
-            () -> new BlockEntityType<>(MapDisplay::new,  FabulousBlocks.MAP_DISPLAY.get())
+            () -> BlockEntityType.Builder.of(
+                    MapDisplay::new,
+                    FabulousBlocks.MAP_DISPLAY.get()
+            )
+                    .build(null)
     );
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OxygenTank>> OXYGEN_TANK = BLOCK_ENTITY_TYPES.register(
                 "oxygen_tank",
-                () -> new BlockEntityType<>(OxygenTank::new,  FabulousBlocks.OXYGEN_TANK.get())
+                () -> BlockEntityType.Builder.of(
+                        OxygenTank::new,
+                        FabulousBlocks.OXYGEN_TANK.get()
+                )
+                        .build(null)
         );
 
     public static void register(IEventBus event_bus) {

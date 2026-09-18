@@ -12,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 //a data component to check whether the entity is gliding
-@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT, bus= EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = FabulousAdventures.MODID, value = Dist.CLIENT)
 public class GliderActive{
     public static final ResourceLocation PROPERTY =
             ResourceLocation.fromNamespaceAndPath(

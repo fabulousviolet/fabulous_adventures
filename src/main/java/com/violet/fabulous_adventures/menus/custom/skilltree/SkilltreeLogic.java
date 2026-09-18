@@ -1,8 +1,8 @@
 package com.violet.fabulous_adventures.menus.custom.skilltree;
 
 import com.violet.fabulous_adventures.attachments.AttachmentDataSync;
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.attachments.FabulousAttachments;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.skills.FabulousSkills;
 import com.violet.fabulous_adventures.skills.Skill;
 import com.violet.fabulous_adventures.skills.custom.AttributeSkill;
@@ -32,7 +32,7 @@ public class SkilltreeLogic {
 
                 ResourceLocation nodeResourceLocation = ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,nodeId);
                 //apply AttributeMod on unlock
-                Skill skill = FabulousSkills.SKILL_REGISTRY.getValue(nodeResourceLocation);
+                Skill skill = FabulousSkills.SKILL_REGISTRY.get(nodeResourceLocation);
                 if (skill instanceof AttributeSkill attributeSkill){
                     attributeSkill.addAttribute(player);
                 }

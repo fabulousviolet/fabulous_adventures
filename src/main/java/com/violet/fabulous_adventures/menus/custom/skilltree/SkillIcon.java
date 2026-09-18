@@ -2,7 +2,6 @@ package com.violet.fabulous_adventures.menus.custom.skilltree;
 
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -13,7 +12,7 @@ public sealed interface SkillIcon permits SkillIcon.Item, SkillIcon.Texture {
     default void render(GuiGraphics graphics, int x, int y) {
         switch (this) {
             case Item item -> graphics.renderItem(item.stack(), x, y);
-            case Texture texture -> graphics.blitSprite(RenderType.GUI_TEXTURED, texture.location(), x, y, 16, 16);
+            case Texture texture -> graphics.blitSprite( texture.location(), x, y, 16, 16);
         }
     }
 }

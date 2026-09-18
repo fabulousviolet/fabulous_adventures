@@ -16,7 +16,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import java.util.HashSet;
 import java.util.Set;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = FabulousAdventures.MODID)
 
 public class FabulousCommands {
     @SubscribeEvent

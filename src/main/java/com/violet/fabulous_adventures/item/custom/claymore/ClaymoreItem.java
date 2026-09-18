@@ -6,11 +6,10 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,10 +33,10 @@ public class ClaymoreItem extends Item {
     }
 
     @Override
-    public @NonNull InteractionResult use(Level level, Player player, @NonNull InteractionHand hand) {
+    public @NonNull InteractionResultHolder<ItemStack> use(Level level, Player player, @NonNull InteractionHand hand) {
         if(!SkillUtils.isUnlocked(player,"claymore_unlock")) {
             player.displayClientMessage(Component.literal("Claymore is not unlocked yet. Unlock it in the Skill tree (K)"),true);
-            return InteractionResult.PASS;
+            return InteractionResultHolder.pass(player.getItemInHand(hand));
         }
         if(SkillUtils.isUnlocked(player,"claymore_charge_speed")) {
             MAX_CHARGE_TICKS = 60;
@@ -67,7 +66,7 @@ public class ClaymoreItem extends Item {
             stack.set(FabulousDataComponents.CLAYMORE_CHARGE_STATE.get(), ClaymoreChargeState.NORMAL);
         }
         player.startUsingItem(hand);
-        return InteractionResult.CONSUME;
+        return InteractionResultHolder.consume(player.getItemInHand(hand));
     }
 
     @Override
@@ -111,8 +110,8 @@ public class ClaymoreItem extends Item {
     }
 
     @Override
-    public boolean releaseUsing(@NonNull ItemStack itemStack, @NonNull Level level, @NonNull LivingEntity entity, int remainingTime) {
-        if (level.isClientSide()) return true;
+    public void releaseUsing(@NonNull ItemStack itemStack, @NonNull Level level, @NonNull LivingEntity entity, int remainingTime) {
+        if (level.isClientSide()) return;
 
         int useDuration = getUseDuration(itemStack,entity);
         int ticksCharged = useDuration-remainingTime;
@@ -124,7 +123,7 @@ public class ClaymoreItem extends Item {
 
         itemStack.set(FabulousDataComponents.CLAYMORE_RELEASE_TICKS.get(), RELEASE_HOLD_TICKS);
 
-        return true;
+        return;
 
     }
     @Override
@@ -153,7 +152,7 @@ public class ClaymoreItem extends Item {
             if (distance > ATTACK_RADIUS) continue;
 
             DamageSource damageSource = entity.damageSources().mobAttack(entity);
-            target.hurtServer((ServerLevel) level, damageSource, (float) damage);
+            target.hurt(damageSource, (float) damage);
 
             Vec3 knockbackDir = target.position().subtract(entity.position()).normalize();
             target.setDeltaMovement(target.getDeltaMovement()

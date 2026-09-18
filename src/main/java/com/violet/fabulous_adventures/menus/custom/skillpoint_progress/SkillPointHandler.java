@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import static com.violet.fabulous_adventures.menus.custom.skillpoint_progress.SkillProgressCalculator.calculateSkillPoints;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = FabulousAdventures.MODID)
 
 
 public class SkillPointHandler {

@@ -15,7 +15,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.Map;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = FabulousAdventures.MODID)
 
 
 public class AdvancedMapTickHandler {

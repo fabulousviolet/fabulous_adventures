@@ -11,7 +11,6 @@ import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -296,7 +295,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
 
         for (int x = wrapX; x < contentWidth; x += TILE_SIZE) {
             for (int y = wrapY; y < contentHeight; y += TILE_SIZE) {
-                graphics.blit(RenderType.GUI_TEXTURED, BACKGROUND_INNER,
+                graphics.blit(BACKGROUND_INNER,
                         contentX0 + x, contentY0 + y,
                         0, 0, TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
@@ -304,7 +303,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
 
         graphics.disableScissor();
 
-        graphics.blit(RenderType.GUI_TEXTURED, BACKGROUND_FRAME, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
+        graphics.blit(BACKGROUND_FRAME, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
         int points = Minecraft.getInstance().player.getData(FabulousAttachments.SKILL_POINTS.get());
         int labelOffset;
         if (points < 10) labelOffset = 119;
@@ -373,7 +372,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
         int hWidth = hRight - hLeft;
 
         if (hWidth > 0) {
-            graphics.blitSprite(RenderType.GUI_TEXTURED, CONNECTOR_H,
+            graphics.blitSprite(CONNECTOR_H,
                     hLeft, parentCenterY - CONNECTOR_THICKNESS / 2,
                     hWidth, CONNECTOR_THICKNESS);
         }
@@ -383,7 +382,7 @@ public class SkilltreeScreen extends AbstractContainerScreen<SkilltreeMenu> {
         int vHeight = vBottom - vTop;
 
         if (vHeight > 0) {
-            graphics.blitSprite(RenderType.GUI_TEXTURED, CONNECTOR_V,
+            graphics.blitSprite(CONNECTOR_V,
                     childCenterX - CONNECTOR_THICKNESS / 2, vTop,
                     CONNECTOR_THICKNESS, vHeight);
         }

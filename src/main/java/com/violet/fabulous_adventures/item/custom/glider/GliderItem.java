@@ -4,7 +4,7 @@ import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.skills.SkillUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,12 +18,12 @@ public class GliderItem extends Item implements IClientItemExtensions {
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (!SkillUtils.isUnlocked(player, "glider_unlock")) {
             if (!level.isClientSide()) {
                 player.displayClientMessage(Component.literal("Glider is not unlocked yet. Unlock it in the Skill tree (K)"),true);
             }
-            return InteractionResult.CONSUME;
+            return InteractionResultHolder.success(player.getItemInHand(hand));
         }
 
         ItemStack stack = player.getItemInHand(hand);
@@ -41,7 +41,7 @@ public class GliderItem extends Item implements IClientItemExtensions {
             GliderTickHandler.markJustActivated(player);
         }
 
-        return InteractionResult.CONSUME;
+        return InteractionResultHolder.consume(player.getItemInHand(hand));
     }
 }
 

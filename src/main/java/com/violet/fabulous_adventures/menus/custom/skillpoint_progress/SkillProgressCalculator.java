@@ -254,7 +254,7 @@ public class SkillProgressCalculator {
                     yield 0.0;
                 }
 
-                ResourceLocation registeredStat = BuiltInRegistries.CUSTOM_STAT.getValue(statId);
+                ResourceLocation registeredStat = BuiltInRegistries.CUSTOM_STAT.get(statId);
                 yield registeredStat == null ? 0.0 : getRawTraveledValue(player, registeredStat);
             }
         };

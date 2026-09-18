@@ -45,11 +45,11 @@ public class FabulousBlocks {
     }
 
     public static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.useBlockDescriptionPrefix()));
+        FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(),properties));
     }
 
     public static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block, Component... components) {
-        FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.useBlockDescriptionPrefix()){
+        FabulousItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties){
             @Override
             public void appendHoverText(ItemStack itemStack, TooltipContext context, List<Component> componentList, TooltipFlag tooltipFlag) {
                 for(var component : components) {

@@ -4,23 +4,20 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.violet.fabulous_adventures.block.custom.map_display.MapDisplayBlock;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.resources.MapTextureManager;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.maps.MapId;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import org.joml.Matrix4f;
 
 public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDisplay> {
-    private final MapTextureManager mapTextureManager;
 
     public MapDisplayBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
-        this.mapTextureManager = Minecraft.getInstance().getMapTextureManager();
     }
 
     @Override
@@ -32,7 +29,7 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
         MapItemSavedData mapData = level.getMapData(mapId);
         if (mapData == null) return;
 
-        var texture = mapTextureManager.prepareMapTexture(mapId, mapData);
+        ResourceLocation texture = MapDisplayTextures.getTexture(mapId,mapData);
 
         int localU = blockEntity.getLocalU();
         int localV = blockEntity.getLocalV();

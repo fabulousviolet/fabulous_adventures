@@ -12,7 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -35,15 +38,15 @@ public class FabulousItems {
     public static final DeferredItem<Item> GLIDER = ITEMS.registerItem("glider", properties ->
             new GliderItem(properties.stacksTo(1)
                     .durability(1000)
-                    .repairable(Items.WHITE_WOOL)
+                    //TODO: add repairable
             ));
     public static final DeferredItem<Item> MACHETE = ITEMS.registerItem("machete", properties -> new MacheteItem(properties
             .attributes(ItemAttributeModifiers.builder()
                     .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"machete_strength"),4.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
                     .add(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"machete_attack_speed"),-2.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
                     .build())
-            .repairable(Items.IRON_INGOT)
             .durability(512)
+            //TODO: add repairable
             .stacksTo(1)
 
     ));
@@ -54,7 +57,7 @@ public class FabulousItems {
                                     .add(Attributes.ATTACK_SPEED, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(FabulousAdventures.MODID,"claymore_attack_speed"),-3.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
                                     .build())
                             .durability(1024)
-                            .repairable(Items.ANCIENT_DEBRIS)
+                            //TODO: add repairable
                             .stacksTo(1)
             )
     );

@@ -1,14 +1,11 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -16,29 +13,15 @@ import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
+import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
+
 public class FabulousRecipeProvider extends RecipeProvider {
-    public FabulousRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
-    }
-
-    public static class Runner extends RecipeProvider.Runner {
-        public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-            super(packOutput, registries);
-        }
-
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
-            return new FabulousRecipeProvider(provider,recipeOutput);
-        }
-
-        @Override
-        public String getName() {
-            return "fabulous_recipes";
-        }
+    public FabulousRecipeProvider(CompletableFuture<HolderLookup.Provider> registries, PackOutput output) {
+        super(output, registries);
     }
     String modId = FabulousAdventures.MODID+":";
     @Override
-    protected void buildRecipes() {
+    protected void buildRecipes(RecipeOutput output) {
         shaped(RecipeCategory.DECORATIONS, FabulousBlocks.ROPE.asItem(),4)
                 .pattern("A")
                 .pattern("B")
@@ -78,21 +61,20 @@ public class FabulousRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(FabulousBlocks.ROPE),this.has(FabulousBlocks.ROPE))
                 .save(output,modId+"craft_glider")
         ;
-
-        shapeless(RecipeCategory.COMBAT,FabulousItems.ROPE_ARROW)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,FabulousItems.ROPE_ARROW)
                 .requires(Items.ARROW)
                 .requires(FabulousBlocks.ROPE.asItem())
                 .unlockedBy(getHasName(FabulousBlocks.ROPE), this.has(FabulousBlocks.ROPE))
                 .save(output,modId+"craft_rope_arrow")
         ;
-        shapeless(RecipeCategory.TOOLS,FabulousItems.MACHETE)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS,FabulousItems.MACHETE)
                         .requires(Items.IRON_SWORD)
                         .requires(Items.LEATHER)
                         .requires(Items.IRON_INGOT)
                         .unlockedBy(getHasName(Items.IRON_INGOT), this.has(Items.IRON_INGOT))
                         .save(output,modId+"craft_machete")
         ;
-        shapeless(RecipeCategory.MISC,FabulousItems.EMPTY_ADVANCED_MAP)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,FabulousItems.EMPTY_ADVANCED_MAP)
                         .requires(Items.MAP)
                         .requires(Items.DIAMOND)
                         .unlockedBy(getHasName(Items.MAP), this.has(Items.MAP))

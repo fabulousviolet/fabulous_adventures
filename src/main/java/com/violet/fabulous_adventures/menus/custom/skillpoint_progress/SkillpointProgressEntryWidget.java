@@ -8,7 +8,6 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -32,7 +31,7 @@ public class SkillpointProgressEntryWidget extends AbstractWidget {
         Set<Integer> milestones = SkillProgressCalculator.getMilestonesFor(entry.type());
         MilestoneProgress progress = SkillProgressCalculator.computeProgress(rawValue, milestones, weight);
 
-        graphics.blitSprite(RenderType.GUI_TEXTURED, entry.imageLoc(), getX(), getY()-8, 16, 16);
+        graphics.blitSprite(entry.imageLoc(), getX(), getY()-8, 16, 16);
 
         int barX = getX() + 20;
         int barY = getY() + 4;
@@ -40,8 +39,8 @@ public class SkillpointProgressEntryWidget extends AbstractWidget {
         int barHeight = 5;
 
         int filledWidth = (int) (barWidth * progress.fillFraction());
-        graphics.blitSprite(RenderType.GUI_TEXTURED, PROGRESS_BAR_TEXT_LOC,barX,barY,barWidth,barHeight);
-        graphics.blitSprite(RenderType.GUI_TEXTURED, PROGRESS_BAR_FILLED_TEXT_LOC,barX,barY,filledWidth,barHeight);
+        graphics.blitSprite( PROGRESS_BAR_TEXT_LOC,barX,barY,barWidth,barHeight);
+        graphics.blitSprite( PROGRESS_BAR_FILLED_TEXT_LOC,barX,barY,filledWidth,barHeight);
         graphics.drawString(Minecraft.getInstance().font, entry.label(), barX, getY() - 10, -1, false);
 
         setTooltip(Tooltip.create(Component.literal(

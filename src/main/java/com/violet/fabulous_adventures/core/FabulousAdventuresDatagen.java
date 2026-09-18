@@ -12,7 +12,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.Collections;
 import java.util.List;
 
-@EventBusSubscriber(modid = FabulousAdventures.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = FabulousAdventures.MODID)
 public class FabulousAdventuresDatagen {
     @SubscribeEvent
     public static void gatherClientData(GatherDataEvent event){
@@ -27,6 +27,6 @@ public class FabulousAdventuresDatagen {
         generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(FabulousBlockLoottableProvider::new,
                         LootContextParamSets.BLOCK)),lookupProvider));
-        generator.addProvider(true, new FabulousRecipeProvider.Runner(packOutput,lookupProvider));
+        generator.addProvider(true, new FabulousRecipeProvider(lookupProvider,packOutput));
     }
 }
