@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:upgrade_to_claymore"
+        "recipes": "fabulousadventures:upgrade_to_claymore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

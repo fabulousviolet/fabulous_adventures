@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:craft_oxygen_tank"
+        "recipes": "fabulousadventures:craft_oxygen_tank"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

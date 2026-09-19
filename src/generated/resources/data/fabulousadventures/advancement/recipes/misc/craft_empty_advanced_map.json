@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:craft_empty_advanced_map"
+        "recipes": "fabulousadventures:craft_empty_advanced_map"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

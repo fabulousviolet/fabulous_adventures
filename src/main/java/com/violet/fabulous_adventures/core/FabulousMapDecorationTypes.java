@@ -1,6 +1,5 @@
 package com.violet.fabulous_adventures.core;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.saveddata.maps.MapDecorationType;
@@ -24,7 +23,7 @@ public class FabulousMapDecorationTypes {
     ) {
         return MAP_DECORATION_TYPES.register(name, () -> new MapDecorationType(
                 Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, assetName),
-                showOnItemFrame, mapColor, explorationMapElement, trackCount
+                showOnItemFrame, trackCount
         ));
     }
 

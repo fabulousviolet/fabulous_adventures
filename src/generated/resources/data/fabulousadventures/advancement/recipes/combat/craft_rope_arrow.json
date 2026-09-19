@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:craft_rope_arrow"
+        "recipes": "fabulousadventures:craft_rope_arrow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

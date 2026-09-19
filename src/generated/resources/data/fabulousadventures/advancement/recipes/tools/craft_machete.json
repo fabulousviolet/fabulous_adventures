@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:craft_machete"
+        "recipes": "fabulousadventures:craft_machete"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

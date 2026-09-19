@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:craft_map_display"
+        "recipes": "fabulousadventures:craft_map_display"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

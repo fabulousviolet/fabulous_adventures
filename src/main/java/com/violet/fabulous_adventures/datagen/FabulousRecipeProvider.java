@@ -1,45 +1,49 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.item.FabulousItems;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.common.Tags;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class FabulousRecipeProvider extends RecipeProvider {
-    public FabulousRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+    public FabulousRecipeProvider(
+            BootstrapContext<Recipe<?>> recipeOutput,
+            BootstrapContext<Advancement> advancementOutput
+    ) {
+        super(recipeOutput, advancementOutput);
     }
+    public static MultiRegistryBootstrap create() {
+        return new MultiRegistryBootstrap() {
+            @Override
+            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
 
-    public static class Runner extends RecipeProvider.Runner {
-        public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-            super(packOutput, registries);
-        }
-
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
-            return new FabulousRecipeProvider(provider,recipeOutput);
-        }
-
-        @Override
-        public String getName() {
-            return "fabulous_recipes";
-        }
+            @Override
+            public void run(MultiRegistryBootstrap.BootstrapGetter registries) {
+                new FabulousRecipeProvider(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
     }
     String modId = FabulousAdventures.MODID+":";
     @Override
     protected void buildRecipes() {
-        shaped(RecipeCategory.DECORATIONS, FabulousBlocks.ROPE.asItem(),4)
+        this.shaped(RecipeCategory.DECORATIONS, FabulousBlocks.ROPE.asItem(),4)
                 .pattern("A")
                 .pattern("B")
                 .pattern("A")
@@ -48,7 +52,7 @@ public class FabulousRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_wool",this.has(ItemTags.WOOL))
                 .save(output,modId+"craft_rope")
         ;
-        shaped(RecipeCategory.REDSTONE, FabulousBlocks.MAP_DISPLAY.asItem(),2)
+        this.shaped(RecipeCategory.REDSTONE, FabulousBlocks.MAP_DISPLAY.asItem(),2)
                 .pattern("AAA")
                 .pattern("BCB")
                 .define('A', Items.PAPER)
@@ -57,7 +61,7 @@ public class FabulousRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(FabulousItems.ADVANCED_MAP),this.has(FabulousItems.EMPTY_ADVANCED_MAP))
                 .save(output,modId+"craft_map_display")
         ;
-        shaped(RecipeCategory.REDSTONE, FabulousBlocks.OXYGEN_TANK.asItem())
+        this.shaped(RecipeCategory.REDSTONE, FabulousBlocks.OXYGEN_TANK.asItem())
                 .pattern("AAA")
                 .pattern("BCB")
                 .pattern("AAA")
@@ -67,7 +71,7 @@ public class FabulousRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.GLASS),this.has(Tags.Items.GLASS_BLOCKS))
                 .save(output,modId+"craft_oxygen_tank")
         ;
-        shaped(RecipeCategory.TOOLS, FabulousItems.GLIDER)
+        this.shaped(RecipeCategory.TOOLS, FabulousItems.GLIDER)
                 .pattern("AAA")
                 .pattern("BCB")
                 .pattern("D D")
@@ -79,20 +83,20 @@ public class FabulousRecipeProvider extends RecipeProvider {
                 .save(output,modId+"craft_glider")
         ;
 
-        shapeless(RecipeCategory.COMBAT,FabulousItems.ROPE_ARROW)
+        this.shapeless(RecipeCategory.COMBAT,FabulousItems.ROPE_ARROW)
                 .requires(Items.ARROW)
                 .requires(FabulousBlocks.ROPE.asItem())
                 .unlockedBy(getHasName(FabulousBlocks.ROPE), this.has(FabulousBlocks.ROPE))
                 .save(output,modId+"craft_rope_arrow")
         ;
-        shapeless(RecipeCategory.TOOLS,FabulousItems.MACHETE)
+        this.shapeless(RecipeCategory.TOOLS,FabulousItems.MACHETE)
                         .requires(Items.IRON_SWORD)
                         .requires(Items.LEATHER)
                         .requires(Items.IRON_INGOT)
                         .unlockedBy(getHasName(Items.IRON_INGOT), this.has(Items.IRON_INGOT))
                         .save(output,modId+"craft_machete")
         ;
-        shapeless(RecipeCategory.MISC,FabulousItems.EMPTY_ADVANCED_MAP)
+        this.shapeless(RecipeCategory.MISC,FabulousItems.EMPTY_ADVANCED_MAP)
                         .requires(Items.MAP)
                         .requires(Items.DIAMOND)
                         .unlockedBy(getHasName(Items.MAP), this.has(Items.MAP))

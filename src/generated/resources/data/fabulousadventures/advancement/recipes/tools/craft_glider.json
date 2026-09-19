@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fabulousadventures:craft_glider"
+        "recipes": "fabulousadventures:craft_glider"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

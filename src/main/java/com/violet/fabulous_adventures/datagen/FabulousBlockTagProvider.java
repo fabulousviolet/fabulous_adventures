@@ -1,7 +1,7 @@
 package com.violet.fabulous_adventures.datagen;
 
-import com.violet.fabulous_adventures.core.FabulousAdventures;
 import com.violet.fabulous_adventures.block.FabulousBlocks;
+import com.violet.fabulous_adventures.core.FabulousAdventures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -60,27 +60,8 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                 .add(FabulousBlocks.MAP_DISPLAY.getKey())
                 .add(FabulousBlocks.OXYGEN_TANK.getKey());
         this.tag(SKILL_CALC_ORES)
-                .add(
-                        Blocks.COAL_ORE.builtInRegistryHolder().key(),
-                        Blocks.COPPER_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_COAL_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_COPPER_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_DIAMOND_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_EMERALD_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_GOLD_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_IRON_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_LAPIS_ORE.builtInRegistryHolder().key(),
-                        Blocks.DEEPSLATE_REDSTONE_ORE.builtInRegistryHolder().key(),
-                        Blocks.IRON_ORE.builtInRegistryHolder().key(),
-                        Blocks.DIAMOND_ORE.builtInRegistryHolder().key(),
-                        Blocks.LAPIS_ORE.builtInRegistryHolder().key(),
-                        Blocks.EMERALD_ORE.builtInRegistryHolder().key(),
-                        Blocks.GOLD_ORE.builtInRegistryHolder().key(),
-                        Blocks.REDSTONE_ORE.builtInRegistryHolder().key(),
-                        Blocks.NETHER_GOLD_ORE.builtInRegistryHolder().key(),
-                        Blocks.NETHER_QUARTZ_ORE.builtInRegistryHolder().key(),
-                        Blocks.ANCIENT_DEBRIS.builtInRegistryHolder().key()
-                );
+                .addTag(BlockTags.ORES)
+                .add(Blocks.ANCIENT_DEBRIS.builtInRegistryHolder().key());
         this.tag(SKILL_CALC_MINERALS)
                 .add(
                         Blocks.STONE.builtInRegistryHolder().key(),
@@ -112,7 +93,7 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                 );
         //vegetation blocks
         //noinspection unchecked
-        this.tag(DESTROYABLE_BY_MACHETE)
+        this.tag(VEGETATION)
                 .addTags(
                         BlockTags.CAVE_VINES,
                         BlockTags.CROPS,
@@ -159,6 +140,7 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.PINK_PETALS.builtInRegistryHolder().key(),
                         Blocks.PUMPKIN_STEM.builtInRegistryHolder().key(),
                         Blocks.RED_MUSHROOM.builtInRegistryHolder().key(),
+                        Blocks.RED_SHRUB.builtInRegistryHolder().key(),
                         Blocks.SEA_PICKLE.builtInRegistryHolder().key(),
                         Blocks.SEAGRASS.builtInRegistryHolder().key(),
                         Blocks.SHORT_GRASS.builtInRegistryHolder().key(),
@@ -166,6 +148,7 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.SPORE_BLOSSOM.builtInRegistryHolder().key(),
                         Blocks.SPRUCE_SAPLING.builtInRegistryHolder().key(),
                         Blocks.SUGAR_CANE.builtInRegistryHolder().key(),
+                        Blocks.SHELF_MUSHROOM.builtInRegistryHolder().key(),
                         Blocks.SWEET_BERRY_BUSH.builtInRegistryHolder().key(),
                         Blocks.TALL_DRY_GRASS.builtInRegistryHolder().key(),
                         Blocks.TALL_GRASS.builtInRegistryHolder().key(),
@@ -177,8 +160,8 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
                         Blocks.WEEPING_VINES.builtInRegistryHolder().key(),
                         Blocks.WEEPING_VINES_PLANT.builtInRegistryHolder().key()
                 );
-        this.tag(VEGETATION)
-                .addTag(DESTROYABLE_BY_MACHETE);
+        this.tag(DESTROYABLE_BY_MACHETE)
+                .addTag(VEGETATION);
 
         this.tag(SKILL_CALC_VEGETATION)
                 .addTag(VEGETATION);

@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "A": {
-      "item": "minecraft:paper"
-    },
-    "B": {
-      "tag": "minecraft:planks"
-    },
-    "C": {
-      "item": "minecraft:redstone"
-    }
+    "A": "minecraft:paper",
+    "B": "#minecraft:planks",
+    "C": "minecraft:redstone"
   },
   "pattern": [
     "AAA",

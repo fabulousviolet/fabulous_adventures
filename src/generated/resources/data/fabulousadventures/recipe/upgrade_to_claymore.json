@@ -1,16 +1,9 @@
 {
   "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "minecraft:diamond"
-  },
-  "base": {
-    "item": "minecraft:heavy_core"
-  },
+  "addition": "minecraft:diamond",
+  "base": "minecraft:heavy_core",
   "result": {
-    "count": 1,
     "id": "fabulousadventures:claymore"
   },
-  "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
-  }
+  "template": "minecraft:netherite_upgrade_smithing_template"
 }

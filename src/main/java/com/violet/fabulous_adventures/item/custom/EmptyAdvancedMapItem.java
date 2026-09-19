@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -35,7 +36,7 @@ public class EmptyAdvancedMapItem extends EmptyMapItem {
                 return InteractionResult.SUCCESS.heldItemTransformedTo(map);
             } else {
                 if (!player.getInventory().add(map.copy())) {
-                    player.drop(map, false);
+                    player.drop(map, false, Prediction.PREDICTED);
                 }
 
                 return InteractionResult.SUCCESS;

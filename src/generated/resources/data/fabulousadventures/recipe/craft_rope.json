@@ -1,13 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
-    "A": {
-      "item": "minecraft:string"
-    },
-    "B": {
-      "tag": "minecraft:wool"
-    }
+    "A": "minecraft:string",
+    "B": "#minecraft:wool"
   },
   "pattern": [
     "A",

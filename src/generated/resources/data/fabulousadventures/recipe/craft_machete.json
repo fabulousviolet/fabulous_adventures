@@ -2,18 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "minecraft:iron_sword"
-    },
-    {
-      "item": "minecraft:leather"
-    },
-    {
-      "item": "minecraft:iron_ingot"
-    }
+    "minecraft:iron_sword",
+    "minecraft:leather",
+    "minecraft:iron_ingot"
   ],
   "result": {
-    "count": 1,
     "id": "fabulousadventures:machete"
   }
 }

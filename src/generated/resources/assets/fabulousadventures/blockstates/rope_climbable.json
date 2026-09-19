@@ -1,51 +1,27 @@
 {
   "variants": {
-    "axis=x,climbable=false,end=false": {
+    "axis=x,end=false": {
       "model": "fabulousadventures:block/rope",
       "x": 90,
       "y": 90
     },
-    "axis=x,climbable=false,end=true": {
-      "model": "fabulousadventures:block/rope_end",
+    "axis=x,end=true": {
+      "model": "fabulousadventures:block/rope_climbable",
       "x": 90,
       "y": 90
     },
-    "axis=x,climbable=true,end=false": {
-      "model": "fabulousadventures:block/rope",
-      "x": 90,
-      "y": 90
-    },
-    "axis=x,climbable=true,end=true": {
-      "model": "fabulousadventures:block/rope_end",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y,climbable=false,end=false": {
+    "axis=y,end=false": {
       "model": "fabulousadventures:block/rope"
     },
-    "axis=y,climbable=false,end=true": {
-      "model": "fabulousadventures:block/rope_end"
+    "axis=y,end=true": {
+      "model": "fabulousadventures:block/rope_climbable"
     },
-    "axis=y,climbable=true,end=false": {
-      "model": "fabulousadventures:block/rope"
-    },
-    "axis=y,climbable=true,end=true": {
-      "model": "fabulousadventures:block/rope_end"
-    },
-    "axis=z,climbable=false,end=false": {
+    "axis=z,end=false": {
       "model": "fabulousadventures:block/rope",
       "x": 90
     },
-    "axis=z,climbable=false,end=true": {
-      "model": "fabulousadventures:block/rope_end",
-      "x": 90
-    },
-    "axis=z,climbable=true,end=false": {
-      "model": "fabulousadventures:block/rope",
-      "x": 90
-    },
-    "axis=z,climbable=true,end=true": {
-      "model": "fabulousadventures:block/rope_end",
+    "axis=z,end=true": {
+      "model": "fabulousadventures:block/rope_climbable",
       "x": 90
     }
   }

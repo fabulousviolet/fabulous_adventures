@@ -14,6 +14,7 @@ import net.minecraft.client.resources.MapTextureManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
 
 import javax.annotation.Nullable;
 
@@ -74,14 +75,13 @@ public class MapDisplayBlockEntityRenderer implements BlockEntityRenderer<MapDis
 
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
-
         switch (renderState.facing) {
-            case UP -> poseStack.mulPose(Axis.XP.rotationDegrees(-90));
-            case DOWN -> poseStack.mulPose(Axis.XP.rotationDegrees(90));
+            case UP -> poseStack.mulPose(new Matrix4f().rotate(Axis.XP.rotationDegrees(-90)));
+            case DOWN -> poseStack.mulPose(new Matrix4f().rotate(Axis.XP.rotationDegrees(90)));
             case SOUTH -> {}
-            case NORTH -> poseStack.mulPose(Axis.YP.rotationDegrees(180));
-            case EAST -> poseStack.mulPose(Axis.YP.rotationDegrees(90));
-            case WEST -> poseStack.mulPose(Axis.YP.rotationDegrees(-90));
+            case NORTH -> poseStack.mulPose(new Matrix4f().rotate(Axis.YP.rotationDegrees(180)));
+            case EAST -> poseStack.mulPose(new Matrix4f().rotate(Axis.YP.rotationDegrees(90)));
+            case WEST -> poseStack.mulPose(new Matrix4f().rotate(Axis.YP.rotationDegrees(-90)));
         }
 
         poseStack.translate(-0.5, -0.5, -0.374);

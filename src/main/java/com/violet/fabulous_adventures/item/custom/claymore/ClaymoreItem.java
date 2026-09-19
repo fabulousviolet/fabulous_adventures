@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -158,7 +157,7 @@ public class ClaymoreItem extends Item {
             Vec3 knockbackDir = target.position().subtract(entity.position()).normalize();
             target.setDeltaMovement(target.getDeltaMovement()
                     .add(knockbackDir.x * KNOCKBACK_STRENGTH, 0.4, knockbackDir.z * KNOCKBACK_STRENGTH));
-            target.hurtMarked = true; // ensures the knockback velocity syncs to clients
+            target.setLastHurtByMob(entity); // ensures the knockback velocity syncs to clients
         }
         entity.getActiveItem().hurtAndBreak(3,entity,entity.getUsedItemHand());
         spawnGroundParticles((ServerLevel) level, entity.position());
