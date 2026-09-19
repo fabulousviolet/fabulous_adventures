@@ -32,3 +32,4 @@ public class AttributeSkill extends Skill {
         player.getAttribute(this.attributeType).addOrReplacePermanentModifier(modifer);
     }
 }
+

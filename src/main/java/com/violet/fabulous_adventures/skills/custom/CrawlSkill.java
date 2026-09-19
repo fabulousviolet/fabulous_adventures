@@ -11,6 +11,7 @@ public class CrawlSkill extends Skill {
         if (!unlocked) {
             return;
         }
+
         if(FabulousKeybinds.CRAWL_SKILL_KEYBIND.isDown()) {
             player.setPose(Pose.SWIMMING);
         }
