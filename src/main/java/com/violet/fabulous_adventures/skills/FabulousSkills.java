@@ -10,11 +10,14 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 
-
+@EventBusSubscriber(modid = FabulousAdventures.MODID)
 public class FabulousSkills {
     public static final ResourceKey<Registry<Skill>> SKILL_REGISTRY_KEY =
             ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(FabulousAdventures.MODID, "skills"));
@@ -63,6 +66,11 @@ public class FabulousSkills {
 
     public static void register(IEventBus eventBus) {
         SKILLS.register(eventBus);
+    }
+
+    @SubscribeEvent
+    public static void addRegistry(NewRegistryEvent event){
+        event.register(SKILL_REGISTRY);
     }
 }
 
