@@ -8,6 +8,7 @@ import com.violet.fabulous_adventures.dataComponents.FabulousDataComponents;
 import com.violet.fabulous_adventures.entity.FabulousEntities;
 import com.violet.fabulous_adventures.item.FabulousItems;
 
+import com.violet.fabulous_adventures.map_decoration.FabulousMapDecorationTypes;
 import com.violet.fabulous_adventures.menus.FabulousMenus;
 import com.violet.fabulous_adventures.skills.FabulousSkills;
 import org.slf4j.Logger;
