@@ -6,6 +6,5 @@ import net.minecraft.world.entity.player.Player;
 public class UnlockSkill extends Skill {
     @Override
     public void tick(Player player, boolean unlocked) {
-
     }
 }
