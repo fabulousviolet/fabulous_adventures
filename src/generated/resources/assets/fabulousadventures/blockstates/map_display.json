@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "fabulousadventures:block/map_display",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "fabulousadventures:block/map_display",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "fabulousadventures:block/map_display",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "fabulousadventures:block/map_display",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "fabulousadventures:block/map_display"
+    },
+    "facing=west": {
+      "model": "fabulousadventures:block/map_display",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

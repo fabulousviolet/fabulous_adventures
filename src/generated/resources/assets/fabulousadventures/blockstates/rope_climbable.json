@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "axis=x,end=false": {
+      "model": "fabulousadventures:block/rope",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,end=true": {
+      "model": "fabulousadventures:block/rope_climbable",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,end=false": {
+      "model": "fabulousadventures:block/rope"
+    },
+    "axis=y,end=true": {
+      "model": "fabulousadventures:block/rope_climbable"
+    },
+    "axis=z,end=false": {
+      "model": "fabulousadventures:block/rope",
+      "x": 90
+    },
+    "axis=z,end=true": {
+      "model": "fabulousadventures:block/rope_climbable",
+      "x": 90
+    }
+  }
+}

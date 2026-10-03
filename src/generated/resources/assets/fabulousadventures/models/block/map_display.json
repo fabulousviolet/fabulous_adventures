@@ -1,0 +1,6 @@
+{
+  "parent": "fabulousadventures:block/map_display_model",
+  "textures": {
+    "map_display": "fabulousadventures:block/map_display"
+  }
+}

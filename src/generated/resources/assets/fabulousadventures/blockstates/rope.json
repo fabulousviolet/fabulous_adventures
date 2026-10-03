@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "fabulousadventures:block/rope",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "fabulousadventures:block/rope"
+    },
+    "axis=z": {
+      "model": "fabulousadventures:block/rope",
+      "x": 90
+    }
+  }
+}

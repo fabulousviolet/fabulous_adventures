@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:map",
+    "minecraft:diamond"
+  ],
+  "result": {
+    "id": "fabulousadventures:empty_advanced_map"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": "minecraft:paper",
+    "B": "#minecraft:planks",
+    "C": "minecraft:redstone"
+  },
+  "pattern": [
+    "AAA",
+    "BCB"
+  ],
+  "result": {
+    "count": 2,
+    "id": "fabulousadventures:map_display"
+  }
+}

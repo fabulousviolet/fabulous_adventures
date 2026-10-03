@@ -1,0 +1,6 @@
+{
+  "parent": "fabulousadventures:block/oxygen_tank_model",
+  "textures": {
+    "oxygen_tank": "fabulousadventures:block/oxygen_tank"
+  }
+}
