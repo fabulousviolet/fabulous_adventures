@@ -47,18 +47,18 @@ public class FabulousBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NonNull Provider provider) {
         this.tag(BlockTags.SHEARS_MAJOR_BREAKING_SPEED)
-                .add(FabulousBlocks.ROPE.getKey());
+                .add(FabulousBlocks.ROPE.key());
         this.tag(BlockTags.ANVIL)
-                .add(Blocks.DAMAGED_ANVIL.builtInRegistryHolder().getKey())
-                .add(Blocks.CHIPPED_ANVIL.builtInRegistryHolder().getKey());
+                .add(Blocks.DAMAGED_ANVIL.builtInRegistryHolder().key())
+                .add(Blocks.CHIPPED_ANVIL.builtInRegistryHolder().key());
         this.tag(BlockTags.CLIMBABLE)
-                .add(FabulousBlocks.ROPE_CLIMBABLE.getKey());
+                .add(FabulousBlocks.ROPE_CLIMBABLE.key());
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(FabulousBlocks.MAP_DISPLAY.getKey())
-                .add(FabulousBlocks.OXYGEN_TANK.getKey());
+                .add(FabulousBlocks.MAP_DISPLAY.key())
+                .add(FabulousBlocks.OXYGEN_TANK.key());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(FabulousBlocks.MAP_DISPLAY.getKey())
-                .add(FabulousBlocks.OXYGEN_TANK.getKey());
+                .add(FabulousBlocks.MAP_DISPLAY.key())
+                .add(FabulousBlocks.OXYGEN_TANK.key());
         this.tag(SKILL_CALC_ORES)
                 .addTag(BlockTags.ORES)
                 .add(Blocks.ANCIENT_DEBRIS.builtInRegistryHolder().key());
