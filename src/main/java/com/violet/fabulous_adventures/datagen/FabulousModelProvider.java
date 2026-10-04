@@ -58,20 +58,20 @@ public class FabulousModelProvider extends ModelProvider {
 
 //define model providers here vvv
     public static final TexturedModel.Provider ROPE_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-        _ -> new TextureMapping()
+        a -> new TextureMapping()
                     .put(ROPE,TextureMapping.getBlockTexture(FabulousBlocks.ROPE.get(),"")),
             ROPE_TEMPLATE
     );
     public static final TexturedModel.Provider ROPE_END_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-            _ -> new TextureMapping()
+            a -> new TextureMapping()
                     .put(ROPE,TextureMapping.getBlockTexture(FabulousBlocks.ROPE.get(),"")),
             ROPE_TEMPLATE_END);
     public static final TexturedModel.Provider MAP_DISPLAY_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-            _ -> new TextureMapping()
+            a -> new TextureMapping()
                     .put(MAP_DISPLAY,TextureMapping.getBlockTexture(FabulousBlocks.MAP_DISPLAY.get(),"")),
             MAP_DISPLAY_TEMPLATE);
     public static final TexturedModel.Provider OXYGEN_TANK_TEMPLATE_PROVIDER = TexturedModel.createDefault(
-                _ -> new TextureMapping()
+                a -> new TextureMapping()
                         .put(OXYGEN_TANK,TextureMapping.getBlockTexture(FabulousBlocks.OXYGEN_TANK.get(),"")),
                 OXYGEN_TANK_TEMPLATE);
 

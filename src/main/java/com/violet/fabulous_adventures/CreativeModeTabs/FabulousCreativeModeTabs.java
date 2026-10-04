@@ -19,7 +19,7 @@ public class FabulousCreativeModeTabs {
     //register tabs here vvv
     public static Supplier<CreativeModeTab> FABULOUS_ADVENTURES_TAB = CREATIVE_MODE_TABS.register("fabulous_adventures_tab", () ->CreativeModeTab.builder().icon(() -> new ItemStack(FabulousBlocks.ROPE.get()))
             .title(Component.translatable("creativetab.fabulousadventures.fabulous_adventures_tab"))
-            .displayItems((_, output) -> {
+            .displayItems((a, output) -> {
 
                 output.accept(FabulousBlocks.ROPE);
                 output.accept(FabulousItems.ROPE_ARROW);
